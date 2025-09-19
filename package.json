@@ -8,9 +8,10 @@
     "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
     "server:dev": "tsx watch server/index.ts",
     "client:dev": "vite",
-    "build": "npm run build:client && npm run build:server",
+    "build": "npm run build:client && npm run build:server && npm run copy:data",
     "build:client": "vite build",
     "build:server": "tsc -p server/tsconfig.json",
+    "copy:data": "cp -r data dist/",
     "start": "node dist/server/index.js",
     "test": "vitest",
     "test:run": "vitest run"
