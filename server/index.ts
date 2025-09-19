@@ -37,8 +37,8 @@ app.use(limiter);
 
 // CORS configuration
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? ['https://your-domain.com'] 
+  origin: process.env.NODE_ENV === 'production'
+    ? ['https://venue-concierge-full-zlxe.bolt.host']
     : ['http://localhost:5173', 'http://localhost:3000'],
   credentials: true
 }));
