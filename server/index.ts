@@ -38,21 +38,25 @@ app.use(limiter);
 // CORS configuration
 app.use(cors({
   origin: process.env.NODE_ENV === 'production'
-    ? (origin, callback) => {
-        // Allow all origins ending with bolt.host or onrender.com
+    ? (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
+        console.log('CORS Origin:', origin);
+        // Allow all origins ending with bolt.host or onrender.com, or no origin (for direct requests)
         if (!origin ||
-            origin.endsWith('.bolt.host') ||
-            origin.endsWith('.onrender.com') ||
+            (origin && origin.includes('bolt.host')) ||
+            (origin && origin.includes('onrender.com')) ||
             origin === 'https://venue-concierge-full-zlxe.bolt.host') {
+          console.log('CORS: Allowing origin', origin);
           callback(null, true);
         } else {
+          console.log('CORS: Blocking origin', origin);
           callback(new Error('Not allowed by CORS'));
         }
       }
-    : ['http://localhost:5173', 'http://localhost:3000'],
+    : true, // Allow all origins in development
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],
+  optionsSuccessStatus: 200
 }));
 
 app.use(compression());
