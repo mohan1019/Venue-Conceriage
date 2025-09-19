@@ -1,0 +1,237 @@
+[
+  {
+    "id": "1",
+    "name": "Grand Ballroom Palace",
+    "city": "New York",
+    "capacity": 300,
+    "pricePerHour": 450,
+    "amenities": ["WiFi", "Projector", "Sound System", "Catering Kitchen", "Parking"],
+    "images": [
+      "https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg",
+      "https://images.pexels.com/photos/169196/pexels-photo-169196.jpeg"
+    ],
+    "rating": 4.8,
+    "availableDates": ["2025-02-15", "2025-02-22", "2025-03-01", "2025-03-08"]
+  },
+  {
+    "id": "2",
+    "name": "Skyline Event Center",
+    "city": "New York",
+    "capacity": 150,
+    "pricePerHour": 320,
+    "amenities": ["WiFi", "AV Equipment", "Outdoor Patio", "Bar Area"],
+    "images": [
+      "https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg"
+    ],
+    "rating": 4.6,
+    "availableDates": ["2025-02-16", "2025-02-23", "2025-03-02"]
+  },
+  {
+    "id": "3",
+    "name": "Riverside Gardens",
+    "city": "New York",
+    "capacity": 200,
+    "pricePerHour": 380,
+    "amenities": ["Outdoor", "Garden", "WiFi", "Catering Kitchen", "Parking"],
+    "images": [
+      "https://images.pexels.com/photos/2306281/pexels-photo-2306281.jpeg"
+    ],
+    "rating": 4.7,
+    "availableDates": ["2025-02-17", "2025-02-24", "2025-03-03"]
+  },
+  {
+    "id": "4",
+    "name": "Metropolitan Conference Hall",
+    "city": "New York",
+    "capacity": 500,
+    "pricePerHour": 650,
+    "amenities": ["WiFi", "Projector", "Sound System", "AV Equipment", "Parking", "Catering Kitchen"],
+    "images": [
+      "https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg"
+    ],
+    "rating": 4.9,
+    "availableDates": ["2025-02-18", "2025-02-25", "2025-03-04"]
+  },
+  {
+    "id": "5",
+    "name": "Downtown Loft Space",
+    "city": "New York",
+    "capacity": 80,
+    "pricePerHour": 250,
+    "amenities": ["WiFi", "Exposed Brick", "Natural Light", "Projector"],
+    "images": [
+      "https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg"
+    ],
+    "rating": 4.4,
+    "availableDates": ["2025-02-19", "2025-02-26", "2025-03-05"]
+  },
+  {
+    "id": "6",
+    "name": "Penthouse Events",
+    "city": "New York",
+    "capacity": 120,
+    "pricePerHour": 480,
+    "amenities": ["WiFi", "City View", "Rooftop", "Bar Area", "AV Equipment"],
+    "images": [
+      "https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg"
+    ],
+    "rating": 4.5,
+    "availableDates": ["2025-02-20", "2025-02-27", "2025-03-06"]
+  },
+  {
+    "id": "7",
+    "name": "Coastal Convention Center",
+    "city": "San Francisco",
+    "capacity": 400,
+    "pricePerHour": 520,
+    "amenities": ["WiFi", "Ocean View", "Projector", "Sound System", "Parking", "Catering Kitchen"],
+    "images": [
+      "https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg"
+    ],
+    "rating": 4.8,
+    "availableDates": ["2025-02-21", "2025-02-28", "2025-03-07"]
+  },
+  {
+    "id": "8",
+    "name": "Golden Gate Pavilion",
+    "city": "San Francisco",
+    "capacity": 250,
+    "pricePerHour": 420,
+    "amenities": ["WiFi", "Historic Architecture", "Garden", "AV Equipment"],
+    "images": [
+      "https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg"
+    ],
+    "rating": 4.7,
+    "availableDates": ["2025-02-22", "2025-03-01", "2025-03-08"]
+  },
+  {
+    "id": "9",
+    "name": "Mission District Studio",
+    "city": "San Francisco",
+    "capacity": 100,
+    "pricePerHour": 280,
+    "amenities": ["WiFi", "Natural Light", "Exposed Beams", "Projector"],
+    "images": [
+      "https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg"
+    ],
+    "rating": 4.3,
+    "availableDates": ["2025-02-23", "2025-03-02", "2025-03-09"]
+  },
+  {
+    "id": "10",
+    "name": "Bay Area Business Center",
+    "city": "San Francisco",
+    "capacity": 180,
+    "pricePerHour": 360,
+    "amenities": ["WiFi", "Projector", "Sound System", "Parking", "Conference Rooms"],
+    "images": [
+      "https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg"
+    ],
+    "rating": 4.6,
+    "availableDates": ["2025-02-24", "2025-03-03", "2025-03-10"]
+  },
+  {
+    "id": "11",
+    "name": "Nob Hill Gallery",
+    "city": "San Francisco",
+    "capacity": 90,
+    "pricePerHour": 300,
+    "amenities": ["WiFi", "Art Gallery", "Natural Light", "Wine Bar"],
+    "images": [
+      "https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg"
+    ],
+    "rating": 4.4,
+    "availableDates": ["2025-02-25", "2025-03-04", "2025-03-11"]
+  },
+  {
+    "id": "12",
+    "name": "Presidio Event Hall",
+    "city": "San Francisco",
+    "capacity": 320,
+    "pricePerHour": 480,
+    "amenities": ["WiFi", "Historic Building", "Park Setting", "AV Equipment", "Parking"],
+    "images": [
+      "https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg"
+    ],
+    "rating": 4.8,
+    "availableDates": ["2025-02-26", "2025-03-05", "2025-03-12"]
+  },
+  {
+    "id": "13",
+    "name": "Hollywood Hills Manor",
+    "city": "Los Angeles",
+    "capacity": 220,
+    "pricePerHour": 540,
+    "amenities": ["WiFi", "Pool Area", "City View", "Outdoor", "Catering Kitchen"],
+    "images": [
+      "https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg"
+    ],
+    "rating": 4.9,
+    "availableDates": ["2025-02-27", "2025-03-06", "2025-03-13"]
+  },
+  {
+    "id": "14",
+    "name": "Santa Monica Beach Club",
+    "city": "Los Angeles",
+    "capacity": 160,
+    "pricePerHour": 380,
+    "amenities": ["WiFi", "Beach Access", "Outdoor Patio", "Bar Area", "Sound System"],
+    "images": [
+      "https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg"
+    ],
+    "rating": 4.6,
+    "availableDates": ["2025-02-28", "2025-03-07", "2025-03-14"]
+  },
+  {
+    "id": "15",
+    "name": "Downtown LA Rooftop",
+    "city": "Los Angeles",
+    "capacity": 140,
+    "pricePerHour": 420,
+    "amenities": ["WiFi", "Skyline View", "Rooftop", "AV Equipment", "Bar Area"],
+    "images": [
+      "https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg"
+    ],
+    "rating": 4.5,
+    "availableDates": ["2025-03-01", "2025-03-08", "2025-03-15"]
+  },
+  {
+    "id": "16",
+    "name": "Beverly Hills Ballroom",
+    "city": "Los Angeles",
+    "capacity": 350,
+    "pricePerHour": 600,
+    "amenities": ["WiFi", "Crystal Chandeliers", "Dance Floor", "Sound System", "Parking", "Catering Kitchen"],
+    "images": [
+      "https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg"
+    ],
+    "rating": 4.8,
+    "availableDates": ["2025-03-02", "2025-03-09", "2025-03-16"]
+  },
+  {
+    "id": "17",
+    "name": "Venice Beach Warehouse",
+    "city": "Los Angeles",
+    "capacity": 200,
+    "pricePerHour": 350,
+    "amenities": ["WiFi", "Industrial Style", "High Ceilings", "Projector", "Parking"],
+    "images": [
+      "https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg"
+    ],
+    "rating": 4.4,
+    "availableDates": ["2025-03-03", "2025-03-10", "2025-03-17"]
+  },
+  {
+    "id": "18",
+    "name": "Malibu Vineyard Estate",
+    "city": "Los Angeles",
+    "capacity": 280,
+    "pricePerHour": 650,
+    "amenities": ["WiFi", "Vineyard Views", "Outdoor", "Wine Tasting", "Catering Kitchen", "Parking"],
+    "images": [
+      "https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg"
+    ],
+    "rating": 4.9,
+    "availableDates": ["2025-03-04", "2025-03-11", "2025-03-18"]
+  }
+]

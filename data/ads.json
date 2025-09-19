@@ -1,0 +1,130 @@
+[
+  {
+    "id": "1",
+    "title": "Premium Catering Services - Elegant Dining Experience",
+    "kind": "catering",
+    "targetTags": ["wedding", "corporate", "formal"],
+    "imageUrl": "https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg",
+    "clickUrl": "https://example.com/catering"
+  },
+  {
+    "id": "2",
+    "title": "Luxury Event Decor - Transform Your Venue",
+    "kind": "decor",
+    "targetTags": ["wedding", "birthday", "anniversary"],
+    "imageUrl": "https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg",
+    "clickUrl": "https://example.com/decor"
+  },
+  {
+    "id": "3",
+    "title": "Professional AV Equipment Rental",
+    "kind": "AV",
+    "targetTags": ["conference", "presentation", "business"],
+    "imageUrl": "https://images.pexels.com/photos/713149/pexels-photo-713149.jpeg",
+    "clickUrl": "https://example.com/av-equipment"
+  },
+  {
+    "id": "4",
+    "title": "Ambient Lighting Solutions - Create the Perfect Mood",
+    "kind": "lighting",
+    "targetTags": ["wedding", "party", "outdoor"],
+    "imageUrl": "https://images.pexels.com/photos/2306281/pexels-photo-2306281.jpeg",
+    "clickUrl": "https://example.com/lighting"
+  },
+  {
+    "id": "5",
+    "title": "Weather-Proof Event Tents - All Season Protection",
+    "kind": "tent",
+    "targetTags": ["outdoor", "festival", "market"],
+    "imageUrl": "https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg",
+    "clickUrl": "https://example.com/tents"
+  },
+  {
+    "id": "6",
+    "title": "Gourmet Food Trucks - Street Food Excellence",
+    "kind": "catering",
+    "targetTags": ["casual", "outdoor", "festival"],
+    "imageUrl": "https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg",
+    "clickUrl": "https://example.com/food-trucks"
+  },
+  {
+    "id": "7",
+    "title": "Floral Arrangements & Centerpieces",
+    "kind": "decor",
+    "targetTags": ["wedding", "corporate", "elegant"],
+    "imageUrl": "https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg",
+    "clickUrl": "https://example.com/florals"
+  },
+  {
+    "id": "8",
+    "title": "Live Sound Engineering & Equipment",
+    "kind": "AV",
+    "targetTags": ["concert", "festival", "music"],
+    "imageUrl": "https://images.pexels.com/photos/713149/pexels-photo-713149.jpeg",
+    "clickUrl": "https://example.com/sound"
+  },
+  {
+    "id": "9",
+    "title": "LED Dance Floor Rental",
+    "kind": "lighting",
+    "targetTags": ["wedding", "party", "nightclub"],
+    "imageUrl": "https://images.pexels.com/photos/2306281/pexels-photo-2306281.jpeg",
+    "clickUrl": "https://example.com/led-floor"
+  },
+  {
+    "id": "10",
+    "title": "Luxury Event Tents & Pavilions",
+    "kind": "tent",
+    "targetTags": ["wedding", "corporate", "upscale"],
+    "imageUrl": "https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg",
+    "clickUrl": "https://example.com/luxury-tents"
+  },
+  {
+    "id": "11",
+    "title": "Interactive Photo Booths",
+    "kind": "AV",
+    "targetTags": ["wedding", "party", "corporate"],
+    "imageUrl": "https://images.pexels.com/photos/713149/pexels-photo-713149.jpeg",
+    "clickUrl": "https://example.com/photo-booth"
+  },
+  {
+    "id": "12",
+    "title": "Cocktail Bar Service - Expert Mixologists",
+    "kind": "catering",
+    "targetTags": ["wedding", "corporate", "cocktail"],
+    "imageUrl": "https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg",
+    "clickUrl": "https://example.com/cocktail-bar"
+  },
+  {
+    "id": "13",
+    "title": "Vintage Props & Furniture Rental",
+    "kind": "decor",
+    "targetTags": ["vintage", "rustic", "photography"],
+    "imageUrl": "https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg",
+    "clickUrl": "https://example.com/vintage-props"
+  },
+  {
+    "id": "14",
+    "title": "Outdoor Event Canopies",
+    "kind": "tent",
+    "targetTags": ["outdoor", "summer", "festival"],
+    "imageUrl": "https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg",
+    "clickUrl": "https://example.com/canopies"
+  },
+  {
+    "id": "15",
+    "title": "String Light Installation Service",
+    "kind": "lighting",
+    "targetTags": ["romantic", "outdoor", "rustic"],
+    "imageUrl": "https://images.pexels.com/photos/2306281/pexels-photo-2306281.jpeg",
+    "clickUrl": "https://example.com/string-lights"
+  },
+  {
+    "id": "16",
+    "title": "Conference AV Package - Complete Setup",
+    "kind": "AV",
+    "targetTags": ["conference", "business", "presentation"],
+    "imageUrl": "https://images.pexels.com/photos/713149/pexels-photo-713149.jpeg",
+    "clickUrl": "https://example.com/conference-av"
+  }
+]
