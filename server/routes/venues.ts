@@ -140,12 +140,7 @@ router.post('/search', (req, res) => {
       filteredVenues = filteredVenues.filter(venue => {
         // Check various capacity fields that might exist
         const maxCapacity = Math.max(
-          venue.occ_total_theater || 0,
-          venue.occ_total_banquet || 0,
-          venue.occ_total_classroom || 0,
-          venue.occ_largest_theater || 0,
-          venue.occ_largest_banquet || 0,
-          venue.occ_largest_classroom || 0
+          venue.capacity
         );
         return maxCapacity >= capacity_min;
       });
