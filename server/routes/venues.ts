@@ -239,4 +239,69 @@ router.get('/:id', (req, res) => {
   }
 });
 
+// AI-powered venue search endpoint
+router.post('/ai-search', async (req, res) => {
+  try {
+    const { venue_request } = req.body;
+
+    if (!venue_request) {
+      return res.status(400).json({ error: 'venue_request is required' });
+    }
+
+    // Create cache key for AI search
+    const cacheKey = `ai-search-${JSON.stringify({ venue_request })}`;
+    const cached = cache.get(cacheKey);
+
+    if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
+      return res.json(cached.data);
+    }
+
+    // Call external AI search API
+    const response = await fetch('https://cmfsj5xv5p9b62py5r1okplh2.agent.pa.smyth.ai/api/search_venues', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ venue_request })
+    });
+
+    if (!response.ok) {
+      throw new Error(`External API error: ${response.status}`);
+    }
+
+    const apiData = await response.json();
+
+    // Parse the nested JSON response
+    let searchResults;
+    try {
+      searchResults = JSON.parse(apiData.results);
+    } catch (parseError) {
+      console.error('Error parsing API results:', parseError);
+      return res.status(500).json({ error: 'Invalid response format from search API' });
+    }
+
+    // Format the response to match our frontend expectations
+    const formattedResponse = {
+      venues: searchResults.venues || [],
+      total: searchResults.total || 0,
+      displayed: searchResults.displayed || 0,
+      limit: searchResults.limit || 10,
+      offset: searchResults.offset || 0,
+      has_more: searchResults.has_more || false,
+      search_query: venue_request
+    };
+
+    // Cache the result
+    cache.set(cacheKey, { data: formattedResponse, timestamp: Date.now() });
+
+    res.json(formattedResponse);
+  } catch (error) {
+    console.error('Error in AI venue search:', error);
+    res.status(500).json({
+      error: 'Failed to search venues',
+      message: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
 export default router;
