@@ -224,6 +224,145 @@ router.post('/search', (req, res) => {
   }
 });
 
+// Get search context and results summary
+router.get('/search-context', (req, res) => {
+  try {
+    const { query, total_results, displayed_results } = req.query;
+
+    let contextText = '';
+    let searchInsights: string[] = [];
+
+    if (!query || !total_results) {
+      return res.json({
+        context_text: 'Browse all venues',
+        search_insights: [],
+        suggestions: ['Try searching for "venues for 100 people"', 'Search by city like "Seattle venues"', 'Look for specific amenities like "venues with catering"']
+      });
+    }
+
+    const searchQuery = query.toString().toLowerCase();
+    const totalCount = parseInt(total_results.toString()) || 0;
+    const displayedCount = parseInt(displayed_results?.toString() || '0') || 0;
+
+    // Generate contextual text based on search content
+    if (searchQuery.includes('people') || searchQuery.includes('guests') || searchQuery.includes('capacity')) {
+      const capacityMatch = searchQuery.match(/(\d+)\s*(people|guests)/);
+      if (capacityMatch) {
+        const capacity = capacityMatch[1];
+        contextText = `Found ${totalCount} venues that can accommodate ${capacity} ${capacityMatch[2]}`;
+        searchInsights.push(`Capacity: ${capacity} ${capacityMatch[2]}`);
+      }
+    }
+
+    if (searchQuery.includes('seattle') || searchQuery.includes('portland') || searchQuery.includes('san francisco')) {
+      const cityMatch = searchQuery.match(/(seattle|portland|san francisco|los angeles|new york)/i);
+      if (cityMatch) {
+        const city = cityMatch[1];
+        contextText = contextText ?
+          `${contextText} in ${city}` :
+          `Found ${totalCount} venues in ${city}`;
+        searchInsights.push(`Location: ${city}`);
+      }
+    }
+
+    if (searchQuery.includes('catering') || searchQuery.includes('food') || searchQuery.includes('dining')) {
+      searchInsights.push('🍽️ Catering available');
+    }
+
+    if (searchQuery.includes('parking')) {
+      searchInsights.push('🅿️ Parking included');
+    }
+
+    if (searchQuery.includes('wifi') || searchQuery.includes('internet')) {
+      searchInsights.push('📶 WiFi available');
+    }
+
+    if (searchQuery.includes('wheelchair') || searchQuery.includes('accessible')) {
+      searchInsights.push('♿ Wheelchair accessible');
+    }
+
+    if (searchQuery.includes('av equipment') || searchQuery.includes('audio visual')) {
+      searchInsights.push('🎥 AV equipment available');
+    }
+
+    if (searchQuery.includes('wedding') || searchQuery.includes('reception')) {
+      searchInsights.push('💒 Wedding venues');
+    }
+
+    if (searchQuery.includes('corporate') || searchQuery.includes('business') || searchQuery.includes('conference')) {
+      searchInsights.push('💼 Corporate events');
+    }
+
+    if (searchQuery.includes('luxury') || searchQuery.includes('upscale') || searchQuery.includes('premium')) {
+      searchInsights.push('⭐ Luxury venues');
+    }
+
+    if (searchQuery.includes('outdoor') || searchQuery.includes('garden') || searchQuery.includes('patio')) {
+      searchInsights.push('🌿 Outdoor spaces');
+    }
+
+    if (searchQuery.includes('downtown') || searchQuery.includes('city center')) {
+      searchInsights.push('🏙️ Downtown location');
+    }
+
+    // Default context if no specific patterns found
+    if (!contextText) {
+      contextText = `Found ${totalCount} venues matching your search`;
+    }
+
+    // Add showing count if different from total
+    if (displayedCount < totalCount) {
+      contextText += ` (showing ${displayedCount})`;
+    }
+
+    // Generate suggestions based on search context
+    let suggestions: string[] = [];
+
+    if (totalCount === 0) {
+      suggestions = [
+        'Try broadening your search criteria',
+        'Search in nearby cities',
+        'Consider alternative venue types',
+        'Check different capacity ranges'
+      ];
+    } else if (totalCount < 5) {
+      suggestions = [
+        'Try searching in nearby areas for more options',
+        'Consider adjusting your capacity requirements',
+        'Explore different venue types'
+      ];
+    } else if (totalCount > 20) {
+      suggestions = [
+        'Add more specific requirements to narrow results',
+        'Specify preferred amenities',
+        'Filter by location or capacity'
+      ];
+    }
+
+    // Search quality insights
+    const searchQuality = {
+      specificity: searchInsights.length > 2 ? 'high' : searchInsights.length > 0 ? 'medium' : 'low',
+      result_count_status: totalCount === 0 ? 'no_results' : totalCount < 5 ? 'few_results' : totalCount > 20 ? 'many_results' : 'good_results'
+    };
+
+    res.json({
+      context_text: contextText,
+      search_insights: searchInsights,
+      suggestions: suggestions,
+      search_quality: searchQuality,
+      total_venues: totalCount,
+      displayed_venues: displayedCount
+    });
+
+  } catch (error) {
+    console.error('Error generating search context:', error);
+    res.status(500).json({
+      error: 'Failed to generate search context',
+      message: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
 router.get('/:id', (req, res) => {
   try {
     const { id } = req.params;
@@ -365,6 +504,113 @@ router.post('/append', (req, res) => {
       error: 'Failed to append venues',
       message: error instanceof Error ? error.message : 'Unknown error'
     });
+  }
+});
+
+// Smyth Reply Agent endpoint
+router.post('/reply', async (req, res) => {
+  try {
+    const { user_text } = req.body;
+
+    // Validate request body
+    if (!user_text || typeof user_text !== 'string' || user_text.trim().length === 0) {
+      return res.status(400).json({
+        error: 'Request body must contain a non-empty "user_text" string'
+      });
+    }
+
+    // Create cache key for agent replies
+    const cacheKey = `agent-reply-${JSON.stringify({ user_text })}`;
+    const cached = cache.get(cacheKey);
+
+    if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
+      return res.json(cached.data);
+    }
+
+    console.log('Calling Smyth Reply Agent with text:', user_text);
+
+    // Call Smyth Reply Agent API
+    const response = await fetch('https://cmfsj5xv5p9b62py5r1okplh2.agent.pa.smyth.ai/api/Reply_Agent', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        user_text: user_text.trim()
+      })
+    });
+
+    if (!response.ok) {
+      // If the external API is not working, provide a helpful fallback response
+      console.warn(`Smyth Agent API not available: ${response.status} ${response.statusText}`);
+
+      const fallbackResponse = {
+        success: true,
+        agent_reply: "I'm here to help you find the perfect venue! The AI assistant is currently unavailable, but I can still help you search for venues. Try using our venue search to find options that match your requirements for location, capacity, and amenities.",
+        response_type: 'fallback',
+        timestamp: new Date().toISOString(),
+        user_query: user_text,
+        note: 'Fallback response - external agent temporarily unavailable'
+      };
+
+      // Cache the fallback result briefly
+      cache.set(cacheKey, { data: fallbackResponse, timestamp: Date.now() });
+      return res.json(fallbackResponse);
+    }
+
+    const agentData = await response.json();
+    console.log('Received agent response:', agentData);
+
+    // Format the response for frontend consumption
+    let formattedResponse;
+
+    // Check if the response has a specific structure or is just text
+    if (typeof agentData === 'string') {
+      formattedResponse = {
+        success: true,
+        agent_reply: agentData,
+        response_type: 'text',
+        timestamp: new Date().toISOString(),
+        user_query: user_text
+      };
+    } else if (agentData && typeof agentData === 'object') {
+      // If it's an object, preserve the structure but add our metadata
+      formattedResponse = {
+        success: true,
+        agent_reply: agentData.reply || agentData.response || agentData.message || JSON.stringify(agentData),
+        response_type: 'structured',
+        timestamp: new Date().toISOString(),
+        user_query: user_text,
+        raw_response: agentData
+      };
+    } else {
+      formattedResponse = {
+        success: true,
+        agent_reply: 'Agent response received but could not be formatted',
+        response_type: 'unknown',
+        timestamp: new Date().toISOString(),
+        user_query: user_text,
+        raw_response: agentData
+      };
+    }
+
+    // Cache the result
+    cache.set(cacheKey, { data: formattedResponse, timestamp: Date.now() });
+
+    res.json(formattedResponse);
+
+  } catch (error) {
+    console.error('Error calling Smyth Reply Agent:', error);
+
+    const errorResponse = {
+      success: false,
+      error: 'Failed to get agent reply',
+      message: error instanceof Error ? error.message : 'Unknown error',
+      timestamp: new Date().toISOString(),
+      user_query: req.body.user_text || 'Unknown'
+    };
+
+    res.status(500).json(errorResponse);
   }
 });
 
