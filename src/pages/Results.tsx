@@ -32,6 +32,7 @@ const Results: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [searchDetails, setSearchDetails] = useState('');
   const [isSearching, setIsSearching] = useState(false);
+  const [replyText, setReplyText] = useState<string>('');
 
   const query = searchParams.get('query') || '';
 
@@ -77,6 +78,7 @@ const Results: React.FC = () => {
   useEffect(() => {
     fetchVenues();
     fetchAds();
+    fetchReplyText();
   }, [searchParams]);
 
   const fetchVenues = async () => {
@@ -111,6 +113,35 @@ const Results: React.FC = () => {
       setAds(data.ads || []);
     } catch (error) {
       console.error('Error fetching ads:', error);
+    }
+  };
+
+  const fetchReplyText = async () => {
+    if (!query) {
+      setReplyText('All Venues');
+      return;
+    }
+
+    try {
+      const response = await fetch(API_ENDPOINTS.VENUES_REPLY, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user_text: query
+        })
+      });
+
+      const data = await response.json();
+      if (data.success && data.agent_reply) {
+        setReplyText(data.agent_reply);
+      } else {
+        setReplyText(`Results for "${formatDisplayQuery(query)}"`);
+      }
+    } catch (error) {
+      console.error('Error fetching reply:', error);
+      setReplyText(`Results for "${formatDisplayQuery(query)}"`);
     }
   };
 
@@ -177,7 +208,7 @@ const Results: React.FC = () => {
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-4">
-          {query ? `Results for "${formatDisplayQuery(query)}"` : 'All Venues'}
+          {replyText || (query ? `Results for "${formatDisplayQuery(query)}"` : 'All Venues')}
         </h1>
         <p className="text-gray-600">
           {loading ? 'Searching...' : `Found ${venues.length} venues`}
