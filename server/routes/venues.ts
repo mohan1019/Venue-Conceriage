@@ -1,7 +1,8 @@
 import { Router } from 'express';
-import { readFileSync } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { v4 as uuidv4 } from 'uuid';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -236,6 +237,134 @@ router.get('/:id', (req, res) => {
   } catch (error) {
     console.error('Error fetching venue:', error);
     res.status(500).json({ error: 'Failed to fetch venue' });
+  }
+});
+
+// Endpoint to append new venue data to venues.json
+router.post('/append', (req, res) => {
+  try {
+    const { venues: newVenues } = req.body;
+
+    // Validate request body
+    if (!newVenues || !Array.isArray(newVenues)) {
+      return res.status(400).json({
+        error: 'Request body must contain a "venues" array'
+      });
+    }
+
+    if (newVenues.length === 0) {
+      return res.status(400).json({
+        error: 'Venues array cannot be empty'
+      });
+    }
+
+    // Validate each venue object
+    const requiredFields = ['name', 'city', 'state'];
+    const validatedVenues = [];
+
+    for (let i = 0; i < newVenues.length; i++) {
+      const venue = newVenues[i];
+
+      // Check required fields
+      for (const field of requiredFields) {
+        if (!venue[field]) {
+          return res.status(400).json({
+            error: `Missing required field "${field}" in venue at index ${i}`
+          });
+        }
+      }
+
+      // Generate venue_id if not provided
+      if (!venue.venue_id) {
+        venue.venue_id = uuidv4();
+      }
+
+      // Set default values for missing optional fields
+      const defaultVenue = {
+        venue_id: venue.venue_id,
+        name: venue.name,
+        brand: venue.brand || '',
+        chain: venue.chain || '',
+        type: venue.type || 'VENUE',
+        city: venue.city,
+        state: venue.state,
+        country: venue.country || 'US',
+        metro_area: venue.metro_area || `${venue.state} - ${venue.city}`,
+        lat: venue.lat || 0,
+        lon: venue.lon || 0,
+        airport_distance_mi: venue.airport_distance_mi || 0,
+        rooms_total: venue.rooms_total || 0,
+        meeting_rooms_total: venue.meeting_rooms_total || 0,
+        total_meeting_area_sqft: venue.total_meeting_area_sqft || 0,
+        largest_space_sqft: venue.largest_space_sqft || 0,
+        second_largest_space_sqft: venue.second_largest_space_sqft || 0,
+        largest_ceiling_height_ft: venue.largest_ceiling_height_ft || 0,
+        diamond_level: venue.diamond_level || '',
+        preferred_rating: venue.preferred_rating || '',
+        year_built: venue.year_built || 0,
+        year_renovated: venue.year_renovated || 0,
+        main_image: venue.main_image || '',
+        hero_image: venue.hero_image || '',
+        listing_text: venue.listing_text || '',
+        occ_total_theater: venue.occ_total_theater || 0,
+        occ_total_banquet: venue.occ_total_banquet || 0,
+        occ_total_classroom: venue.occ_total_classroom || 0,
+        occ_largest_theater: venue.occ_largest_theater || 0,
+        occ_largest_banquet: venue.occ_largest_banquet || 0,
+        occ_largest_classroom: venue.occ_largest_classroom || 0,
+        amenities: venue.amenities || '',
+        tags: venue.tags || '',
+        promotions: venue.promotions || '[]',
+        need_dates: venue.need_dates || '[]',
+        ...venue // Override with any additional fields provided
+      };
+
+      validatedVenues.push(defaultVenue);
+    }
+
+    // Read existing venues data
+    const venuesFilePath = join(__dirname, '../../data/venues.json');
+    const existingVenues = JSON.parse(readFileSync(venuesFilePath, 'utf-8'));
+
+    // Check for duplicate venue_ids
+    const existingIds = new Set(existingVenues.map((v: any) => v.venue_id));
+    const duplicateIds = validatedVenues.filter(v => existingIds.has(v.venue_id));
+
+    if (duplicateIds.length > 0) {
+      return res.status(400).json({
+        error: `Duplicate venue_ids found: ${duplicateIds.map(v => v.venue_id).join(', ')}`
+      });
+    }
+
+    // Append new venues to existing data
+    const updatedVenues = [...existingVenues, ...validatedVenues];
+
+    // Write back to file with backup
+    const backupPath = join(__dirname, '../../data/venues_backup.json');
+    writeFileSync(backupPath, JSON.stringify(existingVenues, null, 2));
+    writeFileSync(venuesFilePath, JSON.stringify(updatedVenues, null, 2));
+
+    // Update in-memory cache
+    venuesData.length = 0;
+    venuesData.push(...updatedVenues);
+
+    // Clear cache to force refresh
+    cache.clear();
+
+    res.json({
+      success: true,
+      message: `Successfully added ${validatedVenues.length} venue(s)`,
+      added_venues: validatedVenues.length,
+      total_venues: updatedVenues.length,
+      venue_ids: validatedVenues.map(v => v.venue_id)
+    });
+
+  } catch (error) {
+    console.error('Error appending venues:', error);
+    res.status(500).json({
+      error: 'Failed to append venues',
+      message: error instanceof Error ? error.message : 'Unknown error'
+    });
   }
 });
 
