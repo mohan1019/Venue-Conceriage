@@ -102,6 +102,7 @@ router.post('/search', (req, res) => {
       state,
       metro_area,
       capacity_min,
+      type,
       amenities,
       limit = 10,
       offset = 0,
@@ -147,6 +148,12 @@ router.post('/search', (req, res) => {
       });
     }
 
+    if (type) {
+      filteredVenues = filteredVenues.filter(venue => {
+        // Check various capacity fields that might exist
+        return type == venue.type;
+      });
+    }
     if (amenities && Array.isArray(amenities) && amenities.length > 0) {
       filteredVenues = filteredVenues.filter(venue => {
         if (!venue.amenities) return false;
