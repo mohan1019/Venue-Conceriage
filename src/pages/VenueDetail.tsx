@@ -14,6 +14,7 @@ declare global {
       forceReload: () => void;
       trackClick: (impressionId: string) => void;
       getTelemetry: () => any;
+      getStatus: () => { isLoading: boolean; containersFound: number; scriptLoaded: boolean; };
       toggleDebug: () => void;
     };
   }

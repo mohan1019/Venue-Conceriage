@@ -448,12 +448,27 @@
   window.AdClient = {
     loadAds: loadAdsForContainers,
     forceReload: () => {
-      console.log('[AdClient] Force reloading ads...');
+      console.log('[AdClient] Force reloading ads... Current loading state:', isLoadingAds);
       isLoadingAds = false; // Reset loading state
-      loadAdsForContainers();
+
+      // Clear any existing ads immediately
+      const containers = document.querySelectorAll('[data-ad-slot]');
+      containers.forEach(container => {
+        container.innerHTML = '<div style=\"text-align: center; color: #9CA3AF; font-size: 14px; padding: 20px;\">Loading fresh ads...</div>';
+      });
+
+      // Force reload with small delay
+      setTimeout(() => {
+        loadAdsForContainers();
+      }, 100);
     },
     trackClick: trackClick,
     getTelemetry: () => ({ ...telemetry }),
+    getStatus: () => ({
+      isLoading: isLoadingAds,
+      containersFound: document.querySelectorAll('[data-ad-slot]').length,
+      scriptLoaded: true
+    }),
     toggleDebug: () => {
       debugMode = !debugMode;
       if (debugMode) {

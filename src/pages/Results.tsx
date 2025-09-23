@@ -12,6 +12,7 @@ declare global {
       forceReload: () => void;
       trackClick: (impressionId: string) => void;
       getTelemetry: () => any;
+      getStatus: () => { isLoading: boolean; containersFound: number; scriptLoaded: boolean; };
       toggleDebug: () => void;
     };
   }
@@ -57,6 +58,38 @@ const Results: React.FC = () => {
   const [adScriptLoaded, setAdScriptLoaded] = useState(false);
 
   const query = searchParams.get('query') || '';
+
+  // Component mount tracking for forced ad reload
+  useEffect(() => {
+    console.log('Results component mounted/remounted');
+    // Set a flag to force reload ads once script loads
+    const forceReloadOnMount = () => {
+      if (window.AdClient?.forceReload) {
+        console.log('React: Component mounted, force reloading ads');
+        try {
+          window.AdClient?.forceReload();
+        } catch (error) {
+          console.error('Error force reloading ads on component mount:', error);
+        }
+      }
+    };
+
+    // If script already loaded, reload immediately
+    if (adScriptLoaded && window.AdClient) {
+      setTimeout(forceReloadOnMount, 400);
+    } else {
+      // Wait for script to load, then reload
+      const checkAndReload = setInterval(() => {
+        if (window.AdClient?.forceReload) {
+          forceReloadOnMount();
+          clearInterval(checkAndReload);
+        }
+      }, 200);
+
+      // Clean up interval after 5 seconds
+      setTimeout(() => clearInterval(checkAndReload), 5000);
+    }
+  }, []); // Empty dependency array = only runs on mount
 
   // Load ad client script
   useEffect(() => {
@@ -164,7 +197,7 @@ const Results: React.FC = () => {
         setTimeout(loadAds, 100);
       }
     }
-  }, [adScriptLoaded, venues.length]); // Depend on venues.length to reload when content changes
+  }, [adScriptLoaded, venues.length, query]); // Also depend on query to reload when search changes
 
   // Force reload ads when returning to page (page visibility change)
   useEffect(() => {
@@ -198,6 +231,20 @@ const Results: React.FC = () => {
       }, 300);
     }
   }, [location.pathname, location.search, adScriptLoaded]);
+
+  // Force reload ads whenever search parameters change (new search)
+  useEffect(() => {
+    if (adScriptLoaded && window.AdClient?.forceReload) {
+      console.log('React: Search parameters changed, force reloading ads for query:', query);
+      setTimeout(() => {
+        try {
+          window.AdClient?.forceReload();
+        } catch (error) {
+          console.error('Error force reloading ads on search change:', error);
+        }
+      }, 200);
+    }
+  }, [query, adScriptLoaded]); // Trigger when query changes
 
   const fetchVenues = async (isInitialLoad = false, offset = 0) => {
     if (isInitialLoad) {
@@ -702,6 +749,22 @@ const Results: React.FC = () => {
                   </div>
                 </div>
               </div>
+
+              {/* Debug Ad Loading Button (only in dev) */}
+              {process.env.NODE_ENV === 'development' && (
+                <div className="mt-4">
+                  <button
+                    onClick={() => {
+                      console.log('Manual ad reload triggered');
+                      console.log('AdClient status:', window.AdClient?.getStatus?.());
+                      window.AdClient?.forceReload?.();
+                    }}
+                    className="text-xs bg-red-500 text-white px-3 py-1 rounded opacity-50 hover:opacity-100"
+                  >
+                    Debug: Reload Ads
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>
