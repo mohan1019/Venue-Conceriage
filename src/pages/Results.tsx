@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams, useLocation } from 'react-router-dom';
 import { MapPin, Users, Star, Search, Send, Sparkles, Bot, ChevronRight, Filter, Clock, TrendingUp } from 'lucide-react';
 import EnquiryForm from '../components/EnquiryForm';
 import API_ENDPOINTS, { API_BASE_URL } from '../config/api';
@@ -9,6 +9,7 @@ declare global {
   interface Window {
     AdClient?: {
       loadAds: () => void;
+      forceReload: () => void;
       trackClick: (impressionId: string) => void;
       getTelemetry: () => any;
       toggleDebug: () => void;
@@ -41,6 +42,7 @@ interface Ad {
 
 const Results: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
   const [venues, setVenues] = useState<Venue[]>([]);
   const [ads, setAds] = useState<Ad[]>([]);
   const [loading, setLoading] = useState(true);
@@ -142,18 +144,60 @@ const Results: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [loadingMore, hasMore, userSpecifiedLimit, currentOffset]);
 
+  // Always load ads when component mounts or when script loads
   useEffect(() => {
-    if (adScriptLoaded && window.AdClient?.loadAds && !loading) {
-      console.log('React: Loading ads, script loaded:', adScriptLoaded, 'venues count:', venues.length);
-      setTimeout(() => {
+    if (adScriptLoaded && window.AdClient?.loadAds) {
+      console.log('React: Loading ads on page visit, script loaded:', adScriptLoaded, 'venues count:', venues.length);
+      // Always call loadAds regardless of loading state
+      const loadAds = () => {
         try {
           window.AdClient?.loadAds();
         } catch (error) {
           console.error('Error loading ads:', error);
         }
-      }, 100);
+      };
+
+      // Load immediately if not loading, or with delay if still loading
+      if (loading) {
+        setTimeout(loadAds, 500);
+      } else {
+        setTimeout(loadAds, 100);
+      }
     }
-  }, [adScriptLoaded, loading]);
+  }, [adScriptLoaded, venues.length]); // Depend on venues.length to reload when content changes
+
+  // Force reload ads when returning to page (page visibility change)
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (!document.hidden && adScriptLoaded && window.AdClient?.loadAds) {
+        console.log('React: Page became visible, reloading ads');
+        setTimeout(() => {
+          try {
+            window.AdClient?.loadAds();
+          } catch (error) {
+            console.error('Error reloading ads on visibility change:', error);
+          }
+        }, 200);
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+  }, [adScriptLoaded]);
+
+  // Reload ads when route changes (when navigating back to Results page)
+  useEffect(() => {
+    if (adScriptLoaded && window.AdClient?.forceReload) {
+      console.log('React: Route changed, force reloading ads');
+      setTimeout(() => {
+        try {
+          window.AdClient?.forceReload();
+        } catch (error) {
+          console.error('Error force reloading ads on route change:', error);
+        }
+      }, 300);
+    }
+  }, [location.pathname, location.search, adScriptLoaded]);
 
   const fetchVenues = async (isInitialLoad = false, offset = 0) => {
     if (isInitialLoad) {

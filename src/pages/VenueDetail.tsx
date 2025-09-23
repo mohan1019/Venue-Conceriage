@@ -1,17 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { MapPin, Users, Star, Calendar, CheckCircle, MessageCircle, ChevronRight, Sparkles, Award, TrendingUp, Home, ArrowLeft, Phone, Mail, Globe } from 'lucide-react';
 import EnquireWidget from '../components/EnquireWidget';
 import AskAI from '../components/AskAI';
 import EnquiryForm from '../components/EnquiryForm';
 import API_ENDPOINTS, { API_BASE_URL } from '../config/api';
 
-// Load ad client script from backend server
-if (typeof window !== 'undefined' && !window.AdClient) {
-  const script = document.createElement('script');
-  script.src = `${API_BASE_URL}/adClient.js`;
-  script.async = true;
-  document.head.appendChild(script);
+// Global type declaration for AdClient
+declare global {
+  interface Window {
+    AdClient?: {
+      loadAds: () => void;
+      forceReload: () => void;
+      trackClick: (impressionId: string) => void;
+      getTelemetry: () => any;
+      toggleDebug: () => void;
+    };
+  }
 }
 
 interface Venue {
@@ -37,28 +42,98 @@ interface Venue {
   tags?: string;
 }
 
-interface Ad {
-  id: string;
-  title: string;
-  kind: string;
-  imageUrl: string;
-  clickUrl: string;
-}
 
 const VenueDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+  const location = useLocation();
   const [venue, setVenue] = useState<Venue | null>(null);
-  const [ads, setAds] = useState<Ad[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(0);
   const [showEnquiryForm, setShowEnquiryForm] = useState(false);
+  const [adScriptLoaded, setAdScriptLoaded] = useState(false);
+
+  // Load ad client script
+  useEffect(() => {
+    if (!window.AdClient && !adScriptLoaded) {
+      console.log('Loading AdClient script...');
+      const script = document.createElement('script');
+      script.src = `${API_BASE_URL}/adClient.js`;
+      script.async = true;
+      script.crossOrigin = 'anonymous';
+      script.onload = () => {
+        console.log('AdClient script loaded successfully');
+        console.log('window.AdClient after load:', window.AdClient);
+        setAdScriptLoaded(true);
+      };
+      script.onerror = (error) => {
+        console.error('Failed to load AdClient script:', error);
+        setAdScriptLoaded(false);
+      };
+      document.head.appendChild(script);
+      console.log('AdClient script element added to head');
+    }
+  }, [adScriptLoaded]);
 
   useEffect(() => {
     if (id) {
       fetchVenue();
-      fetchAds();
     }
   }, [id]);
+
+  // Always load ads when component mounts or when script loads
+  useEffect(() => {
+    if (adScriptLoaded && window.AdClient?.loadAds && venue) {
+      console.log('VenueDetail: Loading ads on page visit, script loaded:', adScriptLoaded, 'venue:', venue.name);
+      // Always call loadAds regardless of loading state
+      const loadAds = () => {
+        try {
+          window.AdClient?.loadAds();
+        } catch (error) {
+          console.error('Error loading ads:', error);
+        }
+      };
+
+      // Load immediately if not loading, or with delay if still loading
+      if (loading) {
+        setTimeout(loadAds, 500);
+      } else {
+        setTimeout(loadAds, 100);
+      }
+    }
+  }, [adScriptLoaded, venue?.venue_id]); // Depend on venue_id to reload when venue changes
+
+  // Force reload ads when returning to page (page visibility change)
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (!document.hidden && adScriptLoaded && window.AdClient?.loadAds) {
+        console.log('VenueDetail: Page became visible, reloading ads');
+        setTimeout(() => {
+          try {
+            window.AdClient?.loadAds();
+          } catch (error) {
+            console.error('Error reloading ads on visibility change:', error);
+          }
+        }, 200);
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+  }, [adScriptLoaded]);
+
+  // Reload ads when route changes (when navigating back to VenueDetail page)
+  useEffect(() => {
+    if (adScriptLoaded && window.AdClient?.forceReload) {
+      console.log('VenueDetail: Route changed, force reloading ads');
+      setTimeout(() => {
+        try {
+          window.AdClient?.forceReload();
+        } catch (error) {
+          console.error('Error force reloading ads on route change:', error);
+        }
+      }, 300);
+    }
+  }, [location.pathname, location.search, adScriptLoaded]);
 
   const fetchVenue = async () => {
     try {
@@ -80,15 +155,6 @@ const VenueDetail: React.FC = () => {
     }
   };
 
-  const fetchAds = async () => {
-    try {
-      const response = await fetch(`${API_ENDPOINTS.ADS}?context=detail&venueId=${id}`);
-      const data = await response.json();
-      setAds(data.ads || []);
-    } catch (error) {
-      console.error('Error fetching ads:', error);
-    }
-  };
 
   if (loading) {
     return (
@@ -399,46 +465,23 @@ const VenueDetail: React.FC = () => {
             </div>
 
             {/* Enhanced Ad Space */}
-            <div className="bg-gray-800/50 backdrop-blur-xl rounded-2xl shadow-2xl p-6 border border-gray-700/50">
-              <div data-ad-slot="sidebar" className="min-h-[140px]">
+            <div className="bg-gray-800/50 backdrop-blur-xl rounded-2xl shadow-2xl p-8 border border-gray-700/50">
+              <h3 className="text-xl font-bold text-white mb-8 flex items-center space-x-3">
+                <TrendingUp className="w-6 h-6 text-green-400" />
+                <span>Recommended Services</span>
+              </h3>
+              <div data-ad-slot="sidebar" className="mb-8 min-h-[300px]">
                 {/* AdClient will populate this container */}
+                <div className="text-center text-gray-400 text-sm py-8">
+                  <div className="animate-pulse">
+                    <div className="w-16 h-16 bg-gray-700/30 rounded-full mx-auto mb-4"></div>
+                    <div className="h-4 bg-gray-700/30 rounded w-32 mx-auto mb-2"></div>
+                    <div className="h-3 bg-gray-700/30 rounded w-24 mx-auto"></div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Enhanced Featured Services */}
-            {ads.length > 0 && (
-              <div className="bg-gray-800/50 backdrop-blur-xl rounded-2xl shadow-2xl p-6 border border-gray-700/50">
-                <h3 className="text-lg font-semibold text-white mb-4 flex items-center space-x-2">
-                  <TrendingUp className="w-5 h-5 text-green-400" />
-                  <span>Featured Services</span>
-                </h3>
-                <div className="space-y-4">
-                  {ads.slice(0, 3).map((ad) => (
-                    <a
-                      key={ad.id}
-                      href={ad.clickUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block bg-gray-700/30 hover:bg-gray-700/50 p-4 rounded-xl transition-all duration-200 border border-gray-600/30 hover:border-purple-500/30 hover:scale-105 transform"
-                    >
-                      <div className="flex space-x-3">
-                        <img
-                          src={ad.imageUrl}
-                          alt={ad.title}
-                          className="w-16 h-16 rounded-xl object-cover flex-shrink-0"
-                        />
-                        <div className="flex-1 min-w-0">
-                          <p className="text-sm font-medium text-white mb-1">
-                            {ad.title}
-                          </p>
-                          <p className="text-xs text-gray-400 capitalize">{ad.kind}</p>
-                        </div>
-                      </div>
-                    </a>
-                  ))}
-                </div>
-              </div>
-            )}
           </div>
         </div>
 

@@ -367,8 +367,9 @@
 
     isLoadingAds = true;
 
-    // Set minimum height to prevent layout shift
+    // Clear existing ads and set minimum height to prevent layout shift
     containers.forEach(container => {
+      container.innerHTML = ''; // Clear existing content
       if (!container.style.minHeight) {
         container.style.minHeight = '140px';
       }
@@ -446,6 +447,11 @@
   // Expose API for manual control if needed
   window.AdClient = {
     loadAds: loadAdsForContainers,
+    forceReload: () => {
+      console.log('[AdClient] Force reloading ads...');
+      isLoadingAds = false; // Reset loading state
+      loadAdsForContainers();
+    },
     trackClick: trackClick,
     getTelemetry: () => ({ ...telemetry }),
     toggleDebug: () => {
