@@ -8,6 +8,253 @@
         "beta": 3,
         "updatedAt": 1758526316761
       }
+    },
+    "general": {
+      "transportation-001": {
+        "impressions": 3,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758610413183
+      },
+      "fireworks-001": {
+        "impressions": 2,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758610241277
+      },
+      "party-supplies-001": {
+        "impressions": 2,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758610371471
+      },
+      "luxury-spa-001": {
+        "impressions": 1,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758604574877
+      },
+      "house-ad-001": {
+        "impressions": 3,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758609724273
+      },
+      "drone-photography-001": {
+        "impressions": 3,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758607898078
+      },
+      "balloon-art-001": {
+        "impressions": 3,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758607779490
+      },
+      "furniture-rental-001": {
+        "impressions": 1,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758605784117
+      },
+      "helicopter-arrival-001": {
+        "impressions": 2,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758607822138
+      },
+      "cleaning-services-001": {
+        "impressions": 1,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758606469941
+      },
+      "cigar-service-001": {
+        "impressions": 3,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758609557915
+      },
+      "corporate-events-001": {
+        "impressions": 2,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758606828610
+      },
+      "ice-sculpture-001": {
+        "impressions": 2,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758607779468
+      },
+      "floral-design-001": {
+        "impressions": 1,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758606730111
+      },
+      "bartending-001": {
+        "impressions": 1,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758606748032
+      },
+      "tent-rental-001": {
+        "impressions": 3,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758608838787
+      },
+      "photo-booth-001": {
+        "impressions": 2,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758607898065
+      },
+      "chef-service-001": {
+        "impressions": 3,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758608292435
+      },
+      "luxury-transportation-001": {
+        "impressions": 2,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758610310658
+      },
+      "mobile-bar-001": {
+        "impressions": 1,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758607027834
+      },
+      "pet-services-001": {
+        "impressions": 2,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758610301930
+      },
+      "magic-entertainment-001": {
+        "impressions": 1,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758607319289
+      },
+      "premium-venues-001": {
+        "impressions": 2,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758607554962
+      },
+      "cake-bakery-001": {
+        "impressions": 2,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758607984071
+      },
+      "casino-night-001": {
+        "impressions": 2,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758608751621
+      },
+      "wine-sommelier-001": {
+        "impressions": 2,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758610371462
+      },
+      "security-services-001": {
+        "impressions": 2,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758610491108
+      },
+      "live-streaming-001": {
+        "impressions": 2,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758610241306
+      },
+      "event-planning-001": {
+        "impressions": 1,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758609073052
+      },
+      "valet-parking-001": {
+        "impressions": 1,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758609073061
+      },
+      "corporate-gifts-001": {
+        "impressions": 1,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758609559894
+      },
+      "translation-services-001": {
+        "impressions": 1,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758609724246
+      },
+      "videography-001": {
+        "impressions": 1,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758610310651
+      },
+      "vintage-car-001": {
+        "impressions": 1,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758610413217
+      },
+      "entertainment-001": {
+        "impressions": 1,
+        "clicks": 0,
+        "alpha": 1,
+        "beta": 20,
+        "updatedAt": 1758610491093
+      }
     }
   }
 }

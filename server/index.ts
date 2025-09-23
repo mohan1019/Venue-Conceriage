@@ -44,17 +44,9 @@ app.use(cors({
   origin: process.env.NODE_ENV === 'production'
     ? (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
         console.log('CORS Origin:', origin);
-        // Allow all origins ending with bolt.host or onrender.com, or no origin (for direct requests)
-        if (!origin ||
-            (origin && origin.includes('bolt.host')) ||
-            (origin && origin.includes('onrender.com')) ||
-            origin === 'https://venue-concierge-full-zlxe.bolt.host') {
-          console.log('CORS: Allowing origin', origin);
-          callback(null, true);
-        } else {
-          console.log('CORS: Blocking origin', origin);
-          callback(new Error('Not allowed by CORS'));
-        }
+        // Allow all origins in production for now, or add specific domains as needed
+        // You can restrict this later by adding specific domains to the allowlist
+        callback(null, true);
       }
     : ['http://localhost:5173', 'http://localhost:3000'], // Allow specific development origins
   credentials: true,
