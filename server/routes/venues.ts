@@ -386,7 +386,7 @@ router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const venues = getVenuesFromJson();
-    const venue = venues.find(v => v.venue_id === id || v.id === id);
+    const venue = venues.find((v: any) => v.venue_id === id || v.id === id);
 
     if (!venue) {
       return res.status(404).json({ error: 'Venue not found' });
