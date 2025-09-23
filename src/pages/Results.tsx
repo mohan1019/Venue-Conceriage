@@ -368,7 +368,7 @@ const Results: React.FC = () => {
 
         <div className="flex gap-4">
           {/* Enhanced Left Sidebar */}
-          <div className="w-64 flex-shrink-0">
+          <div className="w-60 flex-shrink-0">
             <div className="bg-gray-800/50 backdrop-blur-xl rounded-2xl shadow-2xl p-6 border border-gray-700/50 sticky top-24">
               {/* Refine Search Section */}
               <div className="mb-8">
@@ -640,16 +640,23 @@ const Results: React.FC = () => {
           </div>
 
           {/* Enhanced Right Sidebar - Ads */}
-          <div className="w-64 flex-shrink-0 ml-4">
-            <div className="bg-gray-800/50 backdrop-blur-xl rounded-2xl shadow-2xl p-6 border border-gray-700/50 sticky top-24">
-              <h3 className="text-lg font-semibold text-white mb-6 flex items-center space-x-2">
-                <TrendingUp className="w-5 h-5 text-green-400" />
+          <div className="w-80 flex-shrink-0 ml-4">
+            <div className="bg-gray-800/50 backdrop-blur-xl rounded-2xl shadow-2xl p-8 border border-gray-700/50 sticky top-24">
+              <h3 className="text-xl font-bold text-white mb-8 flex items-center space-x-3">
+                <TrendingUp className="w-6 h-6 text-green-400" />
                 <span>Recommended Services</span>
               </h3>
 
               {/* Enhanced Ad Slot */}
-              <div data-ad-slot="sidebar" className="mb-6">
+              <div data-ad-slot="sidebar" className="mb-8 min-h-[300px]">
                 {/* AdClient will populate this container */}
+                <div className="text-center text-gray-400 text-sm py-8">
+                  <div className="animate-pulse">
+                    <div className="w-16 h-16 bg-gray-700/30 rounded-full mx-auto mb-4"></div>
+                    <div className="h-4 bg-gray-700/30 rounded w-32 mx-auto mb-2"></div>
+                    <div className="h-3 bg-gray-700/30 rounded w-24 mx-auto"></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

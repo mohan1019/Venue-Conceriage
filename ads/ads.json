@@ -1,420 +1,1867 @@
 [
   {
-    "id": "house-ad-001",
-    "placement": "sidebar",
-    "targeting_keywords": [],
-    "landing_url": "https://venue-backend-1.onrender.com/about",
-    "base_headline": "Find Your Perfect Venue",
-    "base_body": "Discover amazing event venues with AI-powered assistance. Book your dream location today!",
-    "floor_ecpm": 0,
-    "blocked_paths": [],
-    "lang": "en"
+    "id": "ad-001",
+    "placement": "inline",
+    "targeting_keywords": [
+      "venue",
+      "banquet",
+      "hall",
+      "reception"
+    ],
+    "landing_url": "https://www.weddingwire.com/c/boston/wedding-wedding-venues/11-sca.html",
+    "base_headline": "Wedding Venues",
+    "base_body": "Top-rated wedding venues near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 300,
+    "blocked_paths": [
+      "/admin"
+    ],
+    "lang": "en",
+    "city": "Boston"
   },
   {
-    "id": "premium-venues-001",
-    "placement": "sidebar",
-    "targeting_keywords": ["wedding", "luxury", "premium", "elegant"],
-    "landing_url": "https://example.com/premium-venues",
-    "base_headline": "Luxury Wedding Venues",
-    "base_body": "Exclusive premium venues for your special day. Exceptional service and stunning locations.",
-    "floor_ecpm": 150,
-    "blocked_paths": ["/admin", "/api"],
-    "lang": "en"
+    "id": "ad-002",
+    "placement": "footer",
+    "targeting_keywords": [
+      "venue",
+      "banquet",
+      "hall",
+      "reception"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/wedding-venues-seattle-wa",
+    "base_headline": "Wedding Venues",
+    "base_body": "Top-rated wedding venues near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 300,
+    "blocked_paths": [
+      "/api"
+    ],
+    "lang": "en",
+    "city": "Seattle"
   },
   {
-    "id": "corporate-events-001",
-    "placement": "sidebar",
-    "targeting_keywords": ["corporate", "conference", "business", "meeting"],
-    "landing_url": "https://example.com/corporate-events",
-    "base_headline": "Corporate Event Spaces",
-    "base_body": "Professional venues for conferences, meetings, and corporate gatherings. Modern amenities included.",
-    "floor_ecpm": 120,
-    "blocked_paths": ["/admin"],
-    "lang": "en"
+    "id": "ad-003",
+    "placement": "header",
+    "targeting_keywords": [
+      "venue",
+      "banquet",
+      "hall",
+      "reception"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/wedding-venues-new+york-ny",
+    "base_headline": "Wedding Venues",
+    "base_body": "Top-rated wedding venues near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 300,
+    "blocked_paths": [
+      "/admin",
+      "/api"
+    ],
+    "lang": "en",
+    "city": "New York"
   },
   {
-    "id": "catering-services-001",
+    "id": "ad-004",
     "placement": "sidebar",
-    "targeting_keywords": ["catering", "food", "dining", "reception"],
-    "landing_url": "https://example.com/catering",
-    "base_headline": "Premium Catering Services",
-    "base_body": "Exceptional catering for all events. From intimate dinners to grand celebrations.",
-    "floor_ecpm": 100,
-    "blocked_paths": [],
-    "lang": "en"
-  },
-  {
-    "id": "party-supplies-001",
-    "placement": "sidebar",
-    "targeting_keywords": ["party", "birthday", "celebration", "decoration"],
-    "landing_url": "https://example.com/party-supplies",
-    "base_headline": "Party Supplies & Decorations",
-    "base_body": "Everything you need for the perfect party. Decorations, lighting, and entertainment.",
-    "floor_ecpm": 80,
-    "blocked_paths": [],
-    "lang": "en"
-  },
-  {
-    "id": "wedding-photography-001",
-    "placement": "sidebar",
-    "targeting_keywords": ["wedding", "photography", "photographer", "photos"],
-    "landing_url": "https://example.com/wedding-photography",
-    "base_headline": "Professional Wedding Photography",
-    "base_body": "Capture your special moments with award-winning photographers. Packages starting at $1,200.",
-    "floor_ecpm": 180,
-    "blocked_paths": ["/admin"],
-    "lang": "en"
-  },
-  {
-    "id": "event-planning-001",
-    "placement": "sidebar",
-    "targeting_keywords": ["planning", "planner", "coordinator", "organize"],
-    "landing_url": "https://example.com/event-planning",
-    "base_headline": "Expert Event Planning",
-    "base_body": "Stress-free event coordination from start to finish. Let our experts handle every detail.",
-    "floor_ecpm": 140,
-    "blocked_paths": [],
-    "lang": "en"
-  },
-  {
-    "id": "av-equipment-001",
-    "placement": "sidebar",
-    "targeting_keywords": ["sound", "lighting", "av", "equipment", "microphone", "projector"],
-    "landing_url": "https://example.com/av-equipment",
-    "base_headline": "AV Equipment Rental",
-    "base_body": "Professional sound systems, lighting, and projection equipment. Technical support included.",
-    "floor_ecpm": 110,
-    "blocked_paths": [],
-    "lang": "en"
-  },
-  {
-    "id": "floral-design-001",
-    "placement": "sidebar",
-    "targeting_keywords": ["flowers", "floral", "arrangements", "bouquet", "centerpiece"],
-    "landing_url": "https://example.com/floral-design",
-    "base_headline": "Stunning Floral Arrangements",
-    "base_body": "Beautiful custom florals for weddings and events. Fresh, seasonal, and breathtaking designs.",
-    "floor_ecpm": 130,
-    "blocked_paths": [],
-    "lang": "en"
-  },
-  {
-    "id": "transportation-001",
-    "placement": "sidebar",
-    "targeting_keywords": ["transportation", "shuttle", "limo", "bus", "parking"],
-    "landing_url": "https://example.com/transportation",
-    "base_headline": "Event Transportation",
-    "base_body": "Luxury shuttles, limousines, and charter buses. Reliable transport for your guests.",
-    "floor_ecpm": 95,
-    "blocked_paths": [],
-    "lang": "en"
-  },
-  {
-    "id": "security-services-001",
-    "placement": "sidebar",
-    "targeting_keywords": ["security", "guard", "safety", "protection"],
-    "landing_url": "https://example.com/security",
-    "base_headline": "Professional Event Security",
-    "base_body": "Licensed security personnel for safe and secure events. Crowd control and VIP protection.",
-    "floor_ecpm": 85,
-    "blocked_paths": [],
-    "lang": "en"
-  },
-  {
-    "id": "tent-rental-001",
-    "placement": "sidebar",
-    "targeting_keywords": ["tent", "outdoor", "canopy", "marquee", "pavilion"],
-    "landing_url": "https://example.com/tent-rental",
-    "base_headline": "Outdoor Event Tents",
-    "base_body": "Weather protection for outdoor events. Elegant tents and marquees in all sizes.",
-    "floor_ecpm": 105,
-    "blocked_paths": [],
-    "lang": "en"
-  },
-  {
-    "id": "furniture-rental-001",
-    "placement": "sidebar",
-    "targeting_keywords": ["furniture", "chairs", "tables", "lounge", "seating"],
-    "landing_url": "https://example.com/furniture-rental",
-    "base_headline": "Event Furniture Rental",
-    "base_body": "Stylish chairs, tables, and lounge furniture. Modern and classic styles available.",
-    "floor_ecpm": 90,
-    "blocked_paths": [],
-    "lang": "en"
-  },
-  {
-    "id": "bartending-001",
-    "placement": "sidebar",
-    "targeting_keywords": ["bar", "bartender", "drinks", "cocktails", "alcohol"],
-    "landing_url": "https://example.com/bartending",
-    "base_headline": "Professional Bartending",
-    "base_body": "Expert bartenders and premium bar packages. Craft cocktails and wine service.",
-    "floor_ecpm": 125,
-    "blocked_paths": [],
-    "lang": "en"
-  },
-  {
-    "id": "entertainment-001",
-    "placement": "sidebar",
-    "targeting_keywords": ["entertainment", "band", "dj", "music", "dancing"],
-    "landing_url": "https://example.com/entertainment",
-    "base_headline": "Live Entertainment Booking",
-    "base_body": "DJs, live bands, and performers for unforgettable events. Music that moves your crowd.",
-    "floor_ecpm": 135,
-    "blocked_paths": [],
-    "lang": "en"
-  },
-  {
-    "id": "cleaning-services-001",
-    "placement": "sidebar",
-    "targeting_keywords": ["cleaning", "setup", "teardown", "maintenance"],
-    "landing_url": "https://example.com/cleaning",
-    "base_headline": "Event Cleanup Services",
-    "base_body": "Professional setup and teardown services. Leave the cleanup to our experienced team.",
-    "floor_ecpm": 70,
-    "blocked_paths": [],
-    "lang": "en"
-  },
-  {
-    "id": "valet-parking-001",
-    "placement": "sidebar",
-    "targeting_keywords": ["valet", "parking", "attendant", "car"],
-    "landing_url": "https://example.com/valet",
-    "base_headline": "Valet Parking Service",
-    "base_body": "Professional valet attendants for elegant arrivals. Insured and uniformed staff.",
-    "floor_ecpm": 115,
-    "blocked_paths": [],
-    "lang": "en"
-  },
-  {
-    "id": "videography-001",
-    "placement": "sidebar",
-    "targeting_keywords": ["video", "videography", "recording", "film"],
-    "landing_url": "https://example.com/videography",
-    "base_headline": "Event Videography",
-    "base_body": "Capture every moment in stunning HD. Professional editing and same-day highlights.",
-    "floor_ecpm": 160,
-    "blocked_paths": [],
-    "lang": "en"
-  },
-  {
-    "id": "photo-booth-001",
-    "placement": "sidebar",
-    "targeting_keywords": ["photo", "booth", "photos", "fun", "memories"],
-    "landing_url": "https://example.com/photo-booth",
-    "base_headline": "Interactive Photo Booths",
-    "base_body": "Fun photo experiences with instant prints. Props, backdrops, and digital sharing included.",
-    "floor_ecpm": 75,
-    "blocked_paths": [],
-    "lang": "en"
-  },
-  {
-    "id": "cake-bakery-001",
-    "placement": "sidebar",
-    "targeting_keywords": ["cake", "dessert", "bakery", "sweet", "wedding"],
-    "landing_url": "https://example.com/cake-bakery",
-    "base_headline": "Custom Event Cakes",
-    "base_body": "Beautiful custom cakes and desserts. From elegant wedding cakes to fun birthday treats.",
-    "floor_ecpm": 88,
-    "blocked_paths": [],
-    "lang": "en"
-  },
-  {
-    "id": "luxury-spa-001",
-    "placement": "sidebar",
-    "targeting_keywords": ["spa", "wellness", "massage", "relaxation", "beauty", "bridal"],
-    "landing_url": "https://example.com/spa-services",
-    "base_headline": "Pre-Event Spa Packages",
-    "base_body": "Relax and rejuvenate before your big day. Bridal packages, massages, and beauty treatments.",
-    "floor_ecpm": 200,
-    "blocked_paths": [],
-    "lang": "en"
-  },
-  {
-    "id": "mobile-bar-001",
-    "placement": "sidebar",
-    "targeting_keywords": ["mobile", "bar", "cocktail", "mixology", "craft", "spirits"],
-    "landing_url": "https://example.com/mobile-bar",
-    "base_headline": "Mobile Craft Cocktail Bar",
-    "base_body": "Award-winning mixologists bring the bar to you. Premium spirits and custom cocktail menus.",
-    "floor_ecpm": 175,
-    "blocked_paths": [],
-    "lang": "en"
-  },
-  {
-    "id": "luxury-transportation-001",
-    "placement": "sidebar",
-    "targeting_keywords": ["luxury", "limo", "rolls", "bentley", "chauffeur", "executive"],
-    "landing_url": "https://example.com/luxury-transport",
-    "base_headline": "Luxury Vehicle Service",
-    "base_body": "Arrive in style with our fleet of Rolls-Royce, Bentley, and executive vehicles. Professional chauffeurs.",
-    "floor_ecpm": 250,
-    "blocked_paths": [],
-    "lang": "en"
-  },
-  {
-    "id": "drone-photography-001",
-    "placement": "sidebar",
-    "targeting_keywords": ["drone", "aerial", "photography", "video", "cinematic", "4k"],
-    "landing_url": "https://example.com/drone-photography",
-    "base_headline": "Aerial Drone Photography",
-    "base_body": "Breathtaking aerial shots and cinematic video. Licensed pilots and 4K equipment.",
-    "floor_ecpm": 190,
-    "blocked_paths": [],
-    "lang": "en"
-  },
-  {
-    "id": "ice-sculpture-001",
-    "placement": "sidebar",
-    "targeting_keywords": ["ice", "sculpture", "carving", "art", "centerpiece", "luxury"],
-    "landing_url": "https://example.com/ice-sculpture",
-    "base_headline": "Custom Ice Sculptures",
-    "base_body": "Stunning ice art centerpieces and functional ice bars. Master craftsmen create unforgettable displays.",
-    "floor_ecpm": 165,
-    "blocked_paths": [],
-    "lang": "en"
-  },
-  {
-    "id": "fireworks-001",
-    "placement": "sidebar",
-    "targeting_keywords": ["fireworks", "pyrotechnics", "display", "finale", "celebration"],
-    "landing_url": "https://example.com/fireworks",
-    "base_headline": "Professional Fireworks",
-    "base_body": "Spectacular fireworks displays for grand finales. Licensed pyrotechnicians and custom shows.",
+    "targeting_keywords": [
+      "venue",
+      "banquet",
+      "hall",
+      "reception"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/wedding-venues-newada-",
+    "base_headline": "Wedding Venues",
+    "base_body": "Top-rated wedding venues near you. Compare options, read reviews, and book today.",
     "floor_ecpm": 300,
     "blocked_paths": [],
-    "lang": "en"
+    "lang": "en",
+    "city": "Newada"
   },
   {
-    "id": "live-streaming-001",
-    "placement": "sidebar",
-    "targeting_keywords": ["streaming", "broadcast", "virtual", "online", "remote", "zoom"],
-    "landing_url": "https://example.com/live-streaming",
-    "base_headline": "Live Event Streaming",
-    "base_body": "Connect remote guests with professional live streaming. Multi-camera setup and HD quality.",
-    "floor_ecpm": 145,
-    "blocked_paths": [],
-    "lang": "en"
+    "id": "ad-005",
+    "placement": "inline",
+    "targeting_keywords": [
+      "venue",
+      "banquet",
+      "hall",
+      "reception"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/wedding-venues-san+jose-ca",
+    "base_headline": "Wedding Venues",
+    "base_body": "Top-rated wedding venues near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 300,
+    "blocked_paths": [
+      "/admin"
+    ],
+    "lang": "en",
+    "city": "San Jose"
   },
   {
-    "id": "cigar-service-001",
-    "placement": "sidebar",
-    "targeting_keywords": ["cigar", "smoking", "lounge", "premium", "tobacco", "gentleman"],
-    "landing_url": "https://example.com/cigar-service",
-    "base_headline": "Premium Cigar Service",
-    "base_body": "Curated selection of fine cigars and smoking accessories. Expert tobacconist on-site.",
-    "floor_ecpm": 185,
-    "blocked_paths": [],
-    "lang": "en"
+    "id": "ad-006",
+    "placement": "footer",
+    "targeting_keywords": [
+      "catering",
+      "buffet",
+      "banquet",
+      "veg"
+    ],
+    "landing_url": "https://www.google.com/maps/search/Wedding+Caterers+Boston%2C+MA",
+    "base_headline": "Wedding Caterers",
+    "base_body": "Top-rated wedding caterers near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/api"
+    ],
+    "lang": "en",
+    "city": "Boston"
   },
   {
-    "id": "chef-service-001",
-    "placement": "sidebar",
-    "targeting_keywords": ["chef", "cooking", "culinary", "gourmet", "michelin", "fine dining"],
-    "landing_url": "https://example.com/private-chef",
-    "base_headline": "Michelin-Star Private Chef",
-    "base_body": "Award-winning chefs create personalized menus. From intimate dinners to grand celebrations.",
-    "floor_ecpm": 280,
-    "blocked_paths": [],
-    "lang": "en"
+    "id": "ad-007",
+    "placement": "header",
+    "targeting_keywords": [
+      "catering",
+      "buffet",
+      "banquet",
+      "veg"
+    ],
+    "landing_url": "https://www.weddingwire.com/c/seattle/wedding-wedding-caterers/11-sca.html",
+    "base_headline": "Wedding Caterers",
+    "base_body": "Top-rated wedding caterers near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/admin",
+      "/api"
+    ],
+    "lang": "en",
+    "city": "Seattle"
   },
   {
-    "id": "wine-sommelier-001",
+    "id": "ad-008",
     "placement": "sidebar",
-    "targeting_keywords": ["wine", "sommelier", "tasting", "pairing", "vintage", "cellar"],
-    "landing_url": "https://example.com/wine-service",
-    "base_headline": "Master Sommelier Service",
-    "base_body": "Expert wine pairings and tastings. Exclusive access to rare vintages and private cellars.",
-    "floor_ecpm": 220,
+    "targeting_keywords": [
+      "catering",
+      "buffet",
+      "banquet",
+      "veg"
+    ],
+    "landing_url": "https://www.google.com/maps/search/Wedding+Caterers+New+York%2C+NY",
+    "base_headline": "Wedding Caterers",
+    "base_body": "Top-rated wedding caterers near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
     "blocked_paths": [],
-    "lang": "en"
+    "lang": "en",
+    "city": "New York"
   },
   {
-    "id": "vintage-car-001",
-    "placement": "sidebar",
-    "targeting_keywords": ["vintage", "classic", "car", "antique", "automobile", "wedding"],
-    "landing_url": "https://example.com/vintage-cars",
-    "base_headline": "Vintage Car Rentals",
-    "base_body": "Classic automobiles for memorable entrances. 1920s Rolls-Royce to 1960s convertibles.",
-    "floor_ecpm": 195,
-    "blocked_paths": [],
-    "lang": "en"
+    "id": "ad-009",
+    "placement": "inline",
+    "targeting_keywords": [
+      "catering",
+      "buffet",
+      "banquet",
+      "veg"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/wedding-caterers-newada-",
+    "base_headline": "Wedding Caterers",
+    "base_body": "Top-rated wedding caterers near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/admin"
+    ],
+    "lang": "en",
+    "city": "Newada"
   },
   {
-    "id": "magic-entertainment-001",
-    "placement": "sidebar",
-    "targeting_keywords": ["magic", "magician", "illusion", "entertainment", "show", "performance"],
-    "landing_url": "https://example.com/magic-shows",
-    "base_headline": "Professional Magicians",
-    "base_body": "World-class illusionists and close-up magic. Interactive entertainment that amazes guests.",
-    "floor_ecpm": 155,
-    "blocked_paths": [],
-    "lang": "en"
+    "id": "ad-010",
+    "placement": "footer",
+    "targeting_keywords": [
+      "catering",
+      "buffet",
+      "banquet",
+      "veg"
+    ],
+    "landing_url": "https://www.yelp.com/search?find_desc=Wedding+Caterers&find_loc=San+Jose%2C+CA",
+    "base_headline": "Wedding Caterers",
+    "base_body": "Top-rated wedding caterers near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/api"
+    ],
+    "lang": "en",
+    "city": "San Jose"
   },
   {
-    "id": "corporate-gifts-001",
-    "placement": "sidebar",
-    "targeting_keywords": ["gifts", "corporate", "branded", "merchandise", "swag", "promotional"],
-    "landing_url": "https://example.com/corporate-gifts",
-    "base_headline": "Executive Gift Services",
-    "base_body": "Luxury branded merchandise and corporate gifts. Custom packaging and personalization available.",
-    "floor_ecpm": 120,
-    "blocked_paths": [],
-    "lang": "en"
+    "id": "ad-011",
+    "placement": "header",
+    "targeting_keywords": [
+      "makeup",
+      "bridal",
+      "salon",
+      "hair"
+    ],
+    "landing_url": "https://www.google.com/maps/search/Bridal+Makeup+Artists+Boston%2C+MA",
+    "base_headline": "Bridal Makeup Artists",
+    "base_body": "Top-rated bridal makeup artists near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/admin",
+      "/api"
+    ],
+    "lang": "en",
+    "city": "Boston"
   },
   {
-    "id": "balloon-art-001",
+    "id": "ad-012",
     "placement": "sidebar",
-    "targeting_keywords": ["balloon", "art", "decoration", "arch", "sculpture", "children"],
-    "landing_url": "https://example.com/balloon-art",
-    "base_headline": "Balloon Art & Decorations",
-    "base_body": "Stunning balloon sculptures and arches. Perfect for children's parties and grand openings.",
-    "floor_ecpm": 65,
+    "targeting_keywords": [
+      "makeup",
+      "bridal",
+      "salon",
+      "hair"
+    ],
+    "landing_url": "https://www.google.com/maps/search/Bridal+Makeup+Artists+Seattle%2C+WA",
+    "base_headline": "Bridal Makeup Artists",
+    "base_body": "Top-rated bridal makeup artists near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
     "blocked_paths": [],
-    "lang": "en"
+    "lang": "en",
+    "city": "Seattle"
   },
   {
-    "id": "casino-night-001",
-    "placement": "sidebar",
-    "targeting_keywords": ["casino", "poker", "blackjack", "gaming", "chips", "dealer"],
-    "landing_url": "https://example.com/casino-night",
-    "base_headline": "Casino Night Entertainment",
-    "base_body": "Professional dealers and authentic casino games. Poker, blackjack, and roulette tables.",
-    "floor_ecpm": 170,
-    "blocked_paths": [],
-    "lang": "en"
+    "id": "ad-013",
+    "placement": "inline",
+    "targeting_keywords": [
+      "makeup",
+      "bridal",
+      "salon",
+      "hair"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/bridal-makeup-artists-new+york-ny",
+    "base_headline": "Bridal Makeup Artists",
+    "base_body": "Top-rated bridal makeup artists near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/admin"
+    ],
+    "lang": "en",
+    "city": "New York"
   },
   {
-    "id": "helicopter-arrival-001",
-    "placement": "sidebar",
-    "targeting_keywords": ["helicopter", "arrival", "landing", "vip", "exclusive", "luxury"],
-    "landing_url": "https://example.com/helicopter-service",
-    "base_headline": "VIP Helicopter Service",
-    "base_body": "Make a grand entrance with helicopter arrivals. Licensed pilots and luxury aircraft.",
-    "floor_ecpm": 500,
-    "blocked_paths": [],
-    "lang": "en"
+    "id": "ad-014",
+    "placement": "footer",
+    "targeting_keywords": [
+      "makeup",
+      "bridal",
+      "salon",
+      "hair"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/bridal-makeup-artists-newada-",
+    "base_headline": "Bridal Makeup Artists",
+    "base_body": "Top-rated bridal makeup artists near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/api"
+    ],
+    "lang": "en",
+    "city": "Newada"
   },
   {
-    "id": "pet-services-001",
-    "placement": "sidebar",
-    "targeting_keywords": ["pet", "dog", "cat", "sitter", "wedding", "animal"],
-    "landing_url": "https://example.com/pet-services",
-    "base_headline": "Pet Wedding Attendants",
-    "base_body": "Include your furry family members safely. Professional pet handlers and training services.",
-    "floor_ecpm": 95,
-    "blocked_paths": [],
-    "lang": "en"
+    "id": "ad-015",
+    "placement": "header",
+    "targeting_keywords": [
+      "makeup",
+      "bridal",
+      "salon",
+      "hair"
+    ],
+    "landing_url": "https://www.google.com/maps/search/Bridal+Makeup+Artists+San+Jose%2C+CA",
+    "base_headline": "Bridal Makeup Artists",
+    "base_body": "Top-rated bridal makeup artists near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/admin",
+      "/api"
+    ],
+    "lang": "en",
+    "city": "San Jose"
   },
   {
-    "id": "translation-services-001",
+    "id": "ad-016",
     "placement": "sidebar",
-    "targeting_keywords": ["translation", "interpreter", "language", "multilingual", "international"],
-    "landing_url": "https://example.com/translation",
-    "base_headline": "Professional Interpreters",
-    "base_body": "Multilingual event support. Certified interpreters for international guests and ceremonies.",
-    "floor_ecpm": 140,
+    "targeting_keywords": [
+      "photography",
+      "photographer",
+      "candid",
+      "wedding"
+    ],
+    "landing_url": "https://www.yelp.com/search?find_desc=Wedding+Photographers&find_loc=Boston%2C+MA",
+    "base_headline": "Wedding Photographers",
+    "base_body": "Top-rated wedding photographers near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 200,
     "blocked_paths": [],
-    "lang": "en"
+    "lang": "en",
+    "city": "Boston"
+  },
+  {
+    "id": "ad-017",
+    "placement": "inline",
+    "targeting_keywords": [
+      "photography",
+      "photographer",
+      "candid",
+      "wedding"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/wedding-photographers-seattle-wa",
+    "base_headline": "Wedding Photographers",
+    "base_body": "Top-rated wedding photographers near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 200,
+    "blocked_paths": [
+      "/admin"
+    ],
+    "lang": "en",
+    "city": "Seattle"
+  },
+  {
+    "id": "ad-018",
+    "placement": "footer",
+    "targeting_keywords": [
+      "photography",
+      "photographer",
+      "candid",
+      "wedding"
+    ],
+    "landing_url": "https://www.yelp.com/search?find_desc=Wedding+Photographers&find_loc=New+York%2C+NY",
+    "base_headline": "Wedding Photographers",
+    "base_body": "Top-rated wedding photographers near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 200,
+    "blocked_paths": [
+      "/api"
+    ],
+    "lang": "en",
+    "city": "New York"
+  },
+  {
+    "id": "ad-019",
+    "placement": "header",
+    "targeting_keywords": [
+      "photography",
+      "photographer",
+      "candid",
+      "wedding"
+    ],
+    "landing_url": "https://www.weddingwire.com/c/newada/wedding-wedding-photographers/11-sca.html",
+    "base_headline": "Wedding Photographers",
+    "base_body": "Top-rated wedding photographers near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 200,
+    "blocked_paths": [
+      "/admin",
+      "/api"
+    ],
+    "lang": "en",
+    "city": "Newada"
+  },
+  {
+    "id": "ad-020",
+    "placement": "sidebar",
+    "targeting_keywords": [
+      "photography",
+      "photographer",
+      "candid",
+      "wedding"
+    ],
+    "landing_url": "https://www.google.com/maps/search/Wedding+Photographers+San+Jose%2C+CA",
+    "base_headline": "Wedding Photographers",
+    "base_body": "Top-rated wedding photographers near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 200,
+    "blocked_paths": [],
+    "lang": "en",
+    "city": "San Jose"
+  },
+  {
+    "id": "ad-021",
+    "placement": "inline",
+    "targeting_keywords": [
+      "dj",
+      "band",
+      "music",
+      "live"
+    ],
+    "landing_url": "https://www.google.com/maps/search/DJ+%26+Live+Bands+Boston%2C+MA",
+    "base_headline": "DJ & Live Bands",
+    "base_body": "Top-rated dj & live bands near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 200,
+    "blocked_paths": [
+      "/admin"
+    ],
+    "lang": "en",
+    "city": "Boston"
+  },
+  {
+    "id": "ad-022",
+    "placement": "footer",
+    "targeting_keywords": [
+      "dj",
+      "band",
+      "music",
+      "live"
+    ],
+    "landing_url": "https://www.yelp.com/search?find_desc=DJ+%26+Live+Bands&find_loc=Seattle%2C+WA",
+    "base_headline": "DJ & Live Bands",
+    "base_body": "Top-rated dj & live bands near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 200,
+    "blocked_paths": [
+      "/api"
+    ],
+    "lang": "en",
+    "city": "Seattle"
+  },
+  {
+    "id": "ad-023",
+    "placement": "header",
+    "targeting_keywords": [
+      "dj",
+      "band",
+      "music",
+      "live"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/dj-%26-live-bands-new+york-ny",
+    "base_headline": "DJ & Live Bands",
+    "base_body": "Top-rated dj & live bands near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 200,
+    "blocked_paths": [
+      "/admin",
+      "/api"
+    ],
+    "lang": "en",
+    "city": "New York"
+  },
+  {
+    "id": "ad-024",
+    "placement": "sidebar",
+    "targeting_keywords": [
+      "dj",
+      "band",
+      "music",
+      "live"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/dj-%26-live-bands-newada-",
+    "base_headline": "DJ & Live Bands",
+    "base_body": "Top-rated dj & live bands near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 200,
+    "blocked_paths": [],
+    "lang": "en",
+    "city": "Newada"
+  },
+  {
+    "id": "ad-025",
+    "placement": "inline",
+    "targeting_keywords": [
+      "dj",
+      "band",
+      "music",
+      "live"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/dj-%26-live-bands-san+jose-ca",
+    "base_headline": "DJ & Live Bands",
+    "base_body": "Top-rated dj & live bands near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 200,
+    "blocked_paths": [
+      "/admin"
+    ],
+    "lang": "en",
+    "city": "San Jose"
+  },
+  {
+    "id": "ad-026",
+    "placement": "footer",
+    "targeting_keywords": [
+      "planner",
+      "coordination",
+      "full-service",
+      "decor"
+    ],
+    "landing_url": "https://www.yelp.com/search?find_desc=Wedding+Planners&find_loc=Boston%2C+MA",
+    "base_headline": "Wedding Planners",
+    "base_body": "Top-rated wedding planners near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 300,
+    "blocked_paths": [
+      "/api"
+    ],
+    "lang": "en",
+    "city": "Boston"
+  },
+  {
+    "id": "ad-027",
+    "placement": "header",
+    "targeting_keywords": [
+      "planner",
+      "coordination",
+      "full-service",
+      "decor"
+    ],
+    "landing_url": "https://www.google.com/maps/search/Wedding+Planners+Seattle%2C+WA",
+    "base_headline": "Wedding Planners",
+    "base_body": "Top-rated wedding planners near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 300,
+    "blocked_paths": [
+      "/admin",
+      "/api"
+    ],
+    "lang": "en",
+    "city": "Seattle"
+  },
+  {
+    "id": "ad-028",
+    "placement": "sidebar",
+    "targeting_keywords": [
+      "planner",
+      "coordination",
+      "full-service",
+      "decor"
+    ],
+    "landing_url": "https://www.google.com/maps/search/Wedding+Planners+New+York%2C+NY",
+    "base_headline": "Wedding Planners",
+    "base_body": "Top-rated wedding planners near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 300,
+    "blocked_paths": [],
+    "lang": "en",
+    "city": "New York"
+  },
+  {
+    "id": "ad-029",
+    "placement": "inline",
+    "targeting_keywords": [
+      "planner",
+      "coordination",
+      "full-service",
+      "decor"
+    ],
+    "landing_url": "https://www.weddingwire.com/c/newada/wedding-wedding-planners/11-sca.html",
+    "base_headline": "Wedding Planners",
+    "base_body": "Top-rated wedding planners near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 300,
+    "blocked_paths": [
+      "/admin"
+    ],
+    "lang": "en",
+    "city": "Newada"
+  },
+  {
+    "id": "ad-030",
+    "placement": "footer",
+    "targeting_keywords": [
+      "planner",
+      "coordination",
+      "full-service",
+      "decor"
+    ],
+    "landing_url": "https://www.google.com/maps/search/Wedding+Planners+San+Jose%2C+CA",
+    "base_headline": "Wedding Planners",
+    "base_body": "Top-rated wedding planners near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 300,
+    "blocked_paths": [
+      "/api"
+    ],
+    "lang": "en",
+    "city": "San Jose"
+  },
+  {
+    "id": "ad-031",
+    "placement": "header",
+    "targeting_keywords": [
+      "decor",
+      "flowers",
+      "floral",
+      "centerpieces"
+    ],
+    "landing_url": "https://www.google.com/maps/search/Decor+%26+Floral+Boston%2C+MA",
+    "base_headline": "Decor & Floral",
+    "base_body": "Top-rated decor & floral near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 200,
+    "blocked_paths": [
+      "/admin",
+      "/api"
+    ],
+    "lang": "en",
+    "city": "Boston"
+  },
+  {
+    "id": "ad-032",
+    "placement": "sidebar",
+    "targeting_keywords": [
+      "decor",
+      "flowers",
+      "floral",
+      "centerpieces"
+    ],
+    "landing_url": "https://www.yelp.com/search?find_desc=Decor+%26+Floral&find_loc=Seattle%2C+WA",
+    "base_headline": "Decor & Floral",
+    "base_body": "Top-rated decor & floral near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 200,
+    "blocked_paths": [],
+    "lang": "en",
+    "city": "Seattle"
+  },
+  {
+    "id": "ad-033",
+    "placement": "inline",
+    "targeting_keywords": [
+      "decor",
+      "flowers",
+      "floral",
+      "centerpieces"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/decor-%26-floral-new+york-ny",
+    "base_headline": "Decor & Floral",
+    "base_body": "Top-rated decor & floral near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 200,
+    "blocked_paths": [
+      "/admin"
+    ],
+    "lang": "en",
+    "city": "New York"
+  },
+  {
+    "id": "ad-034",
+    "placement": "footer",
+    "targeting_keywords": [
+      "decor",
+      "flowers",
+      "floral",
+      "centerpieces"
+    ],
+    "landing_url": "https://www.google.com/maps/search/Decor+%26+Floral+Newada",
+    "base_headline": "Decor & Floral",
+    "base_body": "Top-rated decor & floral near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 200,
+    "blocked_paths": [
+      "/api"
+    ],
+    "lang": "en",
+    "city": "Newada"
+  },
+  {
+    "id": "ad-035",
+    "placement": "header",
+    "targeting_keywords": [
+      "decor",
+      "flowers",
+      "floral",
+      "centerpieces"
+    ],
+    "landing_url": "https://www.google.com/maps/search/Decor+%26+Floral+San+Jose%2C+CA",
+    "base_headline": "Decor & Floral",
+    "base_body": "Top-rated decor & floral near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 200,
+    "blocked_paths": [
+      "/admin",
+      "/api"
+    ],
+    "lang": "en",
+    "city": "San Jose"
+  },
+  {
+    "id": "ad-036",
+    "placement": "sidebar",
+    "targeting_keywords": [
+      "invitation",
+      "cards",
+      "design",
+      "stationery"
+    ],
+    "landing_url": "https://www.weddingwire.com/c/boston/wedding-invitation-designers/11-sca.html",
+    "base_headline": "Invitation Designers",
+    "base_body": "Top-rated invitation designers near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [],
+    "lang": "en",
+    "city": "Boston"
+  },
+  {
+    "id": "ad-037",
+    "placement": "inline",
+    "targeting_keywords": [
+      "invitation",
+      "cards",
+      "design",
+      "stationery"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/invitation-designers-seattle-wa",
+    "base_headline": "Invitation Designers",
+    "base_body": "Top-rated invitation designers near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/admin"
+    ],
+    "lang": "en",
+    "city": "Seattle"
+  },
+  {
+    "id": "ad-038",
+    "placement": "footer",
+    "targeting_keywords": [
+      "invitation",
+      "cards",
+      "design",
+      "stationery"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/invitation-designers-new+york-ny",
+    "base_headline": "Invitation Designers",
+    "base_body": "Top-rated invitation designers near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/api"
+    ],
+    "lang": "en",
+    "city": "New York"
+  },
+  {
+    "id": "ad-039",
+    "placement": "header",
+    "targeting_keywords": [
+      "invitation",
+      "cards",
+      "design",
+      "stationery"
+    ],
+    "landing_url": "https://www.weddingwire.com/c/newada/wedding-invitation-designers/11-sca.html",
+    "base_headline": "Invitation Designers",
+    "base_body": "Top-rated invitation designers near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/admin",
+      "/api"
+    ],
+    "lang": "en",
+    "city": "Newada"
+  },
+  {
+    "id": "ad-040",
+    "placement": "sidebar",
+    "targeting_keywords": [
+      "invitation",
+      "cards",
+      "design",
+      "stationery"
+    ],
+    "landing_url": "https://www.google.com/maps/search/Invitation+Designers+San+Jose%2C+CA",
+    "base_headline": "Invitation Designers",
+    "base_body": "Top-rated invitation designers near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [],
+    "lang": "en",
+    "city": "San Jose"
+  },
+  {
+    "id": "ad-041",
+    "placement": "inline",
+    "targeting_keywords": [
+      "jewelry",
+      "rings",
+      "necklace",
+      "bridal"
+    ],
+    "landing_url": "https://www.weddingwire.com/c/boston/wedding-jewelry-%26-accessories/11-sca.html",
+    "base_headline": "Jewelry & Accessories",
+    "base_body": "Top-rated jewelry & accessories near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/admin"
+    ],
+    "lang": "en",
+    "city": "Boston"
+  },
+  {
+    "id": "ad-042",
+    "placement": "footer",
+    "targeting_keywords": [
+      "jewelry",
+      "rings",
+      "necklace",
+      "bridal"
+    ],
+    "landing_url": "https://www.weddingwire.com/c/seattle/wedding-jewelry-%26-accessories/11-sca.html",
+    "base_headline": "Jewelry & Accessories",
+    "base_body": "Top-rated jewelry & accessories near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/api"
+    ],
+    "lang": "en",
+    "city": "Seattle"
+  },
+  {
+    "id": "ad-043",
+    "placement": "header",
+    "targeting_keywords": [
+      "jewelry",
+      "rings",
+      "necklace",
+      "bridal"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/jewelry-%26-accessories-new+york-ny",
+    "base_headline": "Jewelry & Accessories",
+    "base_body": "Top-rated jewelry & accessories near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/admin",
+      "/api"
+    ],
+    "lang": "en",
+    "city": "New York"
+  },
+  {
+    "id": "ad-044",
+    "placement": "sidebar",
+    "targeting_keywords": [
+      "jewelry",
+      "rings",
+      "necklace",
+      "bridal"
+    ],
+    "landing_url": "https://www.weddingwire.com/c/newada/wedding-jewelry-%26-accessories/11-sca.html",
+    "base_headline": "Jewelry & Accessories",
+    "base_body": "Top-rated jewelry & accessories near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [],
+    "lang": "en",
+    "city": "Newada"
+  },
+  {
+    "id": "ad-045",
+    "placement": "inline",
+    "targeting_keywords": [
+      "jewelry",
+      "rings",
+      "necklace",
+      "bridal"
+    ],
+    "landing_url": "https://www.yelp.com/search?find_desc=Jewelry+%26+Accessories&find_loc=San+Jose%2C+CA",
+    "base_headline": "Jewelry & Accessories",
+    "base_body": "Top-rated jewelry & accessories near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/admin"
+    ],
+    "lang": "en",
+    "city": "San Jose"
+  },
+  {
+    "id": "ad-046",
+    "placement": "footer",
+    "targeting_keywords": [
+      "bridal",
+      "boutique",
+      "gown",
+      "lehenga"
+    ],
+    "landing_url": "https://www.weddingwire.com/c/boston/wedding-bridal-boutiques/11-sca.html",
+    "base_headline": "Bridal Boutiques",
+    "base_body": "Top-rated bridal boutiques near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/api"
+    ],
+    "lang": "en",
+    "city": "Boston"
+  },
+  {
+    "id": "ad-047",
+    "placement": "header",
+    "targeting_keywords": [
+      "bridal",
+      "boutique",
+      "gown",
+      "lehenga"
+    ],
+    "landing_url": "https://www.google.com/maps/search/Bridal+Boutiques+Seattle%2C+WA",
+    "base_headline": "Bridal Boutiques",
+    "base_body": "Top-rated bridal boutiques near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/admin",
+      "/api"
+    ],
+    "lang": "en",
+    "city": "Seattle"
+  },
+  {
+    "id": "ad-048",
+    "placement": "sidebar",
+    "targeting_keywords": [
+      "bridal",
+      "boutique",
+      "gown",
+      "lehenga"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/bridal-boutiques-new+york-ny",
+    "base_headline": "Bridal Boutiques",
+    "base_body": "Top-rated bridal boutiques near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [],
+    "lang": "en",
+    "city": "New York"
+  },
+  {
+    "id": "ad-049",
+    "placement": "inline",
+    "targeting_keywords": [
+      "bridal",
+      "boutique",
+      "gown",
+      "lehenga"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/bridal-boutiques-newada-",
+    "base_headline": "Bridal Boutiques",
+    "base_body": "Top-rated bridal boutiques near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/admin"
+    ],
+    "lang": "en",
+    "city": "Newada"
+  },
+  {
+    "id": "ad-050",
+    "placement": "footer",
+    "targeting_keywords": [
+      "bridal",
+      "boutique",
+      "gown",
+      "lehenga"
+    ],
+    "landing_url": "https://www.weddingwire.com/c/san+jose/wedding-bridal-boutiques/11-sca.html",
+    "base_headline": "Bridal Boutiques",
+    "base_body": "Top-rated bridal boutiques near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/api"
+    ],
+    "lang": "en",
+    "city": "San Jose"
+  },
+  {
+    "id": "ad-051",
+    "placement": "header",
+    "targeting_keywords": [
+      "sherwani",
+      "tuxedo",
+      "suit",
+      "groom"
+    ],
+    "landing_url": "https://www.weddingwire.com/c/boston/wedding-groom-wear/11-sca.html",
+    "base_headline": "Groom Wear",
+    "base_body": "Top-rated groom wear near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/admin",
+      "/api"
+    ],
+    "lang": "en",
+    "city": "Boston"
+  },
+  {
+    "id": "ad-052",
+    "placement": "sidebar",
+    "targeting_keywords": [
+      "sherwani",
+      "tuxedo",
+      "suit",
+      "groom"
+    ],
+    "landing_url": "https://www.weddingwire.com/c/seattle/wedding-groom-wear/11-sca.html",
+    "base_headline": "Groom Wear",
+    "base_body": "Top-rated groom wear near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [],
+    "lang": "en",
+    "city": "Seattle"
+  },
+  {
+    "id": "ad-053",
+    "placement": "inline",
+    "targeting_keywords": [
+      "sherwani",
+      "tuxedo",
+      "suit",
+      "groom"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/groom-wear-new+york-ny",
+    "base_headline": "Groom Wear",
+    "base_body": "Top-rated groom wear near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/admin"
+    ],
+    "lang": "en",
+    "city": "New York"
+  },
+  {
+    "id": "ad-054",
+    "placement": "footer",
+    "targeting_keywords": [
+      "sherwani",
+      "tuxedo",
+      "suit",
+      "groom"
+    ],
+    "landing_url": "https://www.yelp.com/search?find_desc=Groom+Wear&find_loc=Newada",
+    "base_headline": "Groom Wear",
+    "base_body": "Top-rated groom wear near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/api"
+    ],
+    "lang": "en",
+    "city": "Newada"
+  },
+  {
+    "id": "ad-055",
+    "placement": "header",
+    "targeting_keywords": [
+      "sherwani",
+      "tuxedo",
+      "suit",
+      "groom"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/groom-wear-san+jose-ca",
+    "base_headline": "Groom Wear",
+    "base_body": "Top-rated groom wear near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/admin",
+      "/api"
+    ],
+    "lang": "en",
+    "city": "San Jose"
+  },
+  {
+    "id": "ad-056",
+    "placement": "sidebar",
+    "targeting_keywords": [
+      "cake",
+      "dessert",
+      "bakery",
+      "pastry"
+    ],
+    "landing_url": "https://www.google.com/maps/search/Cake+%26+Desserts+Boston%2C+MA",
+    "base_headline": "Cake & Desserts",
+    "base_body": "Top-rated cake & desserts near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [],
+    "lang": "en",
+    "city": "Boston"
+  },
+  {
+    "id": "ad-057",
+    "placement": "inline",
+    "targeting_keywords": [
+      "cake",
+      "dessert",
+      "bakery",
+      "pastry"
+    ],
+    "landing_url": "https://www.google.com/maps/search/Cake+%26+Desserts+Seattle%2C+WA",
+    "base_headline": "Cake & Desserts",
+    "base_body": "Top-rated cake & desserts near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/admin"
+    ],
+    "lang": "en",
+    "city": "Seattle"
+  },
+  {
+    "id": "ad-058",
+    "placement": "footer",
+    "targeting_keywords": [
+      "cake",
+      "dessert",
+      "bakery",
+      "pastry"
+    ],
+    "landing_url": "https://www.weddingwire.com/c/new+york/wedding-cake-%26-desserts/11-sca.html",
+    "base_headline": "Cake & Desserts",
+    "base_body": "Top-rated cake & desserts near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/api"
+    ],
+    "lang": "en",
+    "city": "New York"
+  },
+  {
+    "id": "ad-059",
+    "placement": "header",
+    "targeting_keywords": [
+      "cake",
+      "dessert",
+      "bakery",
+      "pastry"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/cake-%26-desserts-newada-",
+    "base_headline": "Cake & Desserts",
+    "base_body": "Top-rated cake & desserts near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/admin",
+      "/api"
+    ],
+    "lang": "en",
+    "city": "Newada"
+  },
+  {
+    "id": "ad-060",
+    "placement": "sidebar",
+    "targeting_keywords": [
+      "cake",
+      "dessert",
+      "bakery",
+      "pastry"
+    ],
+    "landing_url": "https://www.weddingwire.com/c/san+jose/wedding-cake-%26-desserts/11-sca.html",
+    "base_headline": "Cake & Desserts",
+    "base_body": "Top-rated cake & desserts near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [],
+    "lang": "en",
+    "city": "San Jose"
+  },
+  {
+    "id": "ad-061",
+    "placement": "inline",
+    "targeting_keywords": [
+      "car",
+      "rental",
+      "limousine",
+      "classic car"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/car-rentals-boston-ma",
+    "base_headline": "Car Rentals",
+    "base_body": "Top-rated car rentals near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/admin"
+    ],
+    "lang": "en",
+    "city": "Boston"
+  },
+  {
+    "id": "ad-062",
+    "placement": "footer",
+    "targeting_keywords": [
+      "car",
+      "rental",
+      "limousine",
+      "classic car"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/car-rentals-seattle-wa",
+    "base_headline": "Car Rentals",
+    "base_body": "Top-rated car rentals near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/api"
+    ],
+    "lang": "en",
+    "city": "Seattle"
+  },
+  {
+    "id": "ad-063",
+    "placement": "header",
+    "targeting_keywords": [
+      "car",
+      "rental",
+      "limousine",
+      "classic car"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/car-rentals-new+york-ny",
+    "base_headline": "Car Rentals",
+    "base_body": "Top-rated car rentals near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/admin",
+      "/api"
+    ],
+    "lang": "en",
+    "city": "New York"
+  },
+  {
+    "id": "ad-064",
+    "placement": "sidebar",
+    "targeting_keywords": [
+      "car",
+      "rental",
+      "limousine",
+      "classic car"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/car-rentals-newada-",
+    "base_headline": "Car Rentals",
+    "base_body": "Top-rated car rentals near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [],
+    "lang": "en",
+    "city": "Newada"
+  },
+  {
+    "id": "ad-065",
+    "placement": "inline",
+    "targeting_keywords": [
+      "car",
+      "rental",
+      "limousine",
+      "classic car"
+    ],
+    "landing_url": "https://www.weddingwire.com/c/san+jose/wedding-car-rentals/11-sca.html",
+    "base_headline": "Car Rentals",
+    "base_body": "Top-rated car rentals near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/admin"
+    ],
+    "lang": "en",
+    "city": "San Jose"
+  },
+  {
+    "id": "ad-066",
+    "placement": "footer",
+    "targeting_keywords": [
+      "honeymoon",
+      "travel",
+      "package",
+      "resort"
+    ],
+    "landing_url": "https://www.weddingwire.com/c/boston/wedding-honeymoon-travel-packages/11-sca.html",
+    "base_headline": "Honeymoon Travel Packages",
+    "base_body": "Top-rated honeymoon travel packages near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 300,
+    "blocked_paths": [
+      "/api"
+    ],
+    "lang": "en",
+    "city": "Boston"
+  },
+  {
+    "id": "ad-067",
+    "placement": "header",
+    "targeting_keywords": [
+      "honeymoon",
+      "travel",
+      "package",
+      "resort"
+    ],
+    "landing_url": "https://www.yelp.com/search?find_desc=Honeymoon+Travel+Packages&find_loc=Seattle%2C+WA",
+    "base_headline": "Honeymoon Travel Packages",
+    "base_body": "Top-rated honeymoon travel packages near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 300,
+    "blocked_paths": [
+      "/admin",
+      "/api"
+    ],
+    "lang": "en",
+    "city": "Seattle"
+  },
+  {
+    "id": "ad-068",
+    "placement": "sidebar",
+    "targeting_keywords": [
+      "honeymoon",
+      "travel",
+      "package",
+      "resort"
+    ],
+    "landing_url": "https://www.google.com/maps/search/Honeymoon+Travel+Packages+New+York%2C+NY",
+    "base_headline": "Honeymoon Travel Packages",
+    "base_body": "Top-rated honeymoon travel packages near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 300,
+    "blocked_paths": [],
+    "lang": "en",
+    "city": "New York"
+  },
+  {
+    "id": "ad-069",
+    "placement": "inline",
+    "targeting_keywords": [
+      "honeymoon",
+      "travel",
+      "package",
+      "resort"
+    ],
+    "landing_url": "https://www.yelp.com/search?find_desc=Honeymoon+Travel+Packages&find_loc=Newada",
+    "base_headline": "Honeymoon Travel Packages",
+    "base_body": "Top-rated honeymoon travel packages near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 300,
+    "blocked_paths": [
+      "/admin"
+    ],
+    "lang": "en",
+    "city": "Newada"
+  },
+  {
+    "id": "ad-070",
+    "placement": "footer",
+    "targeting_keywords": [
+      "honeymoon",
+      "travel",
+      "package",
+      "resort"
+    ],
+    "landing_url": "https://www.yelp.com/search?find_desc=Honeymoon+Travel+Packages&find_loc=San+Jose%2C+CA",
+    "base_headline": "Honeymoon Travel Packages",
+    "base_body": "Top-rated honeymoon travel packages near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 300,
+    "blocked_paths": [
+      "/api"
+    ],
+    "lang": "en",
+    "city": "San Jose"
+  },
+  {
+    "id": "ad-071",
+    "placement": "header",
+    "targeting_keywords": [
+      "photo booth",
+      "props",
+      "instant prints"
+    ],
+    "landing_url": "https://www.weddingwire.com/c/boston/wedding-photo-booth-rentals/11-sca.html",
+    "base_headline": "Photo Booth Rentals",
+    "base_body": "Top-rated photo booth rentals near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/admin",
+      "/api"
+    ],
+    "lang": "en",
+    "city": "Boston"
+  },
+  {
+    "id": "ad-072",
+    "placement": "sidebar",
+    "targeting_keywords": [
+      "photo booth",
+      "props",
+      "instant prints"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/photo-booth-rentals-seattle-wa",
+    "base_headline": "Photo Booth Rentals",
+    "base_body": "Top-rated photo booth rentals near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [],
+    "lang": "en",
+    "city": "Seattle"
+  },
+  {
+    "id": "ad-073",
+    "placement": "inline",
+    "targeting_keywords": [
+      "photo booth",
+      "props",
+      "instant prints"
+    ],
+    "landing_url": "https://www.yelp.com/search?find_desc=Photo+Booth+Rentals&find_loc=New+York%2C+NY",
+    "base_headline": "Photo Booth Rentals",
+    "base_body": "Top-rated photo booth rentals near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/admin"
+    ],
+    "lang": "en",
+    "city": "New York"
+  },
+  {
+    "id": "ad-074",
+    "placement": "footer",
+    "targeting_keywords": [
+      "photo booth",
+      "props",
+      "instant prints"
+    ],
+    "landing_url": "https://www.google.com/maps/search/Photo+Booth+Rentals+Newada",
+    "base_headline": "Photo Booth Rentals",
+    "base_body": "Top-rated photo booth rentals near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/api"
+    ],
+    "lang": "en",
+    "city": "Newada"
+  },
+  {
+    "id": "ad-075",
+    "placement": "header",
+    "targeting_keywords": [
+      "photo booth",
+      "props",
+      "instant prints"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/photo-booth-rentals-san+jose-ca",
+    "base_headline": "Photo Booth Rentals",
+    "base_body": "Top-rated photo booth rentals near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/admin",
+      "/api"
+    ],
+    "lang": "en",
+    "city": "San Jose"
+  },
+  {
+    "id": "ad-076",
+    "placement": "sidebar",
+    "targeting_keywords": [
+      "lighting",
+      "uplights",
+      "AV",
+      "sound"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/lighting-%26-av-boston-ma",
+    "base_headline": "Lighting & AV",
+    "base_body": "Top-rated lighting & av near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [],
+    "lang": "en",
+    "city": "Boston"
+  },
+  {
+    "id": "ad-077",
+    "placement": "inline",
+    "targeting_keywords": [
+      "lighting",
+      "uplights",
+      "AV",
+      "sound"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/lighting-%26-av-seattle-wa",
+    "base_headline": "Lighting & AV",
+    "base_body": "Top-rated lighting & av near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/admin"
+    ],
+    "lang": "en",
+    "city": "Seattle"
+  },
+  {
+    "id": "ad-078",
+    "placement": "footer",
+    "targeting_keywords": [
+      "lighting",
+      "uplights",
+      "AV",
+      "sound"
+    ],
+    "landing_url": "https://www.weddingwire.com/c/new+york/wedding-lighting-%26-av/11-sca.html",
+    "base_headline": "Lighting & AV",
+    "base_body": "Top-rated lighting & av near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/api"
+    ],
+    "lang": "en",
+    "city": "New York"
+  },
+  {
+    "id": "ad-079",
+    "placement": "header",
+    "targeting_keywords": [
+      "lighting",
+      "uplights",
+      "AV",
+      "sound"
+    ],
+    "landing_url": "https://www.google.com/maps/search/Lighting+%26+AV+Newada",
+    "base_headline": "Lighting & AV",
+    "base_body": "Top-rated lighting & av near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/admin",
+      "/api"
+    ],
+    "lang": "en",
+    "city": "Newada"
+  },
+  {
+    "id": "ad-080",
+    "placement": "sidebar",
+    "targeting_keywords": [
+      "lighting",
+      "uplights",
+      "AV",
+      "sound"
+    ],
+    "landing_url": "https://www.weddingwire.com/c/san+jose/wedding-lighting-%26-av/11-sca.html",
+    "base_headline": "Lighting & AV",
+    "base_body": "Top-rated lighting & av near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [],
+    "lang": "en",
+    "city": "San Jose"
+  },
+  {
+    "id": "ad-081",
+    "placement": "inline",
+    "targeting_keywords": [
+      "mandap",
+      "stage",
+      "decor",
+      "setup"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/mandap-%26-stage-setup-boston-ma",
+    "base_headline": "Mandap & Stage Setup",
+    "base_body": "Top-rated mandap & stage setup near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/admin"
+    ],
+    "lang": "en",
+    "city": "Boston"
+  },
+  {
+    "id": "ad-082",
+    "placement": "footer",
+    "targeting_keywords": [
+      "mandap",
+      "stage",
+      "decor",
+      "setup"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/mandap-%26-stage-setup-seattle-wa",
+    "base_headline": "Mandap & Stage Setup",
+    "base_body": "Top-rated mandap & stage setup near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/api"
+    ],
+    "lang": "en",
+    "city": "Seattle"
+  },
+  {
+    "id": "ad-083",
+    "placement": "header",
+    "targeting_keywords": [
+      "mandap",
+      "stage",
+      "decor",
+      "setup"
+    ],
+    "landing_url": "https://www.yelp.com/search?find_desc=Mandap+%26+Stage+Setup&find_loc=New+York%2C+NY",
+    "base_headline": "Mandap & Stage Setup",
+    "base_body": "Top-rated mandap & stage setup near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/admin",
+      "/api"
+    ],
+    "lang": "en",
+    "city": "New York"
+  },
+  {
+    "id": "ad-084",
+    "placement": "sidebar",
+    "targeting_keywords": [
+      "mandap",
+      "stage",
+      "decor",
+      "setup"
+    ],
+    "landing_url": "https://www.yelp.com/search?find_desc=Mandap+%26+Stage+Setup&find_loc=Newada",
+    "base_headline": "Mandap & Stage Setup",
+    "base_body": "Top-rated mandap & stage setup near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [],
+    "lang": "en",
+    "city": "Newada"
+  },
+  {
+    "id": "ad-085",
+    "placement": "inline",
+    "targeting_keywords": [
+      "mandap",
+      "stage",
+      "decor",
+      "setup"
+    ],
+    "landing_url": "https://www.weddingwire.com/c/san+jose/wedding-mandap-%26-stage-setup/11-sca.html",
+    "base_headline": "Mandap & Stage Setup",
+    "base_body": "Top-rated mandap & stage setup near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/admin"
+    ],
+    "lang": "en",
+    "city": "San Jose"
+  },
+  {
+    "id": "ad-086",
+    "placement": "footer",
+    "targeting_keywords": [
+      "priest",
+      "officiant",
+      "ceremony"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/priests-%26-officiants-boston-ma",
+    "base_headline": "Priests & Officiants",
+    "base_body": "Top-rated priests & officiants near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/api"
+    ],
+    "lang": "en",
+    "city": "Boston"
+  },
+  {
+    "id": "ad-087",
+    "placement": "header",
+    "targeting_keywords": [
+      "priest",
+      "officiant",
+      "ceremony"
+    ],
+    "landing_url": "https://www.weddingwire.com/c/seattle/wedding-priests-%26-officiants/11-sca.html",
+    "base_headline": "Priests & Officiants",
+    "base_body": "Top-rated priests & officiants near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/admin",
+      "/api"
+    ],
+    "lang": "en",
+    "city": "Seattle"
+  },
+  {
+    "id": "ad-088",
+    "placement": "sidebar",
+    "targeting_keywords": [
+      "priest",
+      "officiant",
+      "ceremony"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/priests-%26-officiants-new+york-ny",
+    "base_headline": "Priests & Officiants",
+    "base_body": "Top-rated priests & officiants near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [],
+    "lang": "en",
+    "city": "New York"
+  },
+  {
+    "id": "ad-089",
+    "placement": "inline",
+    "targeting_keywords": [
+      "priest",
+      "officiant",
+      "ceremony"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/priests-%26-officiants-newada-",
+    "base_headline": "Priests & Officiants",
+    "base_body": "Top-rated priests & officiants near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/admin"
+    ],
+    "lang": "en",
+    "city": "Newada"
+  },
+  {
+    "id": "ad-090",
+    "placement": "footer",
+    "targeting_keywords": [
+      "priest",
+      "officiant",
+      "ceremony"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/priests-%26-officiants-san+jose-ca",
+    "base_headline": "Priests & Officiants",
+    "base_body": "Top-rated priests & officiants near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 100,
+    "blocked_paths": [
+      "/api"
+    ],
+    "lang": "en",
+    "city": "San Jose"
+  },
+  {
+    "id": "ad-091",
+    "placement": "header",
+    "targeting_keywords": [
+      "video",
+      "videography",
+      "cinematic",
+      "drone"
+    ],
+    "landing_url": "https://www.yelp.com/search?find_desc=Candid+Videography&find_loc=Boston%2C+MA",
+    "base_headline": "Candid Videography",
+    "base_body": "Top-rated candid videography near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 200,
+    "blocked_paths": [
+      "/admin",
+      "/api"
+    ],
+    "lang": "en",
+    "city": "Boston"
+  },
+  {
+    "id": "ad-092",
+    "placement": "sidebar",
+    "targeting_keywords": [
+      "video",
+      "videography",
+      "cinematic",
+      "drone"
+    ],
+    "landing_url": "https://www.google.com/maps/search/Candid+Videography+Seattle%2C+WA",
+    "base_headline": "Candid Videography",
+    "base_body": "Top-rated candid videography near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 200,
+    "blocked_paths": [],
+    "lang": "en",
+    "city": "Seattle"
+  },
+  {
+    "id": "ad-093",
+    "placement": "inline",
+    "targeting_keywords": [
+      "video",
+      "videography",
+      "cinematic",
+      "drone"
+    ],
+    "landing_url": "https://www.google.com/maps/search/Candid+Videography+New+York%2C+NY",
+    "base_headline": "Candid Videography",
+    "base_body": "Top-rated candid videography near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 200,
+    "blocked_paths": [
+      "/admin"
+    ],
+    "lang": "en",
+    "city": "New York"
+  },
+  {
+    "id": "ad-094",
+    "placement": "footer",
+    "targeting_keywords": [
+      "video",
+      "videography",
+      "cinematic",
+      "drone"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/candid-videography-newada-",
+    "base_headline": "Candid Videography",
+    "base_body": "Top-rated candid videography near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 200,
+    "blocked_paths": [
+      "/api"
+    ],
+    "lang": "en",
+    "city": "Newada"
+  },
+  {
+    "id": "ad-095",
+    "placement": "header",
+    "targeting_keywords": [
+      "video",
+      "videography",
+      "cinematic",
+      "drone"
+    ],
+    "landing_url": "https://www.google.com/maps/search/Candid+Videography+San+Jose%2C+CA",
+    "base_headline": "Candid Videography",
+    "base_body": "Top-rated candid videography near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 200,
+    "blocked_paths": [
+      "/admin",
+      "/api"
+    ],
+    "lang": "en",
+    "city": "San Jose"
+  },
+  {
+    "id": "ad-096",
+    "placement": "sidebar",
+    "targeting_keywords": [
+      "banquet",
+      "hall",
+      "capacity",
+      "indoor"
+    ],
+    "landing_url": "https://www.google.com/maps/search/Banquet+Halls+Boston%2C+MA",
+    "base_headline": "Banquet Halls",
+    "base_body": "Top-rated banquet halls near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 300,
+    "blocked_paths": [],
+    "lang": "en",
+    "city": "Boston"
+  },
+  {
+    "id": "ad-097",
+    "placement": "inline",
+    "targeting_keywords": [
+      "banquet",
+      "hall",
+      "capacity",
+      "indoor"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/banquet-halls-seattle-wa",
+    "base_headline": "Banquet Halls",
+    "base_body": "Top-rated banquet halls near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 300,
+    "blocked_paths": [
+      "/admin"
+    ],
+    "lang": "en",
+    "city": "Seattle"
+  },
+  {
+    "id": "ad-098",
+    "placement": "footer",
+    "targeting_keywords": [
+      "banquet",
+      "hall",
+      "capacity",
+      "indoor"
+    ],
+    "landing_url": "https://www.weddingwire.com/c/new+york/wedding-banquet-halls/11-sca.html",
+    "base_headline": "Banquet Halls",
+    "base_body": "Top-rated banquet halls near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 300,
+    "blocked_paths": [
+      "/api"
+    ],
+    "lang": "en",
+    "city": "New York"
+  },
+  {
+    "id": "ad-099",
+    "placement": "header",
+    "targeting_keywords": [
+      "banquet",
+      "hall",
+      "capacity",
+      "indoor"
+    ],
+    "landing_url": "https://www.yelp.com/search?find_desc=Banquet+Halls&find_loc=Newada",
+    "base_headline": "Banquet Halls",
+    "base_body": "Top-rated banquet halls near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 300,
+    "blocked_paths": [
+      "/admin",
+      "/api"
+    ],
+    "lang": "en",
+    "city": "Newada"
+  },
+  {
+    "id": "ad-100",
+    "placement": "sidebar",
+    "targeting_keywords": [
+      "banquet",
+      "hall",
+      "capacity",
+      "indoor"
+    ],
+    "landing_url": "https://www.theknot.com/marketplace/banquet-halls-san+jose-ca",
+    "base_headline": "Banquet Halls",
+    "base_body": "Top-rated banquet halls near you. Compare options, read reviews, and book today.",
+    "floor_ecpm": 300,
+    "blocked_paths": [],
+    "lang": "en",
+    "city": "San Jose"
   }
 ]
