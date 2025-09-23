@@ -105,15 +105,18 @@ async function selectAdWithAI(
     return cleanAd;
   });
 
+  // Wrap request in ad_request object as expected by SmythOS agent
   const aiRequest = {
-    page_context: cleanPageContext,
-    user_context: userContext,
-    eligible_ads: cleanEligibleAds,
-    prior_stats: priorStats,
-    config: {
-      keyword_overlap_min: 1,
-      assumed_cpc_cents: 25,
-      num_ads_requested: 3
+    ad_request: {
+      page_context: cleanPageContext,
+      user_context: userContext,
+      eligible_ads: cleanEligibleAds,
+      prior_stats: priorStats,
+      config: {
+        keyword_overlap_min: 1,
+        assumed_cpc_cents: 25,
+        num_ads_requested: 3
+      }
     }
   };
 
@@ -126,7 +129,7 @@ async function selectAdWithAI(
       }
 
       // Call your AI agent endpoint
-      const aiResponse = await fetch('https://cmfurpcfzsyt4jxgtu6q8fmu6.agent.pa.smyth.ai/api/optimize_ads', {
+      const aiResponse = await fetch('https://cmfvy00gpxdpqo3wtm3zjmdtq.agent.pa.smyth.ai/api/optimize_ads', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -456,11 +459,17 @@ router.post('/request', async (req: any, res: any) => {
       return res.json({ ads: [], anon_id: finalAnonId });
     }
 
-    // AI Agent Selection Logic for Multiple Ads
+    // Simple Random Ad Selection - Send 3 random ads to optimization agent
     let selectedAds: any[] = [];
 
-    // Prepare data for AI agent
-    const priorStats = eligibleAds.map((ad: any) => {
+    // Select up to 3 random ads from eligible ads
+    const shuffledAds = [...eligibleAds].sort(() => Math.random() - 0.5);
+    const randomAds = shuffledAds.slice(0, Math.min(3, eligibleAds.length));
+
+    console.log('[Random Selection] Selected', randomAds.length, 'random ads for optimization');
+
+    // Prepare data for AI agent - just send the 3 random ads
+    const priorStats = randomAds.map((ad: any) => {
       const adStats = getAdStats(ad.id, topic);
       return {
         ad_id: ad.id,
@@ -473,29 +482,27 @@ router.post('/request', async (req: any, res: any) => {
       };
     });
 
-    // Try AI agent selection first
-    console.log('[AI] Attempting AI agent selection with', eligibleAds.length, 'eligible ads and', priorStats.length, 'prior stats');
-    const aiResult = await selectAdWithAI(page_context, user_context, eligibleAds, priorStats);
-    console.log('[AI] AI agent result:', aiResult);
+    // Try AI agent optimization with the 3 random ads
+    console.log('[AI] Sending 3 random ads to optimization agent');
+    const aiResult = await selectAdWithAI(page_context, user_context, randomAds, priorStats);
+    console.log('[AI] AI optimization result:', aiResult);
 
-    // Parse AI agent response - handle single or multiple ads
+    // Parse AI agent response
     let aiChosenAds = null;
     if (aiResult && aiResult.result && aiResult.result.Output && aiResult.result.Output.response && aiResult.result.Output.response.chosen) {
-      // New format: result.Output.response.chosen (handle single ad response)
       const chosen = aiResult.result.Output.response.chosen;
       aiChosenAds = Array.isArray(chosen) ? chosen : [chosen];
     } else if (aiResult && aiResult.chosen) {
-      // Old format: chosen (convert to array)
       aiChosenAds = Array.isArray(aiResult.chosen) ? aiResult.chosen : [aiResult.chosen];
     }
 
-    console.log('[AI Agent] Parsed chosen ads:', aiChosenAds);
+    console.log('[AI Agent] Optimized ads:', aiChosenAds);
 
     if (aiChosenAds && aiChosenAds.length > 0) {
-      // Use AI agent selections
-      for (const aiChosen of aiChosenAds.slice(0, 3)) { // Limit to 3 ads
+      // Use AI-optimized content for the selected ads
+      for (const aiChosen of aiChosenAds.slice(0, 3)) {
         if (aiChosen && aiChosen.ad_id) {
-          const selectedAd = eligibleAds.find((ad: any) => ad.id === aiChosen.ad_id);
+          const selectedAd = randomAds.find((ad: any) => ad.id === aiChosen.ad_id);
           if (selectedAd) {
             // Use AI-generated headline and body if provided
             const aiSelectedHeadline = aiChosen.headline || selectedAd.base_headline;
@@ -505,53 +512,22 @@ router.post('/request', async (req: any, res: any) => {
               headline: aiSelectedHeadline,
               body: aiSelectedBody
             });
-            console.log('[AI Agent] Selected ad:', selectedAd.id, 'with AI-generated content');
+            console.log('[AI Agent] Using optimized ad:', selectedAd.id, 'with AI-generated content');
           }
         }
       }
     }
 
-    // Fallback to Thompson sampling if AI fails or returns fewer than 3 ads
-    while (selectedAds.length < 3 && selectedAds.length < eligibleAds.length) {
-      console.log('[AI Agent] Need more ads, using Thompson sampling for ad', selectedAds.length + 1);
-
-      // Filter out already selected ads
-      const alreadySelected = selectedAds.map(sa => sa.ad.id);
-      const remainingAds = eligibleAds.filter((ad: any) => !alreadySelected.includes(ad.id));
-
-      if (remainingAds.length === 0) break;
-
-      let fallbackAd: any;
-      if (Math.random() < config.epsilon) {
-        // Explore: random selection
-        fallbackAd = remainingAds[Math.floor(Math.random() * remainingAds.length)];
-      } else {
-        // Exploit: score-based selection
-        const scoredAds: ScoredAd[] = remainingAds.map((ad: AdData): ScoredAd => {
-          const matchScore = calculateMatchScore(ad.targeting_keywords, keywords);
-          const adStats = getAdStats(ad.id, topic);
-          const sampledCTR = sampleCTR(adStats.alpha, adStats.beta);
-          const score = matchScore * sampledCTR;
-
-          // Floor check
-          const estimatedECPM = 1000 * sampledCTR * (config.assumed_cpc_cents / 100);
-          const passesFloor = estimatedECPM >= ad.floor_ecpm;
-
-          return { ad, score, passesFloor, estimatedECPM };
+    // Fallback: if AI optimization fails, use the random ads with their original content
+    if (selectedAds.length === 0) {
+      console.log('[Fallback] AI optimization failed, using random ads with original content');
+      for (const ad of randomAds) {
+        selectedAds.push({
+          ad: ad,
+          headline: ad.base_headline,
+          body: ad.base_body
         });
-
-        // Sort by score and filter by floor
-        scoredAds.sort((a: any, b: any) => b.score - a.score);
-        const floorPassingAds = scoredAds.filter((item: any) => item.passesFloor);
-
-        fallbackAd = floorPassingAds.length > 0 ? floorPassingAds[0].ad : scoredAds[0].ad;
       }
-
-      selectedAds.push({
-        ad: fallbackAd,
-        headline: fallbackAd.base_headline,
-        body: fallbackAd.base_body
-      });
     }
 
     // Generate impressions for all selected ads

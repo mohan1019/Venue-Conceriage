@@ -802,7 +802,7 @@ router.post('/reply', async (req, res) => {
     console.log('Calling Smyth Reply Agent with text:', user_text);
 
     // Call Smyth Reply Agent API
-    const response = await fetch('https://cmfurpcfzsyt4jxgtu6q8fmu6.agent.pa.smyth.ai/api/results_text', {
+    const response = await fetch('https://cmfvy00gpxdpqo3wtm3zjmdtq.agent.pa.smyth.ai/api/results_text', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -904,7 +904,7 @@ router.post('/ai-search', async (req, res) => {
     }
 
     // Call external AI search API
-    const response = await fetch('https://cmfurpcfzsyt4jxgtu6q8fmu6.agent.pa.smyth.ai/api/search_venues', {
+    const response = await fetch('https://cmfvy00gpxdpqo3wtm3zjmdtq.agent.pa.smyth.ai/api/search_venues', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
