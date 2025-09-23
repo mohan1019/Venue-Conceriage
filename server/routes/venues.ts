@@ -111,7 +111,7 @@ router.post('/search', async (req: Request, res: Response) => {
       diamond_level, preferred_rating,
       lat, lon, radius_mi, airport_distance_max_mi,
       meeting_rooms_total, total_meeting_area_sqft, largest_space_sqft,
-      price_per_hour_min, price_per_hour_max,
+      price_per_day_min, price_per_day_max,
       limit = 10, offset = 0, fallback = false
     } = req.body || {};
 
@@ -206,12 +206,12 @@ router.post('/search', async (req: Request, res: Response) => {
       });
     }
 
-    if (typeof price_per_hour_min === 'number' || typeof price_per_hour_max === 'number') {
+    if (typeof price_per_day_min === 'number' || typeof price_per_day_max === 'number') {
       filteredVenues = filteredVenues.filter(v => {
-        const price = Number(v.price_per_hour || v.hourly_rate || NaN);
+        const price = Number(v.price_per_day || NaN);
         if (Number.isNaN(price)) return false;
-        if (typeof price_per_hour_min === 'number' && price < price_per_hour_min) return false;
-        if (typeof price_per_hour_max === 'number' && price > price_per_hour_max) return false;
+        if (typeof price_per_day_min === 'number' && price < price_per_day_min) return false;
+        if (typeof price_per_day_max === 'number' && price > price_per_day_max) return false;
         return true;
       });
     }
