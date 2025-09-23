@@ -11,7 +11,7 @@
     "build": "npm run build:client && npm run build:server && npm run copy:data",
     "build:client": "vite build",
     "build:server": "tsc -p server/tsconfig.json",
-    "copy:data": "cp -r data dist/ && cp -r server/db/*.sql dist/server/db/",
+    "copy:data": "cp -r data dist/ && cp -r ads dist/ && cp -r public dist/ && cp -r server/db/*.sql dist/server/db/",
     "start": "node dist/server/index.js",
     "test": "vitest",
     "test:run": "vitest run",
