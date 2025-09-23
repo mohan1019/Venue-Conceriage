@@ -4,108 +4,84 @@ import { fileURLToPath } from 'url';
 import { readFileSync, writeFileSync } from 'fs';
 import { v4 as uuidv4 } from 'uuid';
 import fetch from 'node-fetch';
-import { sql } from '../db/connection-postgres.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const router = Router();
 
-const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
-
-// Database helper functions
-const getCachedData = async (cacheKey: string) => {
+// Load venues from JSON file
+const getVenuesFromJson = () => {
   try {
-    const result = await sql`
-      SELECT data FROM search_cache WHERE cache_key = ${cacheKey} AND expires_at > NOW()
-    `;
-    return result[0]?.data || null;
+    const venuesFilePath = join(__dirname, '../../data/venues.json');
+    const venuesData = readFileSync(venuesFilePath, 'utf-8');
+    return JSON.parse(venuesData);
   } catch (error) {
-    console.error('Cache get error:', error);
-    return null;
+    console.error('Error loading venues from JSON:', error);
+    return [];
   }
 };
 
-const setCachedData = async (cacheKey: string, data: any) => {
-  try {
-    const expiresAt = new Date(Date.now() + CACHE_DURATION);
-    await sql`
-      INSERT INTO search_cache (cache_key, data, expires_at)
-      VALUES (${cacheKey}, ${JSON.stringify(data)}, ${expiresAt})
-      ON CONFLICT (cache_key)
-      DO UPDATE SET data = ${JSON.stringify(data)}, expires_at = ${expiresAt}
-    `;
-  } catch (error) {
-    console.error('Cache set error:', error);
-  }
+// Simple filtering helpers
+const toStr = (v: any) => (typeof v === 'string' ? v : (v ?? '') + '');
+const ciEq = (a: any, b: any) => toStr(a).trim().toLowerCase() === toStr(b).trim().toLowerCase();
+const ciIncludes = (hay: any, needle: any) => toStr(hay).toLowerCase().includes(toStr(needle).toLowerCase());
+const asArray = (v: any) => {
+  if (!v) return [];
+  if (Array.isArray(v)) return v;
+  return toStr(v).split(',').map(x => x.trim()).filter(Boolean);
 };
 
 router.get('/', async (req, res) => {
   try {
     const { query, city, minCapacity, maxPricePerHour, amenities } = req.query;
-
-    // Create cache key
-    const cacheKey = JSON.stringify({ query, city, minCapacity, maxPricePerHour, amenities });
-    const cached = await getCachedData(cacheKey);
-
-    if (cached) {
-      return res.json(cached);
-    }
-
-    // Build SQL query with filters
-    let sqlQuery = 'SELECT * FROM venues WHERE 1=1';
-    const queryParams: any[] = [];
-    let paramCount = 0;
+    const venues = getVenuesFromJson();
+    let filteredVenues = [...venues];
 
     // Apply filters
     if (query) {
-      paramCount++;
-      const searchTerm = `%${query.toString().toLowerCase()}%`;
-      sqlQuery += ` AND (LOWER(name) LIKE $${paramCount} OR LOWER(city) LIKE $${paramCount} OR EXISTS (
-        SELECT 1 FROM unnest(amenities) as amenity WHERE LOWER(amenity) LIKE $${paramCount}
-      ))`;
-      queryParams.push(searchTerm);
+      const searchTerm = query.toString().toLowerCase();
+      filteredVenues = filteredVenues.filter(venue =>
+        ciIncludes(venue.name, searchTerm) ||
+        ciIncludes(venue.city, searchTerm) ||
+        (venue.amenities && asArray(venue.amenities).some((amenity: string) => ciIncludes(amenity, searchTerm)))
+      );
     }
 
     if (city) {
-      paramCount++;
-      sqlQuery += ` AND LOWER(city) = $${paramCount}`;
-      queryParams.push(city.toString().toLowerCase());
+      filteredVenues = filteredVenues.filter(venue => ciEq(venue.city, city));
     }
 
     if (minCapacity) {
-      paramCount++;
-      sqlQuery += ` AND capacity >= $${paramCount}`;
-      queryParams.push(parseInt(minCapacity.toString()));
+      const minCap = parseInt(minCapacity.toString());
+      filteredVenues = filteredVenues.filter(venue => (venue.capacity || 0) >= minCap);
     }
 
     if (maxPricePerHour) {
-      paramCount++;
-      sqlQuery += ` AND (price_per_hour <= $${paramCount} OR hourly_rate <= $${paramCount})`;
-      queryParams.push(parseInt(maxPricePerHour.toString()));
+      const maxPrice = parseInt(maxPricePerHour.toString());
+      filteredVenues = filteredVenues.filter(venue =>
+        (venue.price_per_hour || venue.hourly_rate || 0) <= maxPrice
+      );
     }
 
     if (amenities) {
-      const requiredAmenities = amenities.toString().split(',').map(a => a.trim().toLowerCase());
-      for (const amenity of requiredAmenities) {
-        paramCount++;
-        sqlQuery += ` AND EXISTS (
-          SELECT 1 FROM unnest(amenities) as venue_amenity WHERE LOWER(venue_amenity) LIKE $${paramCount}
-        )`;
-        queryParams.push(`%${amenity}%`);
-      }
+      const requiredAmenities = asArray(amenities);
+      filteredVenues = filteredVenues.filter(venue => {
+        const venueAmenities = asArray(venue.amenities);
+        return requiredAmenities.every(reqAmenity =>
+          venueAmenities.some(venueAmenity => ciIncludes(venueAmenity, reqAmenity))
+        );
+      });
     }
 
-    // Add ordering and limit
-    sqlQuery += ' ORDER BY capacity DESC LIMIT 5';
-
-    // Execute query
-    const venues = await sql.unsafe(sqlQuery, queryParams);
+    // Sort by capacity (descending) and limit to 5
+    filteredVenues.sort((a, b) => (b.capacity || 0) - (a.capacity || 0));
+    filteredVenues = filteredVenues.slice(0, 5);
 
     // Add venue_id field for frontend compatibility
-    const venuesWithVenueId = venues.map((venue: any) => ({
+    const venuesWithVenueId = filteredVenues.map(venue => ({
       ...venue,
-      venue_id: venue.id
+      venue_id: venue.venue_id || venue.id
     }));
 
     const responseData = {
@@ -114,9 +90,6 @@ router.get('/', async (req, res) => {
       displayed: venuesWithVenueId.length
     };
 
-    // Cache the result
-    await setCachedData(cacheKey, responseData);
-
     res.json(responseData);
   } catch (error) {
     console.error('Error fetching venues:', error);
@@ -124,93 +97,10 @@ router.get('/', async (req, res) => {
   }
 });
 
-// New POST endpoint for advanced venue search
+// Advanced venue search endpoint
 router.post('/search', async (req, res) => {
   try {
     const {
-      city,
-      state,
-      country,
-      metro_area,
-      // capacity
-      capacity_min,
-      capacity_max,
-      // classification
-      type,
-      // arrays
-      amenities,
-      tags,
-      // ratings
-      diamond_level,
-      preferred_rating,
-      // spatial
-      lat,
-      lon,
-      radius_mi,
-      airport_distance_max_mi,
-      // spaces
-      meeting_rooms_total,
-      total_meeting_area_sqft,
-      largest_space_sqft,
-      // price (if present in dataset)
-      price_per_hour_min,
-      price_per_hour_max,
-      // dates (ISO strings). If provided, we’ll prefer venues with promotions that overlap.
-      dates,
-      // pagination / behavior
-      limit = 10,
-      offset = 0,
-      fallback = false
-    } = req.body || {};
-
-    // ---- Helpers ----
-    const toStr = (v: any) => (typeof v === 'string' ? v : (v ?? '') + '');
-    const ciEq = (a: any, b: any) => toStr(a).trim().toLowerCase() === toStr(b).trim().toLowerCase();
-    const ciIncludes = (hay: any, needle: any) => toStr(hay).toLowerCase().includes(toStr(needle).toLowerCase());
-    const asUpperArray = (v: any) => {
-      if (!v) return [];
-      if (Array.isArray(v)) return v.map(x => toStr(x).trim().toUpperCase()).filter(Boolean);
-      return toStr(v).split(',').map(x => x.trim().toUpperCase()).filter(Boolean);
-    };
-    const parsePromotions = (p: any) => {
-      // promotions may be a JSON string of [{title,start,end}...]
-      if (!p) return [];
-      if (Array.isArray(p)) return p;
-      try { return JSON.parse(p); } catch { return []; }
-    };
-    const parseDates = (arr: any) => {
-      if (!arr || !Array.isArray(arr)) return [];
-      return arr
-        .map(d => {
-          // support "YYYY-MM-DD" or ranges "YYYY-MM-DD to YYYY-MM-DD"
-          const s = toStr(d);
-          if (s.includes('to')) {
-            const [start, end] = s.split('to').map(x => x.trim());
-            return { start: new Date(start), end: new Date(end) };
-          }
-          const dt = new Date(s);
-          return { start: dt, end: dt };
-        })
-        .filter(({ start, end }: any) => !isNaN(start.getTime()) && !isNaN(end.getTime()));
-    };
-    const datesRequested = parseDates(dates);
-
-    const haversineMi = (lat1: any, lon1: any, lat2: any, lon2: any) => {
-      const toRad = (x: any) => (x * Math.PI) / 180;
-      const R = 3958.8; // miles
-      const dLat = toRad((lat2 ?? 0) - (lat1 ?? 0));
-      const dLon = toRad((lon2 ?? 0) - (lon1 ?? 0));
-      const a =
-        Math.sin(dLat / 2) ** 2 +
-        Math.cos(toRad(lat1 ?? 0)) *
-          Math.cos(toRad(lat2 ?? 0)) *
-          Math.sin(dLon / 2) ** 2;
-      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-      return R * c;
-    };
-
-    // Build cache key with all supported params (sorted keys for stability)
-    const cachePayload = {
       city, state, country, metro_area,
       capacity_min, capacity_max, type,
       amenities, tags,
@@ -218,26 +108,17 @@ router.post('/search', async (req, res) => {
       lat, lon, radius_mi, airport_distance_max_mi,
       meeting_rooms_total, total_meeting_area_sqft, largest_space_sqft,
       price_per_hour_min, price_per_hour_max,
-      dates: datesRequested.map(({ start, end }) => [start.toISOString(), end.toISOString()])
-      // limit, offset, fallback
-    };
-    const cacheKey = JSON.stringify(cachePayload);
-    const cached = await getCachedData(cacheKey);
-    if (cached) {
-      return res.json(cached);
-    }
+      limit = 10, offset = 0, fallback = false
+    } = req.body || {};
 
-    // Get venues from database
-    let filteredVenues: any[] = await sql`SELECT * FROM venues`;
+    const venues = getVenuesFromJson();
+    let filteredVenues = [...venues];
 
-    // ---- Filters ----
+    // Apply filters
     if (city) {
       filteredVenues = filteredVenues.filter(v => {
-        // Enhanced city matching to handle spacing variations
         const venueCityNormalized = toStr(v.city).replace(/\s+/g, '').toLowerCase();
         const searchCityNormalized = toStr(city).replace(/\s+/g, '').toLowerCase();
-
-        // Try both exact match and space-removed match
         return ciEq(v.city, city) || venueCityNormalized === searchCityNormalized;
       });
     }
@@ -251,20 +132,16 @@ router.post('/search', async (req, res) => {
     }
 
     if (metro_area) {
-      // partial match to be forgiving (e.g., "Seattle" vs "WA - Seattle")
       filteredVenues = filteredVenues.filter(v => ciIncludes(v.metro_area, metro_area));
     }
 
     if (typeof capacity_min === 'number') {
-      filteredVenues = filteredVenues.filter(v => {
-        const cap = Number(v.capacity ?? 0);
-        return cap >= capacity_min;
-      });
+      filteredVenues = filteredVenues.filter(v => (Number(v.capacity) || 0) >= capacity_min);
     }
 
     if (typeof capacity_max === 'number') {
       filteredVenues = filteredVenues.filter(v => {
-        const cap = Number(v.capacity ?? 0);
+        const cap = Number(v.capacity) || 0;
         return cap > 0 ? cap <= capacity_max : true;
       });
     }
@@ -274,43 +151,22 @@ router.post('/search', async (req, res) => {
     }
 
     if (amenities && Array.isArray(amenities) && amenities.length > 0) {
-      const requestedAmenities = asUpperArray(amenities);
       filteredVenues = filteredVenues.filter(v => {
-        const venueAmenities = asUpperArray(v.amenities);
-        // require ALL requested amenities - more forgiving matching
-        return requestedAmenities.every(req => {
-          return venueAmenities.some(va => {
-            // Bidirectional partial matching:
-            // 1. "bus" matches "BUS_PARKING_AVAILABLE" (req contained in venue)
-            // 2. "bus parking" matches "BUS_PARKING_AVAILABLE" (words from req in venue)
-            const reqNormalized = req.replace(/[_\s-]/g, ' ').toLowerCase();
+        const venueAmenities = asArray(v.amenities);
+        return amenities.every(reqAmenity =>
+          venueAmenities.some(va => {
+            const reqNormalized = reqAmenity.replace(/[_\s-]/g, ' ').toLowerCase();
             const vaNormalized = va.replace(/[_\s-]/g, ' ').toLowerCase();
-
-            // Simple contains check (existing behavior)
-            if (vaNormalized.includes(reqNormalized) || reqNormalized.includes(vaNormalized)) {
-              return true;
-            }
-
-            // Word-based matching for better fuzzy search
-            const reqWords = reqNormalized.split(/\s+/).filter(Boolean);
-            const vaWords = vaNormalized.split(/\s+/).filter(Boolean);
-
-            // Check if all words from request appear in venue amenity
-            return reqWords.every(reqWord =>
-              vaWords.some(vaWord =>
-                vaWord.includes(reqWord) || reqWord.includes(vaWord)
-              )
-            );
-          });
-        });
+            return vaNormalized.includes(reqNormalized) || reqNormalized.includes(vaNormalized);
+          })
+        );
       });
     }
 
     if (tags && Array.isArray(tags) && tags.length > 0) {
-      const requestedTags = asUpperArray(tags);
       filteredVenues = filteredVenues.filter(v => {
-        const venueTags = asUpperArray(v.tags);
-        return requestedTags.every(req => venueTags.some(t => t.includes(req)));
+        const venueTags = asArray(v.tags);
+        return tags.every(reqTag => venueTags.some(t => ciIncludes(t, reqTag)));
       });
     }
 
@@ -323,46 +179,42 @@ router.post('/search', async (req, res) => {
     }
 
     if (typeof meeting_rooms_total === 'number') {
-      filteredVenues = filteredVenues.filter(v => Number(v.meeting_rooms_total ?? 0) >= meeting_rooms_total);
+      filteredVenues = filteredVenues.filter(v => (Number(v.meeting_rooms_total) || 0) >= meeting_rooms_total);
     }
 
     if (typeof total_meeting_area_sqft === 'number') {
-      filteredVenues = filteredVenues.filter(v => Number(v.total_meeting_area_sqft ?? 0) >= total_meeting_area_sqft);
+      filteredVenues = filteredVenues.filter(v => (Number(v.total_meeting_area_sqft) || 0) >= total_meeting_area_sqft);
     }
 
     if (typeof largest_space_sqft === 'number') {
-      filteredVenues = filteredVenues.filter(v => Number(v.largest_space_sqft ?? 0) >= largest_space_sqft);
+      filteredVenues = filteredVenues.filter(v => (Number(v.largest_space_sqft) || 0) >= largest_space_sqft);
     }
 
     if (typeof airport_distance_max_mi === 'number') {
-      filteredVenues = filteredVenues.filter(v => {
-        const dist = Number(v.airport_distance_mi ?? Infinity);
-        return dist <= airport_distance_max_mi;
-      });
+      filteredVenues = filteredVenues.filter(v => (Number(v.airport_distance_mi) || Infinity) <= airport_distance_max_mi);
     }
 
     if (lat != null && lon != null && typeof radius_mi === 'number' && radius_mi > 0) {
       filteredVenues = filteredVenues.filter(v => {
         if (v.lat == null || v.lon == null) return false;
-        const d = haversineMi(Number(lat), Number(lon), Number(v.lat), Number(v.lon));
-        return d <= radius_mi;
+        const distance = haversineMi(Number(lat), Number(lon), Number(v.lat), Number(v.lon));
+        return distance <= radius_mi;
       });
     }
 
-    // Price filters only if those fields exist in your dataset
     if (typeof price_per_hour_min === 'number' || typeof price_per_hour_max === 'number') {
       filteredVenues = filteredVenues.filter(v => {
-        const price = Number(v.price_per_hour ?? v.hourly_rate ?? NaN);
-        if (Number.isNaN(price)) return false; // skip if price unknown
+        const price = Number(v.price_per_hour || v.hourly_rate || NaN);
+        if (Number.isNaN(price)) return false;
         if (typeof price_per_hour_min === 'number' && price < price_per_hour_min) return false;
         if (typeof price_per_hour_max === 'number' && price > price_per_hour_max) return false;
         return true;
       });
     }
 
-    // If no results and fallback is true, relax some constraints
+    // Fallback logic
     if (filteredVenues.length === 0 && fallback) {
-      filteredVenues = await sql`SELECT * FROM venues` as any[];
+      filteredVenues = getVenuesFromJson();
 
       if (state) {
         filteredVenues = filteredVenues.filter(v => ciEq(v.state, state));
@@ -372,101 +224,23 @@ router.post('/search', async (req, res) => {
 
       if (typeof capacity_min === 'number') {
         const fbCap = Math.floor(capacity_min * 0.8);
-        filteredVenues = filteredVenues.filter(v => Number(v.capacity ?? 0) >= fbCap);
-      }
-
-      if (amenities && amenities.length > 0) {
-        const requestedAmenities = asUpperArray(amenities);
-        // relaxed: match ANY instead of ALL
-        filteredVenues = filteredVenues.filter(v => {
-          const venueAmenities = asUpperArray(v.amenities);
-          return requestedAmenities.some(req => venueAmenities.some(va => va.includes(req)));
-        });
+        filteredVenues = filteredVenues.filter(v => (Number(v.capacity) || 0) >= fbCap);
       }
     }
 
-    // ---- Scoring / Sorting ----
-    // Score components:
-    // + (# of amenity matches)
-    // + capacity closeness (penalize difference from mid of [min,max])
-    // + promo overlap bonus if dates requested
-    // + inverse airport distance (closer is better)
-    const requestedAmenities = asUpperArray(amenities);
-    const hasCapRange = typeof capacity_min === 'number' || typeof capacity_max === 'number';
-    const targetCap = (() => {
-      if (typeof capacity_min === 'number' && typeof capacity_max === 'number') {
-        return (capacity_min + capacity_max) / 2;
-      } else if (typeof capacity_min === 'number') {
-        return capacity_min;
-      } else if (typeof capacity_max === 'number') {
-        return capacity_max;
-      }
-      return null;
-    })();
+    // Sort by capacity (descending)
+    filteredVenues.sort((a, b) => (Number(b.capacity) || 0) - (Number(a.capacity) || 0));
 
-    const hasDateReq = datesRequested.length > 0;
-
-    const overlapDates = (promos: any, reqRanges: any) => {
-      if (!promos.length || !reqRanges.length) return false;
-      return reqRanges.some(({ start: rs, end: re }: any) =>
-        promos.some((p: any) => {
-          const ps = new Date(p.start);
-          const pe = new Date(p.end);
-          if (isNaN(ps.getTime()) || isNaN(pe.getTime())) return false;
-          return ps.getTime() <= re.getTime() && pe.getTime() >= rs.getTime(); // overlap
-        })
-      );
-    };
-
-    filteredVenues.sort((a, b) => {
-      const aAmenities = asUpperArray(a.amenities);
-      const bAmenities = asUpperArray(b.amenities);
-
-      const amenityMatchesA = requestedAmenities.length
-        ? requestedAmenities.filter(req => aAmenities.some(va => va.includes(req))).length
-        : 0;
-      const amenityMatchesB = requestedAmenities.length
-        ? requestedAmenities.filter(req => bAmenities.some(vb => vb.includes(req))).length
-        : 0;
-
-      const capA = Number(a.capacity ?? 0);
-      const capB = Number(b.capacity ?? 0);
-
-      let capScoreA = 0, capScoreB = 0;
-      if (hasCapRange && targetCap != null) {
-        // negative of distance to target (closer is better)
-        capScoreA = -Math.abs(capA - targetCap) / (targetCap || 1);
-        capScoreB = -Math.abs(capB - targetCap) / (targetCap || 1);
-      }
-
-      const promosA = parsePromotions(a.promotions);
-      const promosB = parsePromotions(b.promotions);
-      const promoBonusA = hasDateReq && overlapDates(promosA, datesRequested) ? 1 : 0;
-      const promoBonusB = hasDateReq && overlapDates(promosB, datesRequested) ? 1 : 0;
-
-      const airportA = Number(a.airport_distance_mi ?? 999);
-      const airportB = Number(b.airport_distance_mi ?? 999);
-      const airportScoreA = -airportA / 100; // small weight
-      const airportScoreB = -airportB / 100;
-
-      const scoreA = amenityMatchesA * 2 + capScoreA + promoBonusA + airportScoreA;
-      const scoreB = amenityMatchesB * 2 + capScoreB + promoBonusB + airportScoreB;
-
-      return scoreB - scoreA;
-    });
-
-    // ---- Deduplication ----
-    // Remove duplicate venues by id (keep first occurrence after sorting)
+    // Deduplication
     const seenIds = new Set();
     const uniqueVenues = filteredVenues.filter(venue => {
-      if (seenIds.has(venue.id)) {
-        return false;
-      }
-      seenIds.add(venue.id);
+      const id = venue.venue_id || venue.id;
+      if (seenIds.has(id)) return false;
+      seenIds.add(id);
       return true;
     });
 
-    // ---- Pagination ----
+    // Pagination
     const total = uniqueVenues.length;
     const start = Math.max(0, Number(offset) || 0);
     const end = start + (Number(limit) || 10);
@@ -481,8 +255,6 @@ router.post('/search', async (req, res) => {
       has_more: end < total
     };
 
-    // Cache
-    await setCachedData(cacheKey, result);
     res.json(result);
   } catch (error) {
     console.error('Error searching venues:', error);
@@ -490,6 +262,16 @@ router.post('/search', async (req, res) => {
   }
 });
 
+// Distance calculation helper
+const haversineMi = (lat1: number, lon1: number, lat2: number, lon2: number) => {
+  const toRad = (x: number) => (x * Math.PI) / 180;
+  const R = 3958.8; // miles
+  const dLat = toRad(lat2 - lat1);
+  const dLon = toRad(lon2 - lon1);
+  const a = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c;
+};
 
 // Get search context and results summary
 router.get('/search-context', (req, res) => {
@@ -525,9 +307,7 @@ router.get('/search-context', (req, res) => {
       const cityMatch = searchQuery.match(/(seattle|portland|san francisco|los angeles|new york)/i);
       if (cityMatch) {
         const city = cityMatch[1];
-        contextText = contextText ?
-          `${contextText} in ${city}` :
-          `Found ${totalCount} venues in ${city}`;
+        contextText = contextText ? `${contextText} in ${city}` : `Found ${totalCount} venues in ${city}`;
         searchInsights.push(`Location: ${city}`);
       }
     }
@@ -535,42 +315,15 @@ router.get('/search-context', (req, res) => {
     if (searchQuery.includes('catering') || searchQuery.includes('food') || searchQuery.includes('dining')) {
       searchInsights.push('🍽️ Catering available');
     }
-
-    if (searchQuery.includes('parking')) {
-      searchInsights.push('🅿️ Parking included');
-    }
-
-    if (searchQuery.includes('wifi') || searchQuery.includes('internet')) {
-      searchInsights.push('📶 WiFi available');
-    }
-
-    if (searchQuery.includes('wheelchair') || searchQuery.includes('accessible')) {
-      searchInsights.push('♿ Wheelchair accessible');
-    }
-
-    if (searchQuery.includes('av equipment') || searchQuery.includes('audio visual')) {
-      searchInsights.push('🎥 AV equipment available');
-    }
-
-    if (searchQuery.includes('wedding') || searchQuery.includes('reception')) {
-      searchInsights.push('💒 Wedding venues');
-    }
-
-    if (searchQuery.includes('corporate') || searchQuery.includes('business') || searchQuery.includes('conference')) {
-      searchInsights.push('💼 Corporate events');
-    }
-
-    if (searchQuery.includes('luxury') || searchQuery.includes('upscale') || searchQuery.includes('premium')) {
-      searchInsights.push('⭐ Luxury venues');
-    }
-
-    if (searchQuery.includes('outdoor') || searchQuery.includes('garden') || searchQuery.includes('patio')) {
-      searchInsights.push('🌿 Outdoor spaces');
-    }
-
-    if (searchQuery.includes('downtown') || searchQuery.includes('city center')) {
-      searchInsights.push('🏙️ Downtown location');
-    }
+    if (searchQuery.includes('parking')) searchInsights.push('🅿️ Parking included');
+    if (searchQuery.includes('wifi') || searchQuery.includes('internet')) searchInsights.push('📶 WiFi available');
+    if (searchQuery.includes('wheelchair') || searchQuery.includes('accessible')) searchInsights.push('♿ Wheelchair accessible');
+    if (searchQuery.includes('av equipment') || searchQuery.includes('audio visual')) searchInsights.push('🎥 AV equipment available');
+    if (searchQuery.includes('wedding') || searchQuery.includes('reception')) searchInsights.push('💒 Wedding venues');
+    if (searchQuery.includes('corporate') || searchQuery.includes('business') || searchQuery.includes('conference')) searchInsights.push('💼 Corporate events');
+    if (searchQuery.includes('luxury') || searchQuery.includes('upscale') || searchQuery.includes('premium')) searchInsights.push('⭐ Luxury venues');
+    if (searchQuery.includes('outdoor') || searchQuery.includes('garden') || searchQuery.includes('patio')) searchInsights.push('🌿 Outdoor spaces');
+    if (searchQuery.includes('downtown') || searchQuery.includes('city center')) searchInsights.push('🏙️ Downtown location');
 
     // Default context if no specific patterns found
     if (!contextText) {
@@ -584,7 +337,6 @@ router.get('/search-context', (req, res) => {
 
     // Generate suggestions based on search context
     let suggestions: string[] = [];
-
     if (totalCount === 0) {
       suggestions = [
         'Try broadening your search criteria',
@@ -606,7 +358,6 @@ router.get('/search-context', (req, res) => {
       ];
     }
 
-    // Search quality insights
     const searchQuality = {
       specificity: searchInsights.length > 2 ? 'high' : searchInsights.length > 0 ? 'medium' : 'low',
       result_count_status: totalCount === 0 ? 'no_results' : totalCount < 5 ? 'few_results' : totalCount > 20 ? 'many_results' : 'good_results'
@@ -630,11 +381,12 @@ router.get('/search-context', (req, res) => {
   }
 });
 
+// Get venue by ID
 router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const venues = await sql`SELECT * FROM venues WHERE id = ${id}`;
-    const venue = venues[0];
+    const venues = getVenuesFromJson();
+    const venue = venues.find(v => v.venue_id === id || v.id === id);
 
     if (!venue) {
       return res.status(404).json({ error: 'Venue not found' });
@@ -643,7 +395,7 @@ router.get('/:id', async (req, res) => {
     // Add venue_id field for frontend compatibility
     const venueWithVenueId = {
       ...venue,
-      venue_id: venue.id
+      venue_id: venue.venue_id || venue.id
     };
 
     res.json(venueWithVenueId);
@@ -658,27 +410,20 @@ router.post('/append', (req, res) => {
   try {
     const { venues: newVenues } = req.body;
 
-    // Validate request body
     if (!newVenues || !Array.isArray(newVenues)) {
-      return res.status(400).json({
-        error: 'Request body must contain a "venues" array'
-      });
+      return res.status(400).json({ error: 'Request body must contain a "venues" array' });
     }
 
     if (newVenues.length === 0) {
-      return res.status(400).json({
-        error: 'Venues array cannot be empty'
-      });
+      return res.status(400).json({ error: 'Venues array cannot be empty' });
     }
 
-    // Validate each venue object
     const requiredFields = ['name', 'city', 'state'];
     const validatedVenues = [];
 
     for (let i = 0; i < newVenues.length; i++) {
       const venue = newVenues[i];
 
-      // Check required fields
       for (const field of requiredFields) {
         if (!venue[field]) {
           return res.status(400).json({
@@ -687,12 +432,10 @@ router.post('/append', (req, res) => {
         }
       }
 
-      // Generate venue_id if not provided
       if (!venue.venue_id) {
         venue.venue_id = uuidv4();
       }
 
-      // Set default values for missing optional fields
       const defaultVenue = {
         venue_id: venue.venue_id,
         name: venue.name,
@@ -706,40 +449,21 @@ router.post('/append', (req, res) => {
         lat: venue.lat || 0,
         lon: venue.lon || 0,
         airport_distance_mi: venue.airport_distance_mi || 0,
-        rooms_total: venue.rooms_total || 0,
+        capacity: venue.capacity || 0,
         meeting_rooms_total: venue.meeting_rooms_total || 0,
         total_meeting_area_sqft: venue.total_meeting_area_sqft || 0,
         largest_space_sqft: venue.largest_space_sqft || 0,
-        second_largest_space_sqft: venue.second_largest_space_sqft || 0,
-        largest_ceiling_height_ft: venue.largest_ceiling_height_ft || 0,
-        diamond_level: venue.diamond_level || '',
-        preferred_rating: venue.preferred_rating || '',
-        year_built: venue.year_built || 0,
-        year_renovated: venue.year_renovated || 0,
-        main_image: venue.main_image || '',
-        hero_image: venue.hero_image || '',
-        listing_text: venue.listing_text || '',
-        occ_total_theater: venue.occ_total_theater || 0,
-        occ_total_banquet: venue.occ_total_banquet || 0,
-        occ_total_classroom: venue.occ_total_classroom || 0,
-        occ_largest_theater: venue.occ_largest_theater || 0,
-        occ_largest_banquet: venue.occ_largest_banquet || 0,
-        occ_largest_classroom: venue.occ_largest_classroom || 0,
-        amenities: venue.amenities || '',
-        tags: venue.tags || '',
-        promotions: venue.promotions || '[]',
-        need_dates: venue.need_dates || '[]',
-        ...venue // Override with any additional fields provided
+        amenities: venue.amenities || [],
+        tags: venue.tags || [],
+        ...venue
       };
 
       validatedVenues.push(defaultVenue);
     }
 
-    // Read existing venues data
     const venuesFilePath = join(__dirname, '../../data/venues.json');
-    const existingVenues = JSON.parse(readFileSync(venuesFilePath, 'utf-8'));
+    const existingVenues = getVenuesFromJson();
 
-    // Check for duplicate venue_ids
     const existingIds = new Set(existingVenues.map((v: any) => v.venue_id));
     const duplicateIds = validatedVenues.filter(v => existingIds.has(v.venue_id));
 
@@ -749,18 +473,11 @@ router.post('/append', (req, res) => {
       });
     }
 
-    // Append new venues to existing data
     const updatedVenues = [...existingVenues, ...validatedVenues];
 
-    // Write back to file with backup
     const backupPath = join(__dirname, '../../data/venues_backup.json');
     writeFileSync(backupPath, JSON.stringify(existingVenues, null, 2));
     writeFileSync(venuesFilePath, JSON.stringify(updatedVenues, null, 2));
-
-    // Data now stored in database - no need to update in-memory cache
-
-    // Clear cache to force refresh
-    // Cache cleared automatically by database
 
     res.json({
       success: true,
@@ -784,38 +501,22 @@ router.post('/reply', async (req, res) => {
   try {
     const { user_text } = req.body;
 
-    // Validate request body
     if (!user_text || typeof user_text !== 'string' || user_text.trim().length === 0) {
       return res.status(400).json({
         error: 'Request body must contain a non-empty "user_text" string'
       });
     }
 
-    // Create cache key for agent replies
-    const cacheKey = `agent-reply-${JSON.stringify({ user_text })}`;
-    const cached = await getCachedData(cacheKey);
-
-    if (cached) {
-      return res.json(cached);
-    }
-
     console.log('Calling Smyth Reply Agent with text:', user_text);
 
-    // Call Smyth Reply Agent API
     const response = await fetch('https://cmfvy00gpxdpqo3wtm3zjmdtq.agent.pa.smyth.ai/api/results_text', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        user_text: user_text.trim()
-      })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ user_text: user_text.trim() })
     });
 
     if (!response.ok) {
-      // If the external API is not working, provide a helpful fallback response
       console.warn(`Smyth Agent API not available: ${response.status} ${response.statusText}`);
-
       const fallbackResponse = {
         success: true,
         agent_reply: "I'm here to help you find the perfect venue! The AI assistant is currently unavailable, but I can still help you search for venues. Try using our venue search to find options that match your requirements for location, capacity, and amenities.",
@@ -824,19 +525,13 @@ router.post('/reply', async (req, res) => {
         user_query: user_text,
         note: 'Fallback response - external agent temporarily unavailable'
       };
-
-      // Cache the fallback result briefly
-      await setCachedData(cacheKey, { data: fallbackResponse, timestamp: Date.now() });
       return res.json(fallbackResponse);
     }
 
     const agentData = await response.json();
     console.log('Received agent response:', agentData);
 
-    // Format the response for frontend consumption
     let formattedResponse;
-
-    // Check if the response has a specific structure or is just text
     if (typeof agentData === 'string') {
       formattedResponse = {
         success: true,
@@ -846,7 +541,6 @@ router.post('/reply', async (req, res) => {
         user_query: user_text
       };
     } else if (agentData && typeof agentData === 'object') {
-      // If it's an object, preserve the structure but add our metadata
       formattedResponse = {
         success: true,
         agent_reply: (agentData as any).reply || (agentData as any).response || (agentData as any).message || JSON.stringify(agentData),
@@ -866,14 +560,10 @@ router.post('/reply', async (req, res) => {
       };
     }
 
-    // Cache the result
-    await setCachedData(cacheKey, { data: formattedResponse, timestamp: Date.now() });
-
     res.json(formattedResponse);
 
   } catch (error) {
     console.error('Error calling Smyth Reply Agent:', error);
-
     const errorResponse = {
       success: false,
       error: 'Failed to get agent reply',
@@ -881,7 +571,6 @@ router.post('/reply', async (req, res) => {
       timestamp: new Date().toISOString(),
       user_query: req.body.user_text || 'Unknown'
     };
-
     res.status(500).json(errorResponse);
   }
 });
@@ -895,62 +584,81 @@ router.post('/ai-search', async (req, res) => {
       return res.status(400).json({ error: 'venue_request is required' });
     }
 
-    // Create cache key for AI search
-    const cacheKey = `ai-search-${JSON.stringify({ venue_request })}`;
-    const cached = await getCachedData(cacheKey);
+    console.log('Calling SmythOS AI search with request:', venue_request);
 
-    if (cached) {
-      return res.json(cached);
-    }
-
-    // Call external AI search API
     const response = await fetch('https://cmfvy00gpxdpqo3wtm3zjmdtq.agent.pa.smyth.ai/api/search_venues', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'User-Agent': 'VenueConcierge/1.0'
       },
       body: JSON.stringify({ venue_request })
     });
 
+    console.log('SmythOS API response status:', response.status);
+
     if (!response.ok) {
-      throw new Error(`External API error: ${response.status}`);
+      if (response.status === 429) {
+        console.log('Rate limit hit, waiting 2 seconds and retrying...');
+        await new Promise(resolve => setTimeout(resolve, 2000));
+
+        const retryResponse = await fetch('https://cmfvy00gpxdpqo3wtm3zjmdtq.agent.pa.smyth.ai/api/search_venues', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'User-Agent': 'VenueConcierge/1.0'
+          },
+          body: JSON.stringify({ venue_request })
+        });
+
+        if (!retryResponse.ok) {
+          throw new Error(`SmythOS API error after retry: ${retryResponse.status}`);
+        }
+
+        const apiData = await retryResponse.json();
+        console.log('SmythOS API retry successful');
+        return handleSmythOSResponse(apiData, venue_request, res);
+      }
+
+      throw new Error(`SmythOS API error: ${response.status}`);
     }
 
     const apiData = await response.json();
+    console.log('SmythOS API response received');
+    return handleSmythOSResponse(apiData, venue_request, res);
 
-    // Parse the nested JSON response
+  } catch (error) {
+    console.error('Error in AI venue search:', error);
+    res.status(500).json({
+      error: 'Failed to search venues',
+      message: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
+function handleSmythOSResponse(apiData: any, venue_request: string, res: any) {
+  try {
     let searchResults;
-    try {
-      const resultsData = (apiData as any).results;
-      if (!resultsData || typeof resultsData !== 'string') {
-        console.error('API results is undefined or not a string:', resultsData);
-        return res.status(500).json({ error: 'No results data from search API' });
-      }
-      searchResults = JSON.parse(resultsData);
-    } catch (parseError) {
-      console.error('Error parsing API results:', parseError);
-      console.error('Raw API data:', apiData);
-      return res.status(500).json({ error: 'Invalid response format from search API' });
+    const resultsData = (apiData as any).results;
+    if (!resultsData || typeof resultsData !== 'string') {
+      console.error('API results is undefined or not a string:', resultsData);
+      return res.status(500).json({ error: 'No results data from search API' });
     }
+    searchResults = JSON.parse(resultsData);
 
-    // Deduplicate venues by id before formatting response
     const venues = searchResults.venues || [];
     const seenIds = new Set();
     const uniqueVenues = venues.filter((venue: any) => {
-      if (seenIds.has(venue.id)) {
-        return false;
-      }
+      if (seenIds.has(venue.id)) return false;
       seenIds.add(venue.id);
       return true;
     });
 
-    // Add venue_id field for frontend compatibility
     const venuesWithVenueId = uniqueVenues.map((venue: any) => ({
       ...venue,
       venue_id: venue.id
     }));
 
-    // Format the response to match our frontend expectations
     const formattedResponse = {
       venues: venuesWithVenueId,
       total: venuesWithVenueId.length,
@@ -961,17 +669,13 @@ router.post('/ai-search', async (req, res) => {
       search_query: venue_request
     };
 
-    // Cache the result
-    await setCachedData(cacheKey, { data: formattedResponse, timestamp: Date.now() });
-
+    console.log(`SmythOS AI search found ${venuesWithVenueId.length} venues`);
     res.json(formattedResponse);
-  } catch (error) {
-    console.error('Error in AI venue search:', error);
-    res.status(500).json({
-      error: 'Failed to search venues',
-      message: error instanceof Error ? error.message : 'Unknown error'
-    });
+  } catch (parseError) {
+    console.error('Error parsing SmythOS API results:', parseError);
+    console.error('Raw API data:', apiData);
+    return res.status(500).json({ error: 'Invalid response format from search API' });
   }
-});
+}
 
 export default router;

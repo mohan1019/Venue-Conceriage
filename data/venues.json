@@ -27,7 +27,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-938-303-9814",
-        "manager_name": "Jacob Turner"
+        "manager_name": "Jacob Turner",
+        "price_per_day": 7824
     },
     {
         "venue_id": "16dae32f-1eb9-4ad8-a2c4-f0c0832bd6d5",
@@ -57,7 +58,8 @@
         "need_dates": "[{\"start\": \"2025-11-03\", \"end\": \"2025-11-26\"}, {\"start\": \"2025-09-24\", \"end\": \"2025-09-29\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-611-677-2155",
-        "manager_name": "Lucas Lewis"
+        "manager_name": "Lucas Lewis",
+        "price_per_day": 6409
     },
     {
         "venue_id": "04aa5f99-8c78-40fd-b690-70c1a37e8aeb",
@@ -87,7 +89,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-599-951-4552",
-        "manager_name": "Alexander Scott"
+        "manager_name": "Alexander Scott",
+        "price_per_day": 10506
     },
     {
         "venue_id": "9ae45ce6-765a-4123-b9e6-932dfe087b72",
@@ -117,7 +120,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-227-227-7525",
-        "manager_name": "Victoria Miller"
+        "manager_name": "Victoria Miller",
+        "price_per_day": 3003
     },
     {
         "venue_id": "4ecff5cd-022b-43b2-b14e-643dfb2f6209",
@@ -147,7 +151,8 @@
         "need_dates": "[{\"start\": \"2025-10-26\", \"end\": \"2025-10-26\"}, {\"start\": \"2025-10-05\", \"end\": \"2025-10-05\"}, {\"start\": \"2025-12-07\", \"end\": \"2025-12-07\"}, {\"start\": \"2025-11-09\", \"end\": \"2025-11-09\"}, {\"start\": \"2025-12-28\", \"end\": \"2025-12-28\"}, {\"start\": \"2025-11-20\", \"end\": \"2025-11-20\"}, {\"start\": \"2025-12-21\", \"end\": \"2025-12-21\"}, {\"start\": \"2025-12-11\", \"end\": \"2025-12-11\"}, {\"start\": \"2025-10-16\", \"end\": \"2025-10-16\"}, {\"start\": \"2025-11-30\", \"end\": \"2025-11-30\"}, {\"start\": \"2025-09-28\", \"end\": \"2025-09-28\"}, {\"start\": \"2025-11-16\", \"end\": \"2025-11-16\"}, {\"start\": \"2025-09-25\", \"end\": \"2025-09-25\"}, {\"start\": \"2025-11-06\", \"end\": \"2025-11-06\"}, {\"start\": \"2025-12-14\", \"end\": \"2025-12-14\"}, {\"start\": \"2025-12-04\", \"end\": \"2025-12-04\"}, {\"start\": \"2025-12-18\", \"end\": \"2025-12-18\"}, {\"start\": \"2025-10-23\", \"end\": \"2025-10-23\"}, {\"start\": \"2025-11-27\", \"end\": \"2025-11-27\"}, {\"start\": \"2025-11-13\", \"end\": \"2025-11-13\"}, {\"start\": \"2025-10-09\", \"end\": \"2025-10-09\"}, {\"start\": \"2025-12-25\", \"end\": \"2025-12-25\"}, {\"start\": \"2025-11-02\", \"end\": \"2025-11-02\"}, {\"start\": \"2025-10-12\", \"end\": \"2025-10-12\"}, {\"start\": \"2025-10-30\", \"end\": \"2025-10-30\"}, {\"start\": \"2025-11-23\", \"end\": \"2025-11-23\"}, {\"start\": \"2025-10-02\", \"end\": \"2025-10-02\"}, {\"start\": \"2025-10-19\", \"end\": \"2025-10-19\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-304-201-3018",
-        "manager_name": "Lily Baker"
+        "manager_name": "Lily Baker",
+        "price_per_day": 9657
     },
     {
         "venue_id": "d0ba872f-7371-4089-86cb-8e741bc48ac2",
@@ -177,7 +182,8 @@
         "need_dates": "[{\"start\": \"2026-05-17\", \"end\": \"2026-05-30\"}, {\"start\": \"2025-10-03\", \"end\": \"2025-10-15\"}, {\"start\": \"2026-01-13\", \"end\": \"2026-02-14\"}, {\"start\": \"2026-09-25\", \"end\": \"2026-10-19\"}, {\"start\": \"2026-03-01\", \"end\": \"2026-03-22\"}, {\"start\": \"2025-09-29\", \"end\": \"2025-09-30\"}, {\"start\": \"2025-10-28\", \"end\": \"2025-11-03\"}, {\"start\": \"2025-11-07\", \"end\": \"2025-11-30\"}, {\"start\": \"2025-12-14\", \"end\": \"2026-01-09\"}, {\"start\": \"2026-10-23\", \"end\": \"2026-11-29\"}, {\"start\": \"2026-12-13\", \"end\": \"2027-01-03\"}, {\"start\": \"2026-03-25\", \"end\": \"2026-05-10\"}, {\"start\": \"2026-07-28\", \"end\": \"2026-09-13\"}, {\"start\": \"2025-10-19\", \"end\": \"2025-10-19\"}, {\"start\": \"2026-12-06\", \"end\": \"2026-12-10\"}, {\"start\": \"2026-09-17\", \"end\": \"2026-09-20\"}, {\"start\": \"2026-06-04\", \"end\": \"2026-07-25\"}, {\"start\": \"2025-12-07\", \"end\": \"2025-12-11\"}, {\"start\": \"2026-02-18\", \"end\": \"2026-02-24\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-880-485-3340",
-        "manager_name": "Benjamin Sanders"
+        "manager_name": "Benjamin Sanders",
+        "price_per_day": 19572
     },
     {
         "venue_id": "f1b118a9-10ab-4513-96a5-a853608987d3",
@@ -207,7 +213,8 @@
         "need_dates": "[{\"start\": \"2026-01-18\", \"end\": \"2026-02-28\"}, {\"start\": \"2026-07-20\", \"end\": \"2026-08-06\"}, {\"start\": \"2026-12-20\", \"end\": \"2027-01-06\"}, {\"start\": \"2026-03-22\", \"end\": \"2026-04-07\"}, {\"start\": \"2027-02-15\", \"end\": \"2027-03-02\"}, {\"start\": \"2026-05-18\", \"end\": \"2026-05-31\"}, {\"start\": \"2026-09-13\", \"end\": \"2026-09-18\"}, {\"start\": \"2026-11-02\", \"end\": \"2026-11-04\"}, {\"start\": \"2026-01-01\", \"end\": \"2026-01-07\"}, {\"start\": \"2027-01-25\", \"end\": \"2027-02-11\"}, {\"start\": \"2027-01-11\", \"end\": \"2027-01-21\"}, {\"start\": \"2025-11-23\", \"end\": \"2025-11-30\"}, {\"start\": \"2025-11-03\", \"end\": \"2025-11-14\"}, {\"start\": \"2026-03-09\", \"end\": \"2026-03-12\"}, {\"start\": \"2026-04-12\", \"end\": \"2026-04-13\"}, {\"start\": \"2026-10-11\", \"end\": \"2026-10-27\"}, {\"start\": \"2026-04-19\", \"end\": \"2026-04-25\"}, {\"start\": \"2026-09-27\", \"end\": \"2026-10-03\"}, {\"start\": \"2025-09-27\", \"end\": \"2025-10-08\"}, {\"start\": \"2026-03-16\", \"end\": \"2026-03-18\"}, {\"start\": \"2026-08-12\", \"end\": \"2026-09-05\"}, {\"start\": \"2027-03-14\", \"end\": \"2027-03-24\"}, {\"start\": \"2025-10-19\", \"end\": \"2025-10-27\"}, {\"start\": \"2026-11-09\", \"end\": \"2026-12-03\"}, {\"start\": \"2026-12-13\", \"end\": \"2026-12-18\"}, {\"start\": \"2025-12-07\", \"end\": \"2025-12-20\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-878-536-9463",
-        "manager_name": "Victoria Brooks"
+        "manager_name": "Victoria Brooks",
+        "price_per_day": 39132
     },
     {
         "venue_id": "45185b4a-fdfb-436b-91de-2724c7f87efc",
@@ -237,7 +244,8 @@
         "need_dates": "[{\"start\": \"2025-09-21\", \"end\": \"2026-03-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-358-926-7857",
-        "manager_name": "Lily Miller"
+        "manager_name": "Lily Miller",
+        "price_per_day": 7679
     },
     {
         "venue_id": "ce096130-c9d2-4190-bb2a-3ecec7955bc0",
@@ -267,7 +275,8 @@
         "need_dates": "[{\"start\": \"2026-03-25\", \"end\": \"2026-03-27\"}, {\"start\": \"2025-11-28\", \"end\": \"2025-12-01\"}, {\"start\": \"2026-06-23\", \"end\": \"2026-06-24\"}, {\"start\": \"2025-10-12\", \"end\": \"2025-10-13\"}, {\"start\": \"2025-11-03\", \"end\": \"2025-11-11\"}, {\"start\": \"2026-02-15\", \"end\": \"2026-02-17\"}, {\"start\": \"2026-06-05\", \"end\": \"2026-06-07\"}, {\"start\": \"2026-05-10\", \"end\": \"2026-05-11\"}, {\"start\": \"2026-05-02\", \"end\": \"2026-05-03\"}, {\"start\": \"2026-01-15\", \"end\": \"2026-01-23\"}, {\"start\": \"2026-04-29\", \"end\": \"2026-04-30\"}, {\"start\": \"2025-11-16\", \"end\": \"2025-11-16\"}, {\"start\": \"2025-10-25\", \"end\": \"2025-10-29\"}, {\"start\": \"2025-12-14\", \"end\": \"2025-12-17\"}, {\"start\": \"2025-09-29\", \"end\": \"2025-10-02\"}, {\"start\": \"2026-05-22\", \"end\": \"2026-05-25\"}, {\"start\": \"2026-02-05\", \"end\": \"2026-02-12\"}, {\"start\": \"2025-12-21\", \"end\": \"2025-12-28\"}, {\"start\": \"2026-01-05\", \"end\": \"2026-01-07\"}, {\"start\": \"2026-03-22\", \"end\": \"2026-03-22\"}, {\"start\": \"2026-04-16\", \"end\": \"2026-04-18\"}, {\"start\": \"2026-03-07\", \"end\": \"2026-03-11\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-548-450-9369",
-        "manager_name": "Sophia Hall"
+        "manager_name": "Sophia Hall",
+        "price_per_day": 37174
     },
     {
         "venue_id": "d4230932-b156-466d-9a9c-019e47a6e111",
@@ -297,7 +306,8 @@
         "need_dates": "[{\"start\": \"2025-12-15\", \"end\": \"2025-12-28\"}, {\"start\": \"2025-09-30\", \"end\": \"2025-10-03\"}, {\"start\": \"2026-01-01\", \"end\": \"2026-03-15\"}, {\"start\": \"2025-11-20\", \"end\": \"2025-11-30\"}, {\"start\": \"2026-07-21\", \"end\": \"2026-08-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-822-792-3668",
-        "manager_name": "Daniel Gray"
+        "manager_name": "Daniel Gray",
+        "price_per_day": 14935
     },
     {
         "venue_id": "b59ed21b-e79b-45a2-93db-c9ae12e4b57f",
@@ -327,7 +337,8 @@
         "need_dates": "[{\"start\": \"2025-11-27\", \"end\": \"2025-12-30\"}, {\"start\": \"2025-09-21\", \"end\": \"2025-09-26\"}, {\"start\": \"2025-10-18\", \"end\": \"2025-11-06\"}, {\"start\": \"2025-10-03\", \"end\": \"2025-10-09\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-811-793-6103",
-        "manager_name": "Hannah Young"
+        "manager_name": "Hannah Young",
+        "price_per_day": 7424
     },
     {
         "venue_id": "dd95057d-a3cf-473f-a09c-f508645af308",
@@ -357,7 +368,8 @@
         "need_dates": "[{\"start\": \"2026-01-11\", \"end\": \"2026-01-11\"}, {\"start\": \"2026-02-01\", \"end\": \"2026-02-01\"}, {\"start\": \"2025-10-05\", \"end\": \"2025-10-05\"}, {\"start\": \"2025-11-02\", \"end\": \"2025-11-02\"}, {\"start\": \"2025-11-23\", \"end\": \"2025-11-23\"}, {\"start\": \"2025-11-30\", \"end\": \"2025-11-30\"}, {\"start\": \"2026-01-18\", \"end\": \"2026-01-18\"}, {\"start\": \"2026-01-25\", \"end\": \"2026-01-25\"}, {\"start\": \"2025-12-07\", \"end\": \"2025-12-07\"}, {\"start\": \"2025-10-19\", \"end\": \"2025-10-19\"}, {\"start\": \"2026-02-15\", \"end\": \"2026-02-15\"}, {\"start\": \"2025-12-14\", \"end\": \"2025-12-14\"}, {\"start\": \"2025-12-21\", \"end\": \"2025-12-21\"}, {\"start\": \"2025-11-09\", \"end\": \"2025-11-09\"}, {\"start\": \"2025-12-28\", \"end\": \"2025-12-28\"}, {\"start\": \"2025-10-26\", \"end\": \"2025-10-26\"}, {\"start\": \"2025-10-12\", \"end\": \"2025-10-12\"}, {\"start\": \"2026-01-04\", \"end\": \"2026-01-04\"}, {\"start\": \"2026-02-22\", \"end\": \"2026-02-22\"}, {\"start\": \"2025-11-16\", \"end\": \"2025-11-16\"}, {\"start\": \"2026-02-08\", \"end\": \"2026-02-08\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-251-607-4113",
-        "manager_name": "Zoe Miller"
+        "manager_name": "Zoe Miller",
+        "price_per_day": 12912
     },
     {
         "venue_id": "bc157c0c-bf44-4f40-a851-ee16bad5f23b",
@@ -387,7 +399,8 @@
         "need_dates": "[{\"start\": \"2025-11-23\", \"end\": \"2025-11-29\"}, {\"start\": \"2025-12-22\", \"end\": \"2025-12-29\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-581-735-9880",
-        "manager_name": "Jack Clark"
+        "manager_name": "Jack Clark",
+        "price_per_day": 6520
     },
     {
         "venue_id": "3b890bc4-bde7-45de-ad7b-d2c8bbe03b30",
@@ -417,7 +430,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-294-709-2763",
-        "manager_name": "Ethan Davis"
+        "manager_name": "Ethan Davis",
+        "price_per_day": 2122
     },
     {
         "venue_id": "6d66f8a0-ad86-4861-9e8c-f14d873e1a63",
@@ -447,7 +461,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-906-667-1848",
-        "manager_name": "Ethan Perez"
+        "manager_name": "Ethan Perez",
+        "price_per_day": 7535
     },
     {
         "venue_id": "420ae31a-60b5-4295-9631-53c28aea2dfd",
@@ -477,7 +492,8 @@
         "need_dates": "[{\"start\": \"2025-09-25\", \"end\": \"2025-09-28\"}, {\"start\": \"2025-11-20\", \"end\": \"2025-11-23\"}, {\"start\": \"2025-10-02\", \"end\": \"2025-10-05\"}, {\"start\": \"2025-11-27\", \"end\": \"2025-11-30\"}, {\"start\": \"2025-10-16\", \"end\": \"2025-10-19\"}, {\"start\": \"2025-12-04\", \"end\": \"2025-12-07\"}, {\"start\": \"2025-11-06\", \"end\": \"2025-11-09\"}, {\"start\": \"2025-12-25\", \"end\": \"2025-12-28\"}, {\"start\": \"2025-12-11\", \"end\": \"2025-12-14\"}, {\"start\": \"2025-10-23\", \"end\": \"2025-10-26\"}, {\"start\": \"2025-12-18\", \"end\": \"2025-12-21\"}, {\"start\": \"2025-10-09\", \"end\": \"2025-10-12\"}, {\"start\": \"2025-11-13\", \"end\": \"2025-11-16\"}, {\"start\": \"2025-10-30\", \"end\": \"2025-11-02\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-519-698-6805",
-        "manager_name": "Noah Martinez"
+        "manager_name": "Noah Martinez",
+        "price_per_day": 9582
     },
     {
         "venue_id": "65690663-a3d6-4cf4-8d1d-702f090d3667",
@@ -507,7 +523,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-675-466-7420",
-        "manager_name": "Emily Ward"
+        "manager_name": "Emily Ward",
+        "price_per_day": 9811
     },
     {
         "venue_id": "1c1eee54-331a-450c-a845-7d6ee802c126",
@@ -537,7 +554,8 @@
         "need_dates": "[{\"start\": \"2026-01-02\", \"end\": \"2026-03-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-268-713-9963",
-        "manager_name": "Chloe Adams"
+        "manager_name": "Chloe Adams",
+        "price_per_day": 14279
     },
     {
         "venue_id": "3863115c-bf10-4e85-9a71-4f7b8fe94828",
@@ -567,7 +585,8 @@
         "need_dates": "[{\"start\": \"2026-02-22\", \"end\": \"2026-02-28\"}, {\"start\": \"2026-01-25\", \"end\": \"2026-02-08\"}, {\"start\": \"2025-11-04\", \"end\": \"2025-11-07\"}, {\"start\": \"2025-11-25\", \"end\": \"2025-11-27\"}, {\"start\": \"2026-01-04\", \"end\": \"2026-01-07\"}, {\"start\": \"2025-11-11\", \"end\": \"2025-11-20\"}, {\"start\": \"2025-09-28\", \"end\": \"2025-10-05\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-974-433-8988",
-        "manager_name": "Hannah Brown"
+        "manager_name": "Hannah Brown",
+        "price_per_day": 6434
     },
     {
         "venue_id": "3f62648a-d693-4975-9450-69f21d126bba",
@@ -597,7 +616,8 @@
         "need_dates": "[{\"start\": \"2025-12-21\", \"end\": \"2026-02-28\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-983-264-5551",
-        "manager_name": "Matthew Allen"
+        "manager_name": "Matthew Allen",
+        "price_per_day": 9257
     },
     {
         "venue_id": "255e9ceb-6249-482a-83f7-7f9c8a77c163",
@@ -627,7 +647,8 @@
         "need_dates": "[{\"start\": \"2025-10-12\", \"end\": \"2025-10-16\"}, {\"start\": \"2025-11-16\", \"end\": \"2025-11-20\"}, {\"start\": \"2025-09-21\", \"end\": \"2025-09-25\"}, {\"start\": \"2025-12-07\", \"end\": \"2025-12-11\"}, {\"start\": \"2025-10-26\", \"end\": \"2025-10-30\"}, {\"start\": \"2025-12-14\", \"end\": \"2025-12-18\"}, {\"start\": \"2025-09-28\", \"end\": \"2025-10-02\"}, {\"start\": \"2025-11-23\", \"end\": \"2025-11-27\"}, {\"start\": \"2025-10-05\", \"end\": \"2025-10-09\"}, {\"start\": \"2025-12-21\", \"end\": \"2025-12-25\"}, {\"start\": \"2025-11-09\", \"end\": \"2025-11-13\"}, {\"start\": \"2025-12-28\", \"end\": \"2025-12-31\"}, {\"start\": \"2025-11-02\", \"end\": \"2025-11-06\"}, {\"start\": \"2025-11-30\", \"end\": \"2025-12-04\"}, {\"start\": \"2025-10-19\", \"end\": \"2025-10-23\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-905-215-7170",
-        "manager_name": "Henry Lewis"
+        "manager_name": "Henry Lewis",
+        "price_per_day": 14928
     },
     {
         "venue_id": "aaa529a0-2828-48cd-9518-0adb6049ffc0",
@@ -657,7 +678,8 @@
         "need_dates": "[{\"start\": \"2026-05-24\", \"end\": \"2026-05-31\"}, {\"start\": \"2026-01-01\", \"end\": \"2026-02-28\"}, {\"start\": \"2025-12-14\", \"end\": \"2025-12-25\"}, {\"start\": \"2026-07-22\", \"end\": \"2026-09-03\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-958-864-5411",
-        "manager_name": "David Perez"
+        "manager_name": "David Perez",
+        "price_per_day": 12873
     },
     {
         "venue_id": "2429aa56-5778-4949-948c-6df9739496b8",
@@ -687,7 +709,8 @@
         "need_dates": "[{\"start\": \"2025-09-28\", \"end\": \"2025-09-29\"}, {\"start\": \"2025-12-21\", \"end\": \"2025-12-25\"}, {\"start\": \"2025-11-09\", \"end\": \"2025-11-23\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-928-670-6125",
-        "manager_name": "Jack Carter"
+        "manager_name": "Jack Carter",
+        "price_per_day": 22223
     },
     {
         "venue_id": "366bb025-c315-46ea-bb7f-6d6a39bcf921",
@@ -717,7 +740,8 @@
         "need_dates": "[{\"start\": \"2026-02-11\", \"end\": \"2026-02-28\"}, {\"start\": \"2026-01-01\", \"end\": \"2026-01-07\"}, {\"start\": \"2026-01-15\", \"end\": \"2026-01-20\"}, {\"start\": \"2025-11-11\", \"end\": \"2025-11-11\"}, {\"start\": \"2026-04-03\", \"end\": \"2026-04-06\"}, {\"start\": \"2025-12-22\", \"end\": \"2025-12-30\"}, {\"start\": \"2025-09-21\", \"end\": \"2025-09-24\"}, {\"start\": \"2025-11-23\", \"end\": \"2025-11-28\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-436-928-7698",
-        "manager_name": "Natalie Evans"
+        "manager_name": "Natalie Evans",
+        "price_per_day": 3839
     },
     {
         "venue_id": "1cb300f1-7bb3-4870-b32e-f24fdc4d586f",
@@ -747,7 +771,8 @@
         "need_dates": "[{\"start\": \"2026-01-01\", \"end\": \"2026-03-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-766-439-5978",
-        "manager_name": "Ava Adams"
+        "manager_name": "Ava Adams",
+        "price_per_day": 10557
     },
     {
         "venue_id": "48709c83-ba77-43f6-98cb-7ea296ae468b",
@@ -777,7 +802,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-728-721-1693",
-        "manager_name": "Victoria Green"
+        "manager_name": "Victoria Green",
+        "price_per_day": 6106
     },
     {
         "venue_id": "7962228e-cb9d-4441-ad3c-21653846c34e",
@@ -807,7 +833,8 @@
         "need_dates": "[{\"start\": \"2025-12-21\", \"end\": \"2025-12-30\"}, {\"start\": \"2025-11-20\", \"end\": \"2025-11-25\"}, {\"start\": \"2025-09-29\", \"end\": \"2025-10-05\"}, {\"start\": \"2026-01-01\", \"end\": \"2026-01-09\"}, {\"start\": \"2026-03-02\", \"end\": \"2026-03-05\"}, {\"start\": \"2025-10-10\", \"end\": \"2025-10-12\"}, {\"start\": \"2026-02-15\", \"end\": \"2026-02-26\"}, {\"start\": \"2025-11-08\", \"end\": \"2025-11-16\"}, {\"start\": \"2025-10-16\", \"end\": \"2025-10-19\"}, {\"start\": \"2026-01-28\", \"end\": \"2026-02-12\"}, {\"start\": \"2026-03-16\", \"end\": \"2026-03-19\"}, {\"start\": \"2025-10-23\", \"end\": \"2025-10-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-902-831-1898",
-        "manager_name": "Amelia Sanders"
+        "manager_name": "Amelia Sanders",
+        "price_per_day": 8615
     },
     {
         "venue_id": "784091ef-f68d-405c-b8b4-7e9763791f7d",
@@ -837,7 +864,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-385-773-2644",
-        "manager_name": "Mason Campbell"
+        "manager_name": "Mason Campbell",
+        "price_per_day": 12924
     },
     {
         "venue_id": "3a443f24-e998-4de8-9b83-61e62fbb582b",
@@ -867,7 +895,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-735-817-2845",
-        "manager_name": "Samuel Miller"
+        "manager_name": "Samuel Miller",
+        "price_per_day": 11574
     },
     {
         "venue_id": "16dae32f-1eb9-4ad8-a2c4-f0c0832bd6d5",
@@ -897,7 +926,8 @@
         "need_dates": "[{\"start\": \"2025-11-03\", \"end\": \"2025-11-26\"}, {\"start\": \"2025-09-24\", \"end\": \"2025-09-29\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-747-351-7391",
-        "manager_name": "Scarlett Allen"
+        "manager_name": "Scarlett Allen",
+        "price_per_day": 10552
     },
     {
         "venue_id": "37026537-db64-4b3c-8420-35b8043540f5",
@@ -927,7 +957,8 @@
         "need_dates": "[{\"start\": \"2025-10-01\", \"end\": \"2025-11-30\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-864-215-2916",
-        "manager_name": "Emma Hall"
+        "manager_name": "Emma Hall",
+        "price_per_day": 2636
     },
     {
         "venue_id": "967f1ae4-71fb-481d-b573-0b082a4cf969",
@@ -957,7 +988,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-528-677-5761",
-        "manager_name": "Matthew Allen"
+        "manager_name": "Matthew Allen",
+        "price_per_day": 9527
     },
     {
         "venue_id": "420ae31a-60b5-4295-9631-53c28aea2dfd",
@@ -987,7 +1019,8 @@
         "need_dates": "[{\"start\": \"2025-09-25\", \"end\": \"2025-09-28\"}, {\"start\": \"2025-11-20\", \"end\": \"2025-11-23\"}, {\"start\": \"2025-10-02\", \"end\": \"2025-10-05\"}, {\"start\": \"2025-11-27\", \"end\": \"2025-11-30\"}, {\"start\": \"2025-10-16\", \"end\": \"2025-10-19\"}, {\"start\": \"2025-12-04\", \"end\": \"2025-12-07\"}, {\"start\": \"2025-11-06\", \"end\": \"2025-11-09\"}, {\"start\": \"2025-12-25\", \"end\": \"2025-12-28\"}, {\"start\": \"2025-12-11\", \"end\": \"2025-12-14\"}, {\"start\": \"2025-10-23\", \"end\": \"2025-10-26\"}, {\"start\": \"2025-12-18\", \"end\": \"2025-12-21\"}, {\"start\": \"2025-10-09\", \"end\": \"2025-10-12\"}, {\"start\": \"2025-11-13\", \"end\": \"2025-11-16\"}, {\"start\": \"2025-10-30\", \"end\": \"2025-11-02\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-420-637-8858",
-        "manager_name": "Madison Evans"
+        "manager_name": "Madison Evans",
+        "price_per_day": 11514
     },
     {
         "venue_id": "dd95057d-a3cf-473f-a09c-f508645af308",
@@ -1017,7 +1050,8 @@
         "need_dates": "[{\"start\": \"2026-01-11\", \"end\": \"2026-01-11\"}, {\"start\": \"2026-02-01\", \"end\": \"2026-02-01\"}, {\"start\": \"2025-10-05\", \"end\": \"2025-10-05\"}, {\"start\": \"2025-11-02\", \"end\": \"2025-11-02\"}, {\"start\": \"2025-11-23\", \"end\": \"2025-11-23\"}, {\"start\": \"2025-11-30\", \"end\": \"2025-11-30\"}, {\"start\": \"2026-01-18\", \"end\": \"2026-01-18\"}, {\"start\": \"2026-01-25\", \"end\": \"2026-01-25\"}, {\"start\": \"2025-12-07\", \"end\": \"2025-12-07\"}, {\"start\": \"2025-10-19\", \"end\": \"2025-10-19\"}, {\"start\": \"2026-02-15\", \"end\": \"2026-02-15\"}, {\"start\": \"2025-12-14\", \"end\": \"2025-12-14\"}, {\"start\": \"2025-12-21\", \"end\": \"2025-12-21\"}, {\"start\": \"2025-11-09\", \"end\": \"2025-11-09\"}, {\"start\": \"2025-12-28\", \"end\": \"2025-12-28\"}, {\"start\": \"2025-10-26\", \"end\": \"2025-10-26\"}, {\"start\": \"2025-10-12\", \"end\": \"2025-10-12\"}, {\"start\": \"2026-01-04\", \"end\": \"2026-01-04\"}, {\"start\": \"2026-02-22\", \"end\": \"2026-02-22\"}, {\"start\": \"2025-11-16\", \"end\": \"2025-11-16\"}, {\"start\": \"2026-02-08\", \"end\": \"2026-02-08\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-433-901-7986",
-        "manager_name": "Chloe Lewis"
+        "manager_name": "Chloe Lewis",
+        "price_per_day": 7674
     },
     {
         "venue_id": "255e9ceb-6249-482a-83f7-7f9c8a77c163",
@@ -1047,7 +1081,8 @@
         "need_dates": "[{\"start\": \"2025-10-12\", \"end\": \"2025-10-16\"}, {\"start\": \"2025-11-16\", \"end\": \"2025-11-20\"}, {\"start\": \"2025-09-21\", \"end\": \"2025-09-25\"}, {\"start\": \"2025-12-07\", \"end\": \"2025-12-11\"}, {\"start\": \"2025-10-26\", \"end\": \"2025-10-30\"}, {\"start\": \"2025-12-14\", \"end\": \"2025-12-18\"}, {\"start\": \"2025-09-28\", \"end\": \"2025-10-02\"}, {\"start\": \"2025-11-23\", \"end\": \"2025-11-27\"}, {\"start\": \"2025-10-05\", \"end\": \"2025-10-09\"}, {\"start\": \"2025-12-21\", \"end\": \"2025-12-25\"}, {\"start\": \"2025-11-09\", \"end\": \"2025-11-13\"}, {\"start\": \"2025-12-28\", \"end\": \"2025-12-31\"}, {\"start\": \"2025-11-02\", \"end\": \"2025-11-06\"}, {\"start\": \"2025-11-30\", \"end\": \"2025-12-04\"}, {\"start\": \"2025-10-19\", \"end\": \"2025-10-23\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-643-518-5658",
-        "manager_name": "Olivia Thompson"
+        "manager_name": "Olivia Thompson",
+        "price_per_day": 7519
     },
     {
         "venue_id": "6d66f8a0-ad86-4861-9e8c-f14d873e1a63",
@@ -1077,7 +1112,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-389-723-9351",
-        "manager_name": "Victoria Turner"
+        "manager_name": "Victoria Turner",
+        "price_per_day": 12224
     },
     {
         "venue_id": "1c1eee54-331a-450c-a845-7d6ee802c126",
@@ -1107,7 +1143,8 @@
         "need_dates": "[{\"start\": \"2026-01-02\", \"end\": \"2026-03-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-468-845-1032",
-        "manager_name": "William Young"
+        "manager_name": "William Young",
+        "price_per_day": 7584
     },
     {
         "venue_id": "4993815e-e6d1-449b-8b45-e8636651e5b7",
@@ -1137,7 +1174,8 @@
         "need_dates": "[{\"start\": \"2025-09-21\", \"end\": \"2025-09-27\"}, {\"start\": \"2025-11-09\", \"end\": \"2025-11-13\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-989-692-2321",
-        "manager_name": "Henry Campbell"
+        "manager_name": "Henry Campbell",
+        "price_per_day": 26763
     },
     {
         "venue_id": "5e0d9a2c-61bc-4091-97d2-7162c5719c9d",
@@ -1167,7 +1205,8 @@
         "need_dates": "[{\"start\": \"2025-10-26\", \"end\": \"2025-11-01\"}, {\"start\": \"2025-11-23\", \"end\": \"2025-12-30\"}, {\"start\": \"2026-07-19\", \"end\": \"2026-08-31\"}, {\"start\": \"2026-11-19\", \"end\": \"2026-12-30\"}, {\"start\": \"2026-01-01\", \"end\": \"2026-04-10\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-545-723-6576",
-        "manager_name": "Madison Evans"
+        "manager_name": "Madison Evans",
+        "price_per_day": 11635
     },
     {
         "venue_id": "3a70763d-f1bd-43a4-b3a6-3ef3d4d2dad3",
@@ -1197,7 +1236,8 @@
         "need_dates": "[{\"start\": \"2025-10-06\", \"end\": \"2025-10-16\"}, {\"start\": \"2025-10-18\", \"end\": \"2025-10-31\"}, {\"start\": \"2025-09-27\", \"end\": \"2025-09-30\"}, {\"start\": \"2025-11-02\", \"end\": \"2025-12-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-422-878-7419",
-        "manager_name": "David Evans"
+        "manager_name": "David Evans",
+        "price_per_day": 10333
     },
     {
         "venue_id": "ac58e1b4-80f0-429c-8699-f63a911469c1",
@@ -1227,7 +1267,8 @@
         "need_dates": "[{\"start\": \"2025-10-18\", \"end\": \"2025-10-19\"}, {\"start\": \"2025-10-29\", \"end\": \"2025-11-02\"}, {\"start\": \"2025-09-21\", \"end\": \"2025-10-04\"}, {\"start\": \"2025-11-20\", \"end\": \"2026-03-31\"}, {\"start\": \"2025-10-22\", \"end\": \"2025-10-26\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-600-521-6567",
-        "manager_name": "Lucas Hall"
+        "manager_name": "Lucas Hall",
+        "price_per_day": 6711
     },
     {
         "venue_id": "f96792c9-8e99-431f-914a-c435029e382e",
@@ -1257,7 +1298,8 @@
         "need_dates": "[{\"start\": \"2025-12-01\", \"end\": \"2025-12-21\"}, {\"start\": \"2025-11-01\", \"end\": \"2025-11-16\"}, {\"start\": \"2025-10-13\", \"end\": \"2025-10-17\"}, {\"start\": \"2025-10-20\", \"end\": \"2025-10-24\"}, {\"start\": \"2026-01-01\", \"end\": \"2026-01-31\"}, {\"start\": \"2025-09-29\", \"end\": \"2025-10-03\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-563-462-3800",
-        "manager_name": "Michael Miller"
+        "manager_name": "Michael Miller",
+        "price_per_day": 4988
     },
     {
         "venue_id": "b4949af7-ac3a-4c4a-9f4e-8cec00dca27f",
@@ -1287,7 +1329,8 @@
         "need_dates": "[{\"start\": \"2026-01-02\", \"end\": \"2026-03-31\"}, {\"start\": \"2025-11-17\", \"end\": \"2025-12-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-353-853-9970",
-        "manager_name": "Daniel Baker"
+        "manager_name": "Daniel Baker",
+        "price_per_day": 3881
     },
     {
         "venue_id": "8968b8db-128d-4c13-998b-15e6422acce3",
@@ -1317,7 +1360,8 @@
         "need_dates": "[{\"start\": \"2025-12-14\", \"end\": \"2026-01-16\"}, {\"start\": \"2025-09-21\", \"end\": \"2025-09-24\"}, {\"start\": \"2026-02-08\", \"end\": \"2026-02-13\"}, {\"start\": \"2025-11-19\", \"end\": \"2025-11-30\"}, {\"start\": \"2025-10-28\", \"end\": \"2025-11-02\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-802-578-9508",
-        "manager_name": "Ethan Perez"
+        "manager_name": "Ethan Perez",
+        "price_per_day": 14785
     },
     {
         "venue_id": "77ac8f28-c715-497e-8e04-2a6185a3efe4",
@@ -1347,7 +1391,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-437-239-9812",
-        "manager_name": "Lucas Hughes"
+        "manager_name": "Lucas Hughes",
+        "price_per_day": 8045
     },
     {
         "venue_id": "48c73dfe-0bbf-4002-b93f-f99e272134b9",
@@ -1377,7 +1422,8 @@
         "need_dates": "[{\"start\": \"2025-11-01\", \"end\": \"2025-12-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-999-439-1865",
-        "manager_name": "Matthew Carter"
+        "manager_name": "Matthew Carter",
+        "price_per_day": 5985
     },
     {
         "venue_id": "97fdc317-70b4-493e-a67d-e68cad75f131",
@@ -1407,7 +1453,8 @@
         "need_dates": "[{\"start\": \"2025-11-01\", \"end\": \"2025-12-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-880-854-7223",
-        "manager_name": "Mason Green"
+        "manager_name": "Mason Green",
+        "price_per_day": 12201
     },
     {
         "venue_id": "befb9beb-8774-4893-acf2-a346db25ce28",
@@ -1437,7 +1484,8 @@
         "need_dates": "[{\"start\": \"2025-09-21\", \"end\": \"2026-03-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-248-683-3509",
-        "manager_name": "Victoria Brooks"
+        "manager_name": "Victoria Brooks",
+        "price_per_day": 7291
     },
     {
         "venue_id": "fe1b8849-dc98-4f6b-8ba9-4c88d62dcb27",
@@ -1467,7 +1515,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-545-944-5208",
-        "manager_name": "Anthony Campbell"
+        "manager_name": "Anthony Campbell",
+        "price_per_day": 10803
     },
     {
         "venue_id": "b5c59527-cc3f-4b09-b55a-07fea7b7e1ab",
@@ -1497,7 +1546,8 @@
         "need_dates": "[{\"start\": \"2025-09-21\", \"end\": \"2026-06-30\"}, {\"start\": \"2026-08-01\", \"end\": \"2027-03-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-592-950-9675",
-        "manager_name": "Jack Bailey"
+        "manager_name": "Jack Bailey",
+        "price_per_day": 11925
     },
     {
         "venue_id": "10cb072d-6d4f-4800-9544-c0677d8965f3",
@@ -1527,7 +1577,8 @@
         "need_dates": "[{\"start\": \"2025-10-29\", \"end\": \"2025-10-31\"}, {\"start\": \"2025-09-21\", \"end\": \"2025-09-26\"}, {\"start\": \"2025-12-14\", \"end\": \"2025-12-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-387-532-6568",
-        "manager_name": "Alexander Walker"
+        "manager_name": "Alexander Walker",
+        "price_per_day": 33918
     },
     {
         "venue_id": "ff162cec-c974-42ad-8d87-1f2c1c099be6",
@@ -1557,7 +1608,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-768-989-4373",
-        "manager_name": "Henry Sanders"
+        "manager_name": "Henry Sanders",
+        "price_per_day": 9150
     },
     {
         "venue_id": "408191ac-fa75-48b0-9096-731f176948db",
@@ -1587,7 +1639,8 @@
         "need_dates": "[{\"start\": \"2026-01-01\", \"end\": \"2026-04-14\"}, {\"start\": \"2025-10-04\", \"end\": \"2025-10-23\"}, {\"start\": \"2025-10-26\", \"end\": \"2025-12-30\"}, {\"start\": \"2025-09-21\", \"end\": \"2025-09-28\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-381-262-4224",
-        "manager_name": "Joseph Nelson"
+        "manager_name": "Joseph Nelson",
+        "price_per_day": 4885
     },
     {
         "venue_id": "29333f4e-2244-4ee9-9221-0e067ce33ae3",
@@ -1617,7 +1670,8 @@
         "need_dates": "[{\"start\": \"2025-11-01\", \"end\": \"2025-12-30\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-904-402-3463",
-        "manager_name": "Isabella Morgan"
+        "manager_name": "Isabella Morgan",
+        "price_per_day": 2284
     },
     {
         "venue_id": "ac87f63d-a25a-4239-abda-b5a479d02f6d",
@@ -1647,7 +1701,8 @@
         "need_dates": "[{\"start\": \"2025-12-22\", \"end\": \"2026-01-02\"}, {\"start\": \"2025-11-24\", \"end\": \"2025-11-28\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-982-512-9159",
-        "manager_name": "Liam Reed"
+        "manager_name": "Liam Reed",
+        "price_per_day": 2187
     },
     {
         "venue_id": "c778b75e-db28-420a-b739-605a000c8476",
@@ -1677,7 +1732,8 @@
         "need_dates": "[{\"start\": \"2025-09-21\", \"end\": \"2025-09-24\"}, {\"start\": \"2025-11-23\", \"end\": \"2025-12-30\"}, {\"start\": \"2025-10-01\", \"end\": \"2025-10-05\"}, {\"start\": \"2025-10-29\", \"end\": \"2025-11-11\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-634-257-7221",
-        "manager_name": "Ava Peterson"
+        "manager_name": "Ava Peterson",
+        "price_per_day": 9733
     },
     {
         "venue_id": "e68a7ae0-9fed-4288-bd6c-dcd425a7a9c3",
@@ -1707,7 +1763,8 @@
         "need_dates": "[{\"start\": \"2025-11-17\", \"end\": \"2026-03-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-523-757-5324",
-        "manager_name": "Andrew Wilson"
+        "manager_name": "Andrew Wilson",
+        "price_per_day": 10741
     },
     {
         "venue_id": "71d1c32a-2786-4249-9e43-b9d8f713719e",
@@ -1737,7 +1794,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-947-412-6823",
-        "manager_name": "Lucas Ward"
+        "manager_name": "Lucas Ward",
+        "price_per_day": 7307
     },
     {
         "venue_id": "95dfd793-6677-4a7e-b57c-434ae2e36a95",
@@ -1767,7 +1825,8 @@
         "need_dates": "[{\"start\": \"2025-09-21\", \"end\": \"2026-03-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-956-844-8123",
-        "manager_name": "Madison Ward"
+        "manager_name": "Madison Ward",
+        "price_per_day": 5503
     },
     {
         "venue_id": "2f767745-b754-4b04-9e5e-17dec06937f7",
@@ -1797,7 +1856,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-885-372-5866",
-        "manager_name": "Lily Walker"
+        "manager_name": "Lily Walker",
+        "price_per_day": 9814
     },
     {
         "venue_id": "180298cf-b88c-4df1-a159-99e7b830c7bb",
@@ -1827,7 +1887,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-503-601-1416",
-        "manager_name": "Benjamin Gray"
+        "manager_name": "Benjamin Gray",
+        "price_per_day": 193571
     },
     {
         "venue_id": "8b321b0c-dd8c-4337-9a54-490a651c8c62",
@@ -1857,7 +1918,8 @@
         "need_dates": "[{\"start\": \"2025-09-21\", \"end\": \"2025-12-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-840-568-1306",
-        "manager_name": "Jacob Walker"
+        "manager_name": "Jacob Walker",
+        "price_per_day": 7654
     },
     {
         "venue_id": "bd728151-8e1d-4e16-8f8c-aba1ab45fcab",
@@ -1887,7 +1949,8 @@
         "need_dates": "[{\"start\": \"2025-11-03\", \"end\": \"2025-11-07\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-540-544-8246",
-        "manager_name": "Liam Green"
+        "manager_name": "Liam Green",
+        "price_per_day": 12227
     },
     {
         "venue_id": "f95bac7f-7c45-4218-86c5-775ab9686ca0",
@@ -1917,7 +1980,8 @@
         "need_dates": "[{\"start\": \"2025-10-29\", \"end\": \"2025-10-29\"}, {\"start\": \"2025-09-27\", \"end\": \"2025-10-09\"}, {\"start\": \"2025-11-06\", \"end\": \"2025-11-06\"}, {\"start\": \"2025-11-16\", \"end\": \"2025-12-04\"}, {\"start\": \"2025-11-01\", \"end\": \"2025-11-01\"}, {\"start\": \"2025-10-12\", \"end\": \"2025-10-16\"}, {\"start\": \"2025-12-08\", \"end\": \"2025-12-31\"}, {\"start\": \"2025-10-18\", \"end\": \"2025-10-26\"}, {\"start\": \"2025-11-08\", \"end\": \"2025-11-14\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-214-237-5414",
-        "manager_name": "Ella Baker"
+        "manager_name": "Ella Baker",
+        "price_per_day": 10554
     },
     {
         "venue_id": "4993815e-e6d1-449b-8b45-e8636651e5b7",
@@ -1947,7 +2011,8 @@
         "need_dates": "[{\"start\": \"2025-09-21\", \"end\": \"2025-09-27\"}, {\"start\": \"2025-11-09\", \"end\": \"2025-11-13\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-412-405-3794",
-        "manager_name": "Isabella Wilson"
+        "manager_name": "Isabella Wilson",
+        "price_per_day": 29857
     },
     {
         "venue_id": "5e0d9a2c-61bc-4091-97d2-7162c5719c9d",
@@ -1977,7 +2042,8 @@
         "need_dates": "[{\"start\": \"2025-10-26\", \"end\": \"2025-11-01\"}, {\"start\": \"2025-11-23\", \"end\": \"2025-12-30\"}, {\"start\": \"2026-07-19\", \"end\": \"2026-08-31\"}, {\"start\": \"2026-11-19\", \"end\": \"2026-12-30\"}, {\"start\": \"2026-01-01\", \"end\": \"2026-04-10\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-462-488-5997",
-        "manager_name": "Mason Mitchell"
+        "manager_name": "Mason Mitchell",
+        "price_per_day": 11977
     },
     {
         "venue_id": "c778b75e-db28-420a-b739-605a000c8476",
@@ -2007,7 +2073,8 @@
         "need_dates": "[{\"start\": \"2025-09-21\", \"end\": \"2025-09-24\"}, {\"start\": \"2025-11-23\", \"end\": \"2025-12-30\"}, {\"start\": \"2025-10-01\", \"end\": \"2025-10-05\"}, {\"start\": \"2025-10-29\", \"end\": \"2025-11-11\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-744-722-2613",
-        "manager_name": "Olivia Wilson"
+        "manager_name": "Olivia Wilson",
+        "price_per_day": 8664
     },
     {
         "venue_id": "48c73dfe-0bbf-4002-b93f-f99e272134b9",
@@ -2037,7 +2104,8 @@
         "need_dates": "[{\"start\": \"2025-11-01\", \"end\": \"2025-12-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-577-886-9734",
-        "manager_name": "Mason Davis"
+        "manager_name": "Mason Davis",
+        "price_per_day": 3516
     },
     {
         "venue_id": "ff162cec-c974-42ad-8d87-1f2c1c099be6",
@@ -2067,7 +2135,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-459-495-8810",
-        "manager_name": "Jacob King"
+        "manager_name": "Jacob King",
+        "price_per_day": 11820
     },
     {
         "venue_id": "b5c59527-cc3f-4b09-b55a-07fea7b7e1ab",
@@ -2097,7 +2166,8 @@
         "need_dates": "[{\"start\": \"2025-09-21\", \"end\": \"2026-06-30\"}, {\"start\": \"2026-08-01\", \"end\": \"2027-03-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-235-610-3757",
-        "manager_name": "Olivia Davis"
+        "manager_name": "Olivia Davis",
+        "price_per_day": 9432
     },
     {
         "venue_id": "408191ac-fa75-48b0-9096-731f176948db",
@@ -2127,7 +2197,8 @@
         "need_dates": "[{\"start\": \"2026-01-01\", \"end\": \"2026-04-14\"}, {\"start\": \"2025-10-04\", \"end\": \"2025-10-23\"}, {\"start\": \"2025-10-26\", \"end\": \"2025-12-30\"}, {\"start\": \"2025-09-21\", \"end\": \"2025-09-28\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-956-263-7523",
-        "manager_name": "Andrew Smith"
+        "manager_name": "Andrew Smith",
+        "price_per_day": 4745
     },
     {
         "venue_id": "10cb072d-6d4f-4800-9544-c0677d8965f3",
@@ -2157,7 +2228,8 @@
         "need_dates": "[{\"start\": \"2025-10-29\", \"end\": \"2025-10-31\"}, {\"start\": \"2025-09-21\", \"end\": \"2025-09-26\"}, {\"start\": \"2025-12-14\", \"end\": \"2025-12-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-692-791-2934",
-        "manager_name": "Michael Thompson"
+        "manager_name": "Michael Thompson",
+        "price_per_day": 23748
     },
     {
         "venue_id": "ac87f63d-a25a-4239-abda-b5a479d02f6d",
@@ -2187,7 +2259,8 @@
         "need_dates": "[{\"start\": \"2025-12-22\", \"end\": \"2026-01-02\"}, {\"start\": \"2025-11-24\", \"end\": \"2025-11-28\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-671-922-4292",
-        "manager_name": "Ethan Ross"
+        "manager_name": "Ethan Ross",
+        "price_per_day": 4874
     },
     {
         "venue_id": "befb9beb-8774-4893-acf2-a346db25ce28",
@@ -2217,7 +2290,8 @@
         "need_dates": "[{\"start\": \"2025-09-21\", \"end\": \"2026-03-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-531-838-7659",
-        "manager_name": "Zoe Sanders"
+        "manager_name": "Zoe Sanders",
+        "price_per_day": 7169
     },
     {
         "venue_id": "29333f4e-2244-4ee9-9221-0e067ce33ae3",
@@ -2247,7 +2321,8 @@
         "need_dates": "[{\"start\": \"2025-11-01\", \"end\": \"2025-12-30\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-748-493-8343",
-        "manager_name": "Mason Mitchell"
+        "manager_name": "Mason Mitchell",
+        "price_per_day": 4495
     },
     {
         "venue_id": "e68a7ae0-9fed-4288-bd6c-dcd425a7a9c3",
@@ -2277,7 +2352,8 @@
         "need_dates": "[{\"start\": \"2025-11-17\", \"end\": \"2026-03-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-864-403-7194",
-        "manager_name": "Mason Allen"
+        "manager_name": "Mason Allen",
+        "price_per_day": 8803
     },
     {
         "venue_id": "42742eb4-8bc6-47ac-bcd9-6889c45b970e",
@@ -2307,7 +2383,8 @@
         "need_dates": "[{\"start\": \"2025-10-26\", \"end\": \"2026-03-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-244-782-8799",
-        "manager_name": "Benjamin Scott"
+        "manager_name": "Benjamin Scott",
+        "price_per_day": 14751
     },
     {
         "venue_id": "3581c3fc-77f5-431b-aec4-7f528e0c934d",
@@ -2337,7 +2414,8 @@
         "need_dates": "[{\"start\": \"2025-09-21\", \"end\": \"2025-09-26\"}, {\"start\": \"2025-09-29\", \"end\": \"2025-10-03\"}, {\"start\": \"2025-12-22\", \"end\": \"2025-12-26\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-580-217-1665",
-        "manager_name": "Chloe Morgan"
+        "manager_name": "Chloe Morgan",
+        "price_per_day": 38892
     },
     {
         "venue_id": "424596cc-6416-4325-819f-a4aa60310150",
@@ -2367,7 +2445,8 @@
         "need_dates": "[{\"start\": \"2025-10-20\", \"end\": \"2026-03-31\"}, {\"start\": \"2025-09-21\", \"end\": \"2025-10-10\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-375-743-7425",
-        "manager_name": "Amelia Smith"
+        "manager_name": "Amelia Smith",
+        "price_per_day": 10010
     },
     {
         "venue_id": "0c6bc62b-8b6f-4089-9ea4-f24319c6412a",
@@ -2397,7 +2476,8 @@
         "need_dates": "[{\"start\": \"2028-07-01\", \"end\": \"2028-08-31\"}, {\"start\": \"2027-07-01\", \"end\": \"2027-08-31\"}, {\"start\": \"2025-11-23\", \"end\": \"2025-11-28\"}, {\"start\": \"2025-10-12\", \"end\": \"2025-10-13\"}, {\"start\": \"2026-03-07\", \"end\": \"2026-03-31\"}, {\"start\": \"2025-10-29\", \"end\": \"2025-10-31\"}, {\"start\": \"2027-01-01\", \"end\": \"2027-03-31\"}, {\"start\": \"2025-11-02\", \"end\": \"2025-11-05\"}, {\"start\": \"2026-02-14\", \"end\": \"2026-02-28\"}, {\"start\": \"2025-12-07\", \"end\": \"2026-02-07\"}, {\"start\": \"2027-11-15\", \"end\": \"2027-12-31\"}, {\"start\": \"2025-11-16\", \"end\": \"2025-11-20\"}, {\"start\": \"2026-07-01\", \"end\": \"2026-08-31\"}, {\"start\": \"2025-09-21\", \"end\": \"2025-10-04\"}, {\"start\": \"2028-11-15\", \"end\": \"2028-12-31\"}, {\"start\": \"2025-11-09\", \"end\": \"2025-11-14\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-635-386-1125",
-        "manager_name": "Jack Davis"
+        "manager_name": "Jack Davis",
+        "price_per_day": 8677
     },
     {
         "venue_id": "165d1740-1a58-4841-8ef6-fbd04bb4ade2",
@@ -2427,7 +2507,8 @@
         "need_dates": "[{\"start\": \"2025-10-27\", \"end\": \"2026-03-31\"}, {\"start\": \"2025-10-01\", \"end\": \"2025-10-09\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-601-823-4773",
-        "manager_name": "Matthew Allen"
+        "manager_name": "Matthew Allen",
+        "price_per_day": 3893
     },
     {
         "venue_id": "8c618154-c9ef-496c-b717-421e6e7c9b20",
@@ -2457,7 +2538,8 @@
         "need_dates": "[{\"start\": \"2025-11-07\", \"end\": \"2025-11-14\"}, {\"start\": \"2025-11-21\", \"end\": \"2025-11-27\"}, {\"start\": \"2026-03-05\", \"end\": \"2026-03-21\"}, {\"start\": \"2025-09-24\", \"end\": \"2025-09-27\"}, {\"start\": \"2026-02-07\", \"end\": \"2026-02-17\"}, {\"start\": \"2025-12-20\", \"end\": \"2026-01-06\"}, {\"start\": \"2026-01-23\", \"end\": \"2026-01-31\"}, {\"start\": \"2025-12-04\", \"end\": \"2025-12-15\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-431-468-7218",
-        "manager_name": "Lily Baker"
+        "manager_name": "Lily Baker",
+        "price_per_day": 27433
     },
     {
         "venue_id": "b71ac202-be0c-4d34-a893-15e38113104b",
@@ -2487,7 +2569,8 @@
         "need_dates": "[{\"start\": \"2028-10-08\", \"end\": \"2028-10-12\"}, {\"start\": \"2028-05-28\", \"end\": \"2028-06-01\"}, {\"start\": \"2026-10-04\", \"end\": \"2026-10-08\"}, {\"start\": \"2027-09-19\", \"end\": \"2027-09-23\"}, {\"start\": \"2026-08-16\", \"end\": \"2026-08-20\"}, {\"start\": \"2028-02-27\", \"end\": \"2028-03-02\"}, {\"start\": \"2028-05-21\", \"end\": \"2028-05-25\"}, {\"start\": \"2027-11-07\", \"end\": \"2027-11-11\"}, {\"start\": \"2027-01-03\", \"end\": \"2027-01-07\"}, {\"start\": \"2028-08-13\", \"end\": \"2028-08-17\"}, {\"start\": \"2026-01-04\", \"end\": \"2026-01-08\"}, {\"start\": \"2026-08-02\", \"end\": \"2026-08-06\"}, {\"start\": \"2028-10-15\", \"end\": \"2028-10-19\"}, {\"start\": \"2027-08-29\", \"end\": \"2027-09-02\"}, {\"start\": \"2028-08-27\", \"end\": \"2028-08-31\"}, {\"start\": \"2026-07-15\", \"end\": \"2026-07-16\"}, {\"start\": \"2026-08-09\", \"end\": \"2026-08-13\"}, {\"start\": \"2026-04-19\", \"end\": \"2026-04-22\"}, {\"start\": \"2025-12-14\", \"end\": \"2025-12-18\"}, {\"start\": \"2026-07-26\", \"end\": \"2026-07-30\"}, {\"start\": \"2026-05-24\", \"end\": \"2026-05-27\"}, {\"start\": \"2028-12-17\", \"end\": \"2028-12-21\"}, {\"start\": \"2027-08-01\", \"end\": \"2027-08-05\"}, {\"start\": \"2025-11-23\", \"end\": \"2025-11-27\"}, {\"start\": \"2027-07-04\", \"end\": \"2027-07-08\"}, {\"start\": \"2027-08-08\", \"end\": \"2027-08-12\"}, {\"start\": \"2026-06-14\", \"end\": \"2026-06-18\"}, {\"start\": \"2028-08-20\", \"end\": \"2028-08-24\"}, {\"start\": \"2026-01-25\", \"end\": \"2026-01-29\"}, {\"start\": \"2026-03-08\", \"end\": \"2026-03-12\"}, {\"start\": \"2027-02-14\", \"end\": \"2027-02-18\"}, {\"start\": \"2028-03-19\", \"end\": \"2028-03-23\"}, {\"start\": \"2026-10-11\", \"end\": \"2026-10-15\"}, {\"start\": \"2026-02-15\", \"end\": \"2026-02-19\"}, {\"start\": \"2025-12-21\", \"end\": \"2025-12-25\"}, {\"start\": \"2026-08-23\", \"end\": \"2026-08-27\"}, {\"start\": \"2026-07-19\", \"end\": \"2026-07-23\"}, {\"start\": \"2027-12-12\", \"end\": \"2027-12-16\"}, {\"start\": \"2027-04-11\", \"end\": \"2027-04-15\"}, {\"start\": \"2028-06-25\", \"end\": \"2028-06-29\"}, {\"start\": \"2027-02-07\", \"end\": \"2027-02-11\"}, {\"start\": \"2028-01-09\", \"end\": \"2028-01-13\"}, {\"start\": \"2028-04-30\", \"end\": \"2028-05-04\"}, {\"start\": \"2028-07-02\", \"end\": \"2028-07-06\"}, {\"start\": \"2028-12-10\", \"end\": \"2028-12-14\"}, {\"start\": \"2026-02-22\", \"end\": \"2026-02-26\"}, {\"start\": \"2028-10-01\", \"end\": \"2028-10-05\"}, {\"start\": \"2026-05-10\", \"end\": \"2026-05-14\"}, {\"start\": \"2026-06-28\", \"end\": \"2026-07-02\"}, {\"start\": \"2026-03-29\", \"end\": \"2026-04-02\"}, {\"start\": \"2025-10-01\", \"end\": \"2025-10-02\"}, {\"start\": \"2028-08-06\", \"end\": \"2028-08-10\"}, {\"start\": \"2027-07-11\", \"end\": \"2027-07-15\"}, {\"start\": \"2028-02-13\", \"end\": \"2028-02-17\"}, {\"start\": \"2026-09-20\", \"end\": \"2026-09-24\"}, {\"start\": \"2028-07-16\", \"end\": \"2028-07-20\"}, {\"start\": \"2027-12-05\", \"end\": \"2027-12-09\"}, {\"start\": \"2028-02-20\", \"end\": \"2028-02-24\"}, {\"start\": \"2027-08-15\", \"end\": \"2027-08-19\"}, {\"start\": \"2027-07-18\", \"end\": \"2027-07-22\"}, {\"start\": \"2027-09-05\", \"end\": \"2027-09-09\"}, {\"start\": \"2026-03-15\", \"end\": \"2026-03-19\"}, {\"start\": \"2026-02-08\", \"end\": \"2026-02-12\"}, {\"start\": \"2026-12-06\", \"end\": \"2026-12-10\"}, {\"start\": \"2028-11-29\", \"end\": \"2028-11-30\"}, {\"start\": \"2028-07-23\", \"end\": \"2028-07-27\"}, {\"start\": \"2027-03-28\", \"end\": \"2027-04-01\"}, {\"start\": \"2027-05-30\", \"end\": \"2027-06-02\"}, {\"start\": \"2027-01-10\", \"end\": \"2027-01-14\"}, {\"start\": \"2026-11-01\", \"end\": \"2026-11-05\"}, {\"start\": \"2027-04-25\", \"end\": \"2027-04-29\"}, {\"start\": \"2026-02-01\", \"end\": \"2026-02-05\"}, {\"start\": \"2026-11-08\", \"end\": \"2026-11-12\"}, {\"start\": \"2027-05-16\", \"end\": \"2027-05-20\"}, {\"start\": \"2025-10-22\", \"end\": \"2025-10-23\"}, {\"start\": \"2027-11-21\", \"end\": \"2027-11-25\"}, {\"start\": \"2028-04-09\", \"end\": \"2028-04-13\"}, {\"start\": \"2028-01-30\", \"end\": \"2028-02-03\"}, {\"start\": \"2025-12-07\", \"end\": \"2025-12-11\"}, {\"start\": \"2027-05-02\", \"end\": \"2027-05-06\"}, {\"start\": \"2026-04-05\", \"end\": \"2026-04-09\"}, {\"start\": \"2027-03-07\", \"end\": \"2027-03-11\"}, {\"start\": \"2026-03-22\", \"end\": \"2026-03-26\"}, {\"start\": \"2027-10-24\", \"end\": \"2027-10-28\"}, {\"start\": \"2028-06-18\", \"end\": \"2028-06-22\"}, {\"start\": \"2028-09-17\", \"end\": \"2028-09-21\"}, {\"start\": \"2028-09-10\", \"end\": \"2028-09-14\"}, {\"start\": \"2027-11-28\", \"end\": \"2027-12-02\"}, {\"start\": \"2028-07-30\", \"end\": \"2028-08-03\"}, {\"start\": \"2028-11-08\", \"end\": \"2028-11-09\"}, {\"start\": \"2028-01-16\", \"end\": \"2028-01-20\"}, {\"start\": \"2027-06-20\", \"end\": \"2027-06-24\"}, {\"start\": \"2028-01-02\", \"end\": \"2028-01-06\"}, {\"start\": \"2028-02-06\", \"end\": \"2028-02-10\"}, {\"start\": \"2027-12-26\", \"end\": \"2027-12-30\"}, {\"start\": \"2026-06-09\", \"end\": \"2026-06-11\"}, {\"start\": \"2027-06-08\", \"end\": \"2027-06-10\"}, {\"start\": \"2027-05-09\", \"end\": \"2027-05-13\"}, {\"start\": \"2026-12-20\", \"end\": \"2026-12-24\"}, {\"start\": \"2027-02-28\", \"end\": \"2027-03-04\"}, {\"start\": \"2026-12-13\", \"end\": \"2026-12-17\"}, {\"start\": \"2028-03-05\", \"end\": \"2028-03-09\"}, {\"start\": \"2026-01-18\", \"end\": \"2026-01-22\"}, {\"start\": \"2026-05-19\", \"end\": \"2026-05-21\"}, {\"start\": \"2028-03-26\", \"end\": \"2028-03-30\"}, {\"start\": \"2025-11-09\", \"end\": \"2025-11-13\"}, {\"start\": \"2027-10-31\", \"end\": \"2027-11-04\"}, {\"start\": \"2028-05-14\", \"end\": \"2028-05-18\"}, {\"start\": \"2026-08-30\", \"end\": \"2026-09-03\"}, {\"start\": \"2028-03-12\", \"end\": \"2028-03-16\"}, {\"start\": \"2028-09-03\", \"end\": \"2028-09-07\"}, {\"start\": \"2026-12-27\", \"end\": \"2026-12-31\"}, {\"start\": \"2027-08-22\", \"end\": \"2027-08-26\"}, {\"start\": \"2028-04-16\", \"end\": \"2028-04-20\"}, {\"start\": \"2026-09-27\", \"end\": \"2026-10-01\"}, {\"start\": \"2028-10-22\", \"end\": \"2028-10-26\"}, {\"start\": \"2028-04-02\", \"end\": \"2028-04-06\"}, {\"start\": \"2027-03-21\", \"end\": \"2027-03-25\"}, {\"start\": \"2028-11-12\", \"end\": \"2028-11-16\"}, {\"start\": \"2028-10-29\", \"end\": \"2028-11-02\"}, {\"start\": \"2026-07-05\", \"end\": \"2026-07-08\"}, {\"start\": \"2026-04-12\", \"end\": \"2026-04-16\"}, {\"start\": \"2027-07-25\", \"end\": \"2027-07-29\"}, {\"start\": \"2026-01-11\", \"end\": \"2026-01-15\"}, {\"start\": \"2027-02-21\", \"end\": \"2027-02-25\"}, {\"start\": \"2027-10-03\", \"end\": \"2027-10-07\"}, {\"start\": \"2027-03-14\", \"end\": \"2027-03-18\"}, {\"start\": \"2028-07-09\", \"end\": \"2028-07-13\"}, {\"start\": \"2025-09-21\", \"end\": \"2025-09-25\"}, {\"start\": \"2028-12-24\", \"end\": \"2028-12-28\"}, {\"start\": \"2027-05-23\", \"end\": \"2027-05-27\"}, {\"start\": \"2027-01-17\", \"end\": \"2027-01-21\"}, {\"start\": \"2026-11-22\", \"end\": \"2026-11-26\"}, {\"start\": \"2025-12-28\", \"end\": \"2026-01-01\"}, {\"start\": \"2028-01-23\", \"end\": \"2028-01-27\"}, {\"start\": \"2027-12-19\", \"end\": \"2027-12-23\"}, {\"start\": \"2027-10-17\", \"end\": \"2027-10-21\"}, {\"start\": \"2028-11-19\", \"end\": \"2028-11-23\"}, {\"start\": \"2028-12-03\", \"end\": \"2028-12-07\"}, {\"start\": \"2028-09-24\", \"end\": \"2028-09-28\"}, {\"start\": \"2027-06-13\", \"end\": \"2027-06-17\"}, {\"start\": \"2027-10-10\", \"end\": \"2027-10-14\"}, {\"start\": \"2026-11-15\", \"end\": \"2026-11-19\"}, {\"start\": \"2028-04-23\", \"end\": \"2028-04-27\"}, {\"start\": \"2028-05-07\", \"end\": \"2028-05-11\"}, {\"start\": \"2026-04-26\", \"end\": \"2026-04-30\"}, {\"start\": \"2027-06-30\", \"end\": \"2027-07-01\"}, {\"start\": \"2026-10-25\", \"end\": \"2026-10-29\"}, {\"start\": \"2027-01-31\", \"end\": \"2027-02-04\"}, {\"start\": \"2026-09-06\", \"end\": \"2026-09-10\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-608-247-9059",
-        "manager_name": "Henry Ward"
+        "manager_name": "Henry Ward",
+        "price_per_day": 10422
     },
     {
         "venue_id": "964f08e8-8a0b-431e-bc5d-0462fd337874",
@@ -2517,7 +2600,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-640-915-7331",
-        "manager_name": "Henry Wilson"
+        "manager_name": "Henry Wilson",
+        "price_per_day": 76500
     },
     {
         "venue_id": "5161d99f-6c54-4868-bfba-3f990deb342e",
@@ -2547,7 +2631,8 @@
         "need_dates": "[{\"start\": \"2026-04-26\", \"end\": \"2026-05-04\"}, {\"start\": \"2025-12-20\", \"end\": \"2025-12-24\"}, {\"start\": \"2025-11-21\", \"end\": \"2025-11-29\"}, {\"start\": \"2026-04-09\", \"end\": \"2026-04-18\"}, {\"start\": \"2026-02-05\", \"end\": \"2026-02-09\"}, {\"start\": \"2026-02-21\", \"end\": \"2026-02-25\"}, {\"start\": \"2026-06-04\", \"end\": \"2026-06-11\"}, {\"start\": \"2026-05-07\", \"end\": \"2026-05-11\"}, {\"start\": \"2026-03-12\", \"end\": \"2026-03-20\"}, {\"start\": \"2026-05-21\", \"end\": \"2026-05-28\"}, {\"start\": \"2026-01-30\", \"end\": \"2026-02-01\"}, {\"start\": \"2026-03-06\", \"end\": \"2026-03-09\"}, {\"start\": \"2025-12-29\", \"end\": \"2026-01-15\"}, {\"start\": \"2025-09-24\", \"end\": \"2025-09-28\"}, {\"start\": \"2025-11-07\", \"end\": \"2025-11-12\"}, {\"start\": \"2025-12-04\", \"end\": \"2025-12-16\"}, {\"start\": \"2025-10-29\", \"end\": \"2025-10-31\"}, {\"start\": \"2025-10-01\", \"end\": \"2025-10-03\"}, {\"start\": \"2026-02-13\", \"end\": \"2026-02-18\"}, {\"start\": \"2026-06-19\", \"end\": \"2026-06-21\"}, {\"start\": \"2026-01-19\", \"end\": \"2026-01-26\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-964-278-1804",
-        "manager_name": "Joseph Morgan"
+        "manager_name": "Joseph Morgan",
+        "price_per_day": 22196
     },
     {
         "venue_id": "496e8796-70a2-4355-828a-cabc6595480b",
@@ -2577,7 +2662,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-871-531-6220",
-        "manager_name": "Emily Bailey"
+        "manager_name": "Emily Bailey",
+        "price_per_day": 11313
     },
     {
         "venue_id": "fe16d0dc-87e0-4ecd-86a7-7981df63ea4c",
@@ -2607,7 +2693,8 @@
         "need_dates": "[{\"start\": \"2025-11-16\", \"end\": \"2025-11-21\"}, {\"start\": \"2025-12-20\", \"end\": \"2026-01-31\"}, {\"start\": \"2025-10-26\", \"end\": \"2025-11-01\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-385-491-2257",
-        "manager_name": "Zoe Hall"
+        "manager_name": "Zoe Hall",
+        "price_per_day": 6916
     },
     {
         "venue_id": "0c661fff-030a-4178-93eb-d69ec4eb7434",
@@ -2637,7 +2724,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-534-552-7722",
-        "manager_name": "David Thompson"
+        "manager_name": "David Thompson",
+        "price_per_day": 2938
     },
     {
         "venue_id": "55b54f87-d8c7-413f-a871-867d2ebe3b98",
@@ -2667,7 +2755,8 @@
         "need_dates": "[{\"start\": \"2025-09-21\", \"end\": \"2025-09-27\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-408-728-1480",
-        "manager_name": "Scarlett Hughes"
+        "manager_name": "Scarlett Hughes",
+        "price_per_day": 6525
     },
     {
         "venue_id": "09753f10-ac06-4bcc-8918-e4fb4a99a1c8",
@@ -2697,7 +2786,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-829-946-6103",
-        "manager_name": "Natalie Flores"
+        "manager_name": "Natalie Flores",
+        "price_per_day": 11168
     },
     {
         "venue_id": "5bffeb96-765c-40e2-be4c-39d09b1ccfaf",
@@ -2727,7 +2817,8 @@
         "need_dates": "[{\"start\": \"2025-10-13\", \"end\": \"2025-12-31\"}, {\"start\": \"2025-09-21\", \"end\": \"2025-10-10\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-512-499-5034",
-        "manager_name": "Daniel Wright"
+        "manager_name": "Daniel Wright",
+        "price_per_day": 3643
     },
     {
         "venue_id": "66b46b85-634e-4b80-88a4-25f5e4975e5a",
@@ -2757,7 +2848,8 @@
         "need_dates": "[{\"start\": \"2025-11-03\", \"end\": \"2025-11-05\"}, {\"start\": \"2025-11-20\", \"end\": \"2025-11-23\"}, {\"start\": \"2025-10-27\", \"end\": \"2025-10-29\"}, {\"start\": \"2025-12-15\", \"end\": \"2025-12-19\"}, {\"start\": \"2025-10-01\", \"end\": \"2025-10-03\"}, {\"start\": \"2025-11-10\", \"end\": \"2025-11-12\"}, {\"start\": \"2025-12-08\", \"end\": \"2025-12-12\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-461-570-6156",
-        "manager_name": "Noah Rivera"
+        "manager_name": "Noah Rivera",
+        "price_per_day": 10386
     },
     {
         "venue_id": "1afffbfb-e192-48e3-bac3-75f6e05e7cb4",
@@ -2787,7 +2879,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-438-826-9414",
-        "manager_name": "Hannah Nelson"
+        "manager_name": "Hannah Nelson",
+        "price_per_day": 17168
     },
     {
         "venue_id": "048cf22a-aaac-4017-8e62-825d9c33e7cf",
@@ -2817,7 +2910,8 @@
         "need_dates": "[{\"start\": \"2025-11-01\", \"end\": \"2026-04-30\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-495-722-2364",
-        "manager_name": "Scarlett Davis"
+        "manager_name": "Scarlett Davis",
+        "price_per_day": 9456
     },
     {
         "venue_id": "63c105e7-c50a-495d-881a-7fb9624f837b",
@@ -2847,7 +2941,8 @@
         "need_dates": "[{\"start\": \"2025-11-10\", \"end\": \"2025-11-14\"}, {\"start\": \"2025-10-20\", \"end\": \"2025-10-23\"}, {\"start\": \"2025-11-17\", \"end\": \"2025-11-28\"}, {\"start\": \"2025-12-01\", \"end\": \"2025-12-25\"}, {\"start\": \"2025-10-05\", \"end\": \"2025-10-08\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-602-237-6458",
-        "manager_name": "Anthony Turner"
+        "manager_name": "Anthony Turner",
+        "price_per_day": 11155
     },
     {
         "venue_id": "06e89d09-e317-4ef8-8479-069c14d80bd9",
@@ -2877,7 +2972,8 @@
         "need_dates": "[{\"start\": \"2026-01-14\", \"end\": \"2026-02-28\"}, {\"start\": \"2025-11-10\", \"end\": \"2025-11-21\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-764-828-4760",
-        "manager_name": "Charlotte Ward"
+        "manager_name": "Charlotte Ward",
+        "price_per_day": 9483
     },
     {
         "venue_id": "f00721aa-77bd-4f45-9cf3-4de02c793ec7",
@@ -2907,7 +3003,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-303-711-5744",
-        "manager_name": "Lily Clark"
+        "manager_name": "Lily Clark",
+        "price_per_day": 14179
     },
     {
         "venue_id": "6fcef8bd-d9e1-46f9-993d-59d4d808e816",
@@ -2937,7 +3034,8 @@
         "need_dates": "[{\"start\": \"2025-11-17\", \"end\": \"2025-11-19\"}, {\"start\": \"2026-08-23\", \"end\": \"2026-08-26\"}, {\"start\": \"2026-07-06\", \"end\": \"2026-07-10\"}, {\"start\": \"2026-10-28\", \"end\": \"2026-10-30\"}, {\"start\": \"2026-06-22\", \"end\": \"2026-06-24\"}, {\"start\": \"2026-07-26\", \"end\": \"2026-07-30\"}, {\"start\": \"2026-12-06\", \"end\": \"2026-12-19\"}, {\"start\": \"2027-03-01\", \"end\": \"2027-03-06\"}, {\"start\": \"2026-03-22\", \"end\": \"2026-04-01\"}, {\"start\": \"2026-05-10\", \"end\": \"2026-05-14\"}, {\"start\": \"2026-04-27\", \"end\": \"2026-04-29\"}, {\"start\": \"2026-11-08\", \"end\": \"2026-11-12\"}, {\"start\": \"2025-11-10\", \"end\": \"2025-11-13\"}, {\"start\": \"2027-02-22\", \"end\": \"2027-02-26\"}, {\"start\": \"2026-06-15\", \"end\": \"2026-06-17\"}, {\"start\": \"2026-05-18\", \"end\": \"2026-05-20\"}, {\"start\": \"2026-04-13\", \"end\": \"2026-04-15\"}, {\"start\": \"2027-01-18\", \"end\": \"2027-01-23\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-818-664-5197",
-        "manager_name": "Jack Brooks"
+        "manager_name": "Jack Brooks",
+        "price_per_day": 12482
     },
     {
         "venue_id": "6153a013-78bc-484e-a90e-01770305954b",
@@ -2967,7 +3065,8 @@
         "need_dates": "[{\"start\": \"2025-11-21\", \"end\": \"2025-11-30\"}, {\"start\": \"2025-10-03\", \"end\": \"2025-10-08\"}, {\"start\": \"2025-09-25\", \"end\": \"2025-09-30\"}, {\"start\": \"2026-02-27\", \"end\": \"2026-03-07\"}, {\"start\": \"2025-11-12\", \"end\": \"2025-11-18\"}, {\"start\": \"2025-10-13\", \"end\": \"2025-10-13\"}, {\"start\": \"2026-01-28\", \"end\": \"2026-02-24\"}, {\"start\": \"2025-10-29\", \"end\": \"2025-11-04\"}, {\"start\": \"2026-03-14\", \"end\": \"2026-03-19\"}, {\"start\": \"2026-03-10\", \"end\": \"2026-03-11\"}, {\"start\": \"2026-03-22\", \"end\": \"2026-03-31\"}, {\"start\": \"2025-12-04\", \"end\": \"2026-01-19\"}, {\"start\": \"2025-11-07\", \"end\": \"2025-11-10\"}, {\"start\": \"2025-09-21\", \"end\": \"2025-09-23\"}, {\"start\": \"2026-01-23\", \"end\": \"2026-01-25\"}, {\"start\": \"2025-10-17\", \"end\": \"2025-10-23\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-876-385-3378",
-        "manager_name": "Jack Ross"
+        "manager_name": "Jack Ross",
+        "price_per_day": 13517
     },
     {
         "venue_id": "04b44b13-6b9e-456f-bc0d-9c593ba5b4ae",
@@ -2997,7 +3096,8 @@
         "need_dates": "[{\"start\": \"2026-08-01\", \"end\": \"2026-08-31\"}, {\"start\": \"2027-12-06\", \"end\": \"2028-03-31\"}, {\"start\": \"2025-12-08\", \"end\": \"2026-03-31\"}, {\"start\": \"2026-12-07\", \"end\": \"2027-03-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-558-455-6299",
-        "manager_name": "Natalie King"
+        "manager_name": "Natalie King",
+        "price_per_day": 8340
     },
     {
         "venue_id": "7a1d7ec9-c4ad-4883-b30f-6f426401ba77",
@@ -3027,7 +3127,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-259-750-5265",
-        "manager_name": "Emily Carter"
+        "manager_name": "Emily Carter",
+        "price_per_day": 10339
     },
     {
         "venue_id": "08d29040-b471-490c-979a-339273abe751",
@@ -3057,7 +3158,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-966-772-2861",
-        "manager_name": "Grace Wilson"
+        "manager_name": "Grace Wilson",
+        "price_per_day": 8287
     },
     {
         "venue_id": "1be39e94-ae8a-4b7c-8f02-e19e7dfd6db6",
@@ -3087,7 +3189,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-309-521-8794",
-        "manager_name": "Emma Ross"
+        "manager_name": "Emma Ross",
+        "price_per_day": 3010
     },
     {
         "venue_id": "907bc350-a9b4-4ea8-a207-9be8d43a415b",
@@ -3117,7 +3220,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-869-549-8118",
-        "manager_name": "Natalie Green"
+        "manager_name": "Natalie Green",
+        "price_per_day": 14830
     },
     {
         "venue_id": "f26b2ac8-3748-423f-8535-ab55efda89b6",
@@ -3147,7 +3251,8 @@
         "need_dates": "[{\"start\": \"2025-11-23\", \"end\": \"2025-12-02\"}, {\"start\": \"2025-09-28\", \"end\": \"2025-09-28\"}, {\"start\": \"2025-11-18\", \"end\": \"2025-11-20\"}, {\"start\": \"2025-10-01\", \"end\": \"2025-10-06\"}, {\"start\": \"2025-10-23\", \"end\": \"2025-11-05\"}, {\"start\": \"2025-09-21\", \"end\": \"2025-09-22\"}, {\"start\": \"2025-12-09\", \"end\": \"2025-12-29\"}, {\"start\": \"2025-11-09\", \"end\": \"2025-11-14\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-289-253-3060",
-        "manager_name": "Mia Hughes"
+        "manager_name": "Mia Hughes",
+        "price_per_day": 10304
     },
     {
         "venue_id": "42742eb4-8bc6-47ac-bcd9-6889c45b970e",
@@ -3177,7 +3282,8 @@
         "need_dates": "[{\"start\": \"2025-10-26\", \"end\": \"2026-03-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-671-633-4083",
-        "manager_name": "Emily Gray"
+        "manager_name": "Emily Gray",
+        "price_per_day": 13019
     },
     {
         "venue_id": "3581c3fc-77f5-431b-aec4-7f528e0c934d",
@@ -3207,7 +3313,8 @@
         "need_dates": "[{\"start\": \"2025-09-21\", \"end\": \"2025-09-26\"}, {\"start\": \"2025-09-29\", \"end\": \"2025-10-03\"}, {\"start\": \"2025-12-22\", \"end\": \"2025-12-26\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-996-256-2166",
-        "manager_name": "Zoe Lewis"
+        "manager_name": "Zoe Lewis",
+        "price_per_day": 34121
     },
     {
         "venue_id": "3581c3fc-77f5-431b-aec4-7f528e0c934d",
@@ -3237,7 +3344,8 @@
         "need_dates": "[{\"start\": \"2025-09-21\", \"end\": \"2025-09-26\"}, {\"start\": \"2025-09-29\", \"end\": \"2025-10-03\"}, {\"start\": \"2025-12-22\", \"end\": \"2025-12-26\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-775-272-2246",
-        "manager_name": "Lucas Johnson"
+        "manager_name": "Lucas Johnson",
+        "price_per_day": 28087
     },
     {
         "venue_id": "ba645155-73b2-467d-a8a0-5acb34c1368c",
@@ -3267,7 +3375,8 @@
         "need_dates": "[{\"start\": \"2025-09-28\", \"end\": \"2025-09-29\"}, {\"start\": \"2025-12-21\", \"end\": \"2025-12-22\"}, {\"start\": \"2025-12-28\", \"end\": \"2025-12-29\"}, {\"start\": \"2025-10-12\", \"end\": \"2025-10-13\"}, {\"start\": \"2025-10-05\", \"end\": \"2025-10-06\"}, {\"start\": \"2025-11-23\", \"end\": \"2025-11-24\"}, {\"start\": \"2025-09-21\", \"end\": \"2025-09-22\"}, {\"start\": \"2025-10-19\", \"end\": \"2025-10-20\"}, {\"start\": \"2025-11-02\", \"end\": \"2025-11-03\"}, {\"start\": \"2025-11-16\", \"end\": \"2025-11-17\"}, {\"start\": \"2025-12-14\", \"end\": \"2025-12-15\"}, {\"start\": \"2025-11-09\", \"end\": \"2025-11-10\"}, {\"start\": \"2025-10-26\", \"end\": \"2025-10-27\"}, {\"start\": \"2025-12-07\", \"end\": \"2025-12-08\"}, {\"start\": \"2025-11-30\", \"end\": \"2025-12-01\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-932-440-9321",
-        "manager_name": "Natalie Lewis"
+        "manager_name": "Natalie Lewis",
+        "price_per_day": 127447
     },
     {
         "venue_id": "c85515f2-0162-4e28-b3f4-2d0c1f1c9cc0",
@@ -3297,7 +3406,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-441-979-1809",
-        "manager_name": "Harper Gray"
+        "manager_name": "Harper Gray",
+        "price_per_day": 54373
     },
     {
         "venue_id": "0c30b46e-ab34-4e00-906f-4b798a122497",
@@ -3327,7 +3437,8 @@
         "need_dates": "[{\"start\": \"2025-09-21\", \"end\": \"2026-07-31\"}, {\"start\": \"2026-09-01\", \"end\": \"2029-12-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-557-486-3669",
-        "manager_name": "Grace Baker"
+        "manager_name": "Grace Baker",
+        "price_per_day": 98131
     },
     {
         "venue_id": "66b46b85-634e-4b80-88a4-25f5e4975e5a",
@@ -3357,7 +3468,8 @@
         "need_dates": "[{\"start\": \"2025-11-03\", \"end\": \"2025-11-05\"}, {\"start\": \"2025-11-20\", \"end\": \"2025-11-23\"}, {\"start\": \"2025-10-27\", \"end\": \"2025-10-29\"}, {\"start\": \"2025-12-15\", \"end\": \"2025-12-19\"}, {\"start\": \"2025-10-01\", \"end\": \"2025-10-03\"}, {\"start\": \"2025-11-10\", \"end\": \"2025-11-12\"}, {\"start\": \"2025-12-08\", \"end\": \"2025-12-12\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-216-231-2122",
-        "manager_name": "Liam Adams"
+        "manager_name": "Liam Adams",
+        "price_per_day": 14348
     },
     {
         "venue_id": "6fcef8bd-d9e1-46f9-993d-59d4d808e816",
@@ -3387,7 +3499,8 @@
         "need_dates": "[{\"start\": \"2025-11-17\", \"end\": \"2025-11-19\"}, {\"start\": \"2026-08-23\", \"end\": \"2026-08-26\"}, {\"start\": \"2026-07-06\", \"end\": \"2026-07-10\"}, {\"start\": \"2026-10-28\", \"end\": \"2026-10-30\"}, {\"start\": \"2026-06-22\", \"end\": \"2026-06-24\"}, {\"start\": \"2026-07-26\", \"end\": \"2026-07-30\"}, {\"start\": \"2026-12-06\", \"end\": \"2026-12-19\"}, {\"start\": \"2027-03-01\", \"end\": \"2027-03-06\"}, {\"start\": \"2026-03-22\", \"end\": \"2026-04-01\"}, {\"start\": \"2026-05-10\", \"end\": \"2026-05-14\"}, {\"start\": \"2026-04-27\", \"end\": \"2026-04-29\"}, {\"start\": \"2026-11-08\", \"end\": \"2026-11-12\"}, {\"start\": \"2025-11-10\", \"end\": \"2025-11-13\"}, {\"start\": \"2027-02-22\", \"end\": \"2027-02-26\"}, {\"start\": \"2026-06-15\", \"end\": \"2026-06-17\"}, {\"start\": \"2026-05-18\", \"end\": \"2026-05-20\"}, {\"start\": \"2026-04-13\", \"end\": \"2026-04-15\"}, {\"start\": \"2027-01-18\", \"end\": \"2027-01-23\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-659-723-2580",
-        "manager_name": "Olivia Lewis"
+        "manager_name": "Olivia Lewis",
+        "price_per_day": 14085
     },
     {
         "venue_id": "048cf22a-aaac-4017-8e62-825d9c33e7cf",
@@ -3417,7 +3530,8 @@
         "need_dates": "[{\"start\": \"2025-11-01\", \"end\": \"2026-04-30\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-634-698-9624",
-        "manager_name": "Emma Carter"
+        "manager_name": "Emma Carter",
+        "price_per_day": 7489
     },
     {
         "venue_id": "55b54f87-d8c7-413f-a871-867d2ebe3b98",
@@ -3447,7 +3561,8 @@
         "need_dates": "[{\"start\": \"2025-09-21\", \"end\": \"2025-09-27\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-526-493-2598",
-        "manager_name": "Lily Miller"
+        "manager_name": "Lily Miller",
+        "price_per_day": 6771
     },
     {
         "venue_id": "1afffbfb-e192-48e3-bac3-75f6e05e7cb4",
@@ -3477,7 +3592,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-474-490-4917",
-        "manager_name": "Henry Morgan"
+        "manager_name": "Henry Morgan",
+        "price_per_day": 18592
     },
     {
         "venue_id": "6153a013-78bc-484e-a90e-01770305954b",
@@ -3507,7 +3623,8 @@
         "need_dates": "[{\"start\": \"2025-11-21\", \"end\": \"2025-11-30\"}, {\"start\": \"2025-10-03\", \"end\": \"2025-10-08\"}, {\"start\": \"2025-09-25\", \"end\": \"2025-09-30\"}, {\"start\": \"2026-02-27\", \"end\": \"2026-03-07\"}, {\"start\": \"2025-11-12\", \"end\": \"2025-11-18\"}, {\"start\": \"2025-10-13\", \"end\": \"2025-10-13\"}, {\"start\": \"2026-01-28\", \"end\": \"2026-02-24\"}, {\"start\": \"2025-10-29\", \"end\": \"2025-11-04\"}, {\"start\": \"2026-03-14\", \"end\": \"2026-03-19\"}, {\"start\": \"2026-03-10\", \"end\": \"2026-03-11\"}, {\"start\": \"2026-03-22\", \"end\": \"2026-03-31\"}, {\"start\": \"2025-12-04\", \"end\": \"2026-01-19\"}, {\"start\": \"2025-11-07\", \"end\": \"2025-11-10\"}, {\"start\": \"2025-09-21\", \"end\": \"2025-09-23\"}, {\"start\": \"2026-01-23\", \"end\": \"2026-01-25\"}, {\"start\": \"2025-10-17\", \"end\": \"2025-10-23\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-284-619-4589",
-        "manager_name": "Lily Brooks"
+        "manager_name": "Lily Brooks",
+        "price_per_day": 8504
     },
     {
         "venue_id": "496e8796-70a2-4355-828a-cabc6595480b",
@@ -3537,7 +3654,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-351-670-6555",
-        "manager_name": "James Campbell"
+        "manager_name": "James Campbell",
+        "price_per_day": 8621
     },
     {
         "venue_id": "fe16d0dc-87e0-4ecd-86a7-7981df63ea4c",
@@ -3567,7 +3685,8 @@
         "need_dates": "[{\"start\": \"2025-11-16\", \"end\": \"2025-11-21\"}, {\"start\": \"2025-12-20\", \"end\": \"2026-01-31\"}, {\"start\": \"2025-10-26\", \"end\": \"2025-11-01\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-721-314-4755",
-        "manager_name": "Ella Wilson"
+        "manager_name": "Ella Wilson",
+        "price_per_day": 12916
     },
     {
         "venue_id": "dd889a9f-7966-42f9-b6e7-9db667d98d1c",
@@ -3597,7 +3716,8 @@
         "need_dates": "[{\"start\": \"2025-10-24\", \"end\": \"2025-10-27\"}, {\"start\": \"2025-12-19\", \"end\": \"2025-12-29\"}, {\"start\": \"2025-10-31\", \"end\": \"2025-11-03\"}, {\"start\": \"2025-12-12\", \"end\": \"2025-12-15\"}, {\"start\": \"2025-09-20\", \"end\": \"2025-10-20\"}, {\"start\": \"2025-12-05\", \"end\": \"2025-12-08\"}, {\"start\": \"2025-11-07\", \"end\": \"2025-12-01\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-494-383-6754",
-        "manager_name": "Mia Walker"
+        "manager_name": "Mia Walker",
+        "price_per_day": 4442
     },
     {
         "venue_id": "b669de0e-e4c5-43ba-a165-2c32881b0401",
@@ -3627,7 +3747,8 @@
         "need_dates": "[{\"start\": \"2025-11-17\", \"end\": \"2025-11-21\"}, {\"start\": \"2025-12-01\", \"end\": \"2025-12-05\"}, {\"start\": \"2025-10-20\", \"end\": \"2025-10-22\"}, {\"start\": \"2025-12-15\", \"end\": \"2025-12-19\"}, {\"start\": \"2025-12-08\", \"end\": \"2025-12-12\"}, {\"start\": \"2025-10-01\", \"end\": \"2025-10-03\"}, {\"start\": \"2025-11-10\", \"end\": \"2025-11-14\"}, {\"start\": \"2025-10-06\", \"end\": \"2025-10-10\"}, {\"start\": \"2025-10-27\", \"end\": \"2025-10-31\"}, {\"start\": \"2025-10-13\", \"end\": \"2025-10-17\"}, {\"start\": \"2025-11-24\", \"end\": \"2025-11-28\"}, {\"start\": \"2025-12-29\", \"end\": \"2025-12-31\"}, {\"start\": \"2025-09-22\", \"end\": \"2025-09-25\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-206-575-8774",
-        "manager_name": "Alexander Carter"
+        "manager_name": "Alexander Carter",
+        "price_per_day": 7040
     },
     {
         "venue_id": "6b9548f8-e05b-4e7d-abe2-382518bfe127",
@@ -3657,7 +3778,8 @@
         "need_dates": "[{\"start\": \"2025-11-05\", \"end\": \"2025-11-08\"}, {\"start\": \"2025-09-20\", \"end\": \"2025-10-04\"}, {\"start\": \"2025-10-26\", \"end\": \"2025-10-31\"}, {\"start\": \"2025-11-16\", \"end\": \"2025-12-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-432-210-9120",
-        "manager_name": "Olivia Sanders"
+        "manager_name": "Olivia Sanders",
+        "price_per_day": 27608
     },
     {
         "venue_id": "fbfcdc71-9d87-4032-a4ba-b1aef641bcc3",
@@ -3687,7 +3809,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-310-382-3261",
-        "manager_name": "David Smith"
+        "manager_name": "David Smith",
+        "price_per_day": 3563
     },
     {
         "venue_id": "4b74ea0c-9fbd-4028-b3ed-a12517bebcb2",
@@ -3717,7 +3840,8 @@
         "need_dates": "[{\"start\": \"2025-09-20\", \"end\": \"2026-03-31\"}, {\"start\": \"2026-11-01\", \"end\": \"2026-12-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-598-961-6736",
-        "manager_name": "Victoria Scott"
+        "manager_name": "Victoria Scott",
+        "price_per_day": 13668
     },
     {
         "venue_id": "09f0d417-c21f-46f6-b5cf-e64f85abe6d8",
@@ -3747,7 +3871,8 @@
         "need_dates": "[{\"start\": \"2025-12-14\", \"end\": \"2025-12-30\"}, {\"start\": \"2025-11-09\", \"end\": \"2025-11-21\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-507-930-9607",
-        "manager_name": "Matthew Wilson"
+        "manager_name": "Matthew Wilson",
+        "price_per_day": 14669
     },
     {
         "venue_id": "1ecf5405-2bf5-4acd-afbf-861ec68cb8be",
@@ -3777,7 +3902,8 @@
         "need_dates": "[{\"start\": \"2025-09-20\", \"end\": \"2025-10-05\"}, {\"start\": \"2025-12-07\", \"end\": \"2025-12-31\"}, {\"start\": \"2025-11-11\", \"end\": \"2025-11-30\"}, {\"start\": \"2025-10-26\", \"end\": \"2025-10-31\"}, {\"start\": \"2025-10-09\", \"end\": \"2025-10-12\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-447-261-5135",
-        "manager_name": "Emma Campbell"
+        "manager_name": "Emma Campbell",
+        "price_per_day": 10119
     },
     {
         "venue_id": "68022e30-abec-4c1b-857b-ccb2744cddf2",
@@ -3807,7 +3933,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-250-257-8711",
-        "manager_name": "Olivia Hughes"
+        "manager_name": "Olivia Hughes",
+        "price_per_day": 6188
     },
     {
         "venue_id": "61758e82-e796-44b0-a30c-3986c5ad8c64",
@@ -3837,7 +3964,8 @@
         "need_dates": "[{\"start\": \"2025-12-01\", \"end\": \"2025-12-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-518-289-4311",
-        "manager_name": "Henry Johnson"
+        "manager_name": "Henry Johnson",
+        "price_per_day": 4786
     },
     {
         "venue_id": "6c8d31f0-988a-45bd-be8b-f0d708778a99",
@@ -3867,7 +3995,8 @@
         "need_dates": "[{\"start\": \"2025-10-27\", \"end\": \"2025-10-30\"}, {\"start\": \"2025-11-10\", \"end\": \"2025-11-14\"}, {\"start\": \"2025-10-05\", \"end\": \"2025-10-09\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-776-407-4714",
-        "manager_name": "Victoria Wilson"
+        "manager_name": "Victoria Wilson",
+        "price_per_day": 4952
     },
     {
         "venue_id": "e68eea4d-7054-4c96-8ca8-ecb836012327",
@@ -3897,7 +4026,8 @@
         "need_dates": "[{\"start\": \"2025-11-12\", \"end\": \"2025-11-15\"}, {\"start\": \"2025-12-03\", \"end\": \"2025-12-06\"}, {\"start\": \"2025-12-10\", \"end\": \"2025-12-13\"}, {\"start\": \"2025-11-05\", \"end\": \"2025-11-08\"}, {\"start\": \"2025-12-17\", \"end\": \"2025-12-20\"}, {\"start\": \"2025-12-24\", \"end\": \"2025-12-27\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-367-610-3334",
-        "manager_name": "Lily Flores"
+        "manager_name": "Lily Flores",
+        "price_per_day": 18753
     },
     {
         "venue_id": "d4e81142-91a9-40a2-b972-fc0737c6d873",
@@ -3927,7 +4057,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-784-242-5347",
-        "manager_name": "Jacob Scott"
+        "manager_name": "Jacob Scott",
+        "price_per_day": 37338
     },
     {
         "venue_id": "64939200-9168-4014-b337-e7cdd2f1e4a8",
@@ -3957,7 +4088,8 @@
         "need_dates": "[{\"start\": \"2025-11-01\", \"end\": \"2025-12-31\"}, {\"start\": \"2025-09-20\", \"end\": \"2025-09-30\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-829-933-4572",
-        "manager_name": "Emily Lewis"
+        "manager_name": "Emily Lewis",
+        "price_per_day": 5624
     },
     {
         "venue_id": "9676dae9-b878-46c8-98bb-a187f1d26a23",
@@ -3987,7 +4119,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-890-293-6191",
-        "manager_name": "Mia Morgan"
+        "manager_name": "Mia Morgan",
+        "price_per_day": 150381
     },
     {
         "venue_id": "3510873e-8125-483f-8374-563ac13a05f7",
@@ -4017,7 +4150,8 @@
         "need_dates": "[{\"start\": \"2025-11-23\", \"end\": \"2025-12-30\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-333-512-7121",
-        "manager_name": "Lucas Evans"
+        "manager_name": "Lucas Evans",
+        "price_per_day": 5075
     },
     {
         "venue_id": "8ef0dde1-6394-4182-ad0c-cb02ee7c7f7f",
@@ -4047,7 +4181,8 @@
         "need_dates": "[{\"start\": \"2025-10-27\", \"end\": \"2025-10-31\"}, {\"start\": \"2025-10-20\", \"end\": \"2025-10-23\"}, {\"start\": \"2025-11-03\", \"end\": \"2025-11-14\"}, {\"start\": \"2025-10-13\", \"end\": \"2025-10-16\"}, {\"start\": \"2025-12-01\", \"end\": \"2025-12-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-359-811-9559",
-        "manager_name": "Emma Allen"
+        "manager_name": "Emma Allen",
+        "price_per_day": 10371
     },
     {
         "venue_id": "4ef037ac-4a56-4bc0-a43c-3ec7983ae8bc",
@@ -4077,7 +4212,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-906-914-1716",
-        "manager_name": "Andrew Perez"
+        "manager_name": "Andrew Perez",
+        "price_per_day": 5148
     },
     {
         "venue_id": "84597fa1-8e3e-4337-8724-37f434f523f2",
@@ -4107,7 +4243,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-978-591-9318",
-        "manager_name": "Mason King"
+        "manager_name": "Mason King",
+        "price_per_day": 164012
     },
     {
         "venue_id": "1ac057df-3517-4d58-9443-0da07b93f676",
@@ -4137,7 +4274,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-325-444-1377",
-        "manager_name": "Michael Thompson"
+        "manager_name": "Michael Thompson",
+        "price_per_day": 3393
     },
     {
         "venue_id": "72ddef72-8ed4-4930-987e-93069611858d",
@@ -4167,7 +4305,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-502-381-4774",
-        "manager_name": "Lily Allen"
+        "manager_name": "Lily Allen",
+        "price_per_day": 2456
     },
     {
         "venue_id": "5a346377-1232-4af6-bbd4-f0369c070f44",
@@ -4197,7 +4336,8 @@
         "need_dates": "[{\"start\": \"2025-09-20\", \"end\": \"2025-12-30\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-503-251-4789",
-        "manager_name": "Michael Scott"
+        "manager_name": "Michael Scott",
+        "price_per_day": 3202
     },
     {
         "venue_id": "d76fc7fe-c6ea-4372-a28e-33a7c40a3e2b",
@@ -4227,7 +4367,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-312-909-2934",
-        "manager_name": "Grace Smith"
+        "manager_name": "Grace Smith",
+        "price_per_day": 3780
     },
     {
         "venue_id": "841d38c8-5643-4507-af87-47a4047615ea",
@@ -4257,7 +4398,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-943-962-3310",
-        "manager_name": "Harper Morgan"
+        "manager_name": "Harper Morgan",
+        "price_per_day": 2647
     },
     {
         "venue_id": "ed20e0f3-1315-4174-be12-d250853209cd",
@@ -4287,7 +4429,8 @@
         "need_dates": "[{\"start\": \"2025-11-01\", \"end\": \"2025-12-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-295-843-9088",
-        "manager_name": "Ethan Rivera"
+        "manager_name": "Ethan Rivera",
+        "price_per_day": 1429
     },
     {
         "venue_id": "2ad000a1-1c5e-47bb-827d-502b7a2c0859",
@@ -4317,7 +4460,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-825-643-2614",
-        "manager_name": "Jacob Morgan"
+        "manager_name": "Jacob Morgan",
+        "price_per_day": 2013
     },
     {
         "venue_id": "a5692f71-864a-4533-9718-da01067345a3",
@@ -4347,7 +4491,8 @@
         "need_dates": "[{\"start\": \"2025-10-27\", \"end\": \"2025-12-30\"}, {\"start\": \"2026-01-01\", \"end\": \"2026-03-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-829-423-1364",
-        "manager_name": "Benjamin Reed"
+        "manager_name": "Benjamin Reed",
+        "price_per_day": 5906
     },
     {
         "venue_id": "f50de8da-947f-4f04-90fb-607bb2d677b7",
@@ -4377,7 +4522,8 @@
         "need_dates": "[{\"start\": \"2025-10-13\", \"end\": \"2025-12-19\"}, {\"start\": \"2026-10-18\", \"end\": \"2026-12-18\"}, {\"start\": \"2026-01-04\", \"end\": \"2026-04-10\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-242-872-3980",
-        "manager_name": "Jack Smith"
+        "manager_name": "Jack Smith",
+        "price_per_day": 4957
     },
     {
         "venue_id": "840095e4-b706-472a-acb1-cc4fad6d0e77",
@@ -4407,7 +4553,8 @@
         "need_dates": "[{\"start\": \"2025-10-01\", \"end\": \"2025-10-14\"}, {\"start\": \"2025-10-26\", \"end\": \"2026-04-01\"}, {\"start\": \"2025-10-17\", \"end\": \"2025-10-23\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-858-295-1544",
-        "manager_name": "Chloe Peterson"
+        "manager_name": "Chloe Peterson",
+        "price_per_day": 5587
     },
     {
         "venue_id": "137e3840-c903-4d05-a7f4-2c9e33c80aa8",
@@ -4437,7 +4584,8 @@
         "need_dates": "[{\"start\": \"2025-11-04\", \"end\": \"2025-12-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-848-480-1862",
-        "manager_name": "Ella Mitchell"
+        "manager_name": "Ella Mitchell",
+        "price_per_day": 10315
     },
     {
         "venue_id": "92b9642b-43c5-4e80-91e3-209d9ffe655c",
@@ -4467,7 +4615,8 @@
         "need_dates": "[{\"start\": \"2025-11-09\", \"end\": \"2025-11-20\"}, {\"start\": \"2025-11-23\", \"end\": \"2025-11-26\"}, {\"start\": \"2025-12-07\", \"end\": \"2025-12-23\"}, {\"start\": \"2025-11-29\", \"end\": \"2025-11-30\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-595-998-5343",
-        "manager_name": "Emily Morgan"
+        "manager_name": "Emily Morgan",
+        "price_per_day": 14201
     },
     {
         "venue_id": "b669de0e-e4c5-43ba-a165-2c32881b0401",
@@ -4497,7 +4646,8 @@
         "need_dates": "[{\"start\": \"2025-11-17\", \"end\": \"2025-11-21\"}, {\"start\": \"2025-12-01\", \"end\": \"2025-12-05\"}, {\"start\": \"2025-10-20\", \"end\": \"2025-10-22\"}, {\"start\": \"2025-12-15\", \"end\": \"2025-12-19\"}, {\"start\": \"2025-12-08\", \"end\": \"2025-12-12\"}, {\"start\": \"2025-10-01\", \"end\": \"2025-10-03\"}, {\"start\": \"2025-11-10\", \"end\": \"2025-11-14\"}, {\"start\": \"2025-10-06\", \"end\": \"2025-10-10\"}, {\"start\": \"2025-10-27\", \"end\": \"2025-10-31\"}, {\"start\": \"2025-10-13\", \"end\": \"2025-10-17\"}, {\"start\": \"2025-11-24\", \"end\": \"2025-11-28\"}, {\"start\": \"2025-12-29\", \"end\": \"2025-12-31\"}, {\"start\": \"2025-09-22\", \"end\": \"2025-09-25\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-479-708-2721",
-        "manager_name": "Olivia Martinez"
+        "manager_name": "Olivia Martinez",
+        "price_per_day": 8927
     },
     {
         "venue_id": "dd889a9f-7966-42f9-b6e7-9db667d98d1c",
@@ -4527,7 +4677,8 @@
         "need_dates": "[{\"start\": \"2025-10-24\", \"end\": \"2025-10-27\"}, {\"start\": \"2025-12-19\", \"end\": \"2025-12-29\"}, {\"start\": \"2025-10-31\", \"end\": \"2025-11-03\"}, {\"start\": \"2025-12-12\", \"end\": \"2025-12-15\"}, {\"start\": \"2025-09-20\", \"end\": \"2025-10-20\"}, {\"start\": \"2025-12-05\", \"end\": \"2025-12-08\"}, {\"start\": \"2025-11-07\", \"end\": \"2025-12-01\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-486-820-4965",
-        "manager_name": "Natalie Carter"
+        "manager_name": "Natalie Carter",
+        "price_per_day": 4079
     },
     {
         "venue_id": "700d6058-1c5b-43bb-b807-3c6129bad9be",
@@ -4557,7 +4708,8 @@
         "need_dates": "[{\"start\": \"2025-11-01\", \"end\": \"2026-03-31\"}, {\"start\": \"2026-11-01\", \"end\": \"2027-03-31\"}, {\"start\": \"2027-11-01\", \"end\": \"2028-03-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-593-423-5582",
-        "manager_name": "Ethan Scott"
+        "manager_name": "Ethan Scott",
+        "price_per_day": 199619
     },
     {
         "venue_id": "9da23602-20a5-4d54-a4f2-70a85f84ae31",
@@ -4587,7 +4739,8 @@
         "need_dates": "[{\"start\": \"2025-10-03\", \"end\": \"2025-10-10\"}, {\"start\": \"2025-11-02\", \"end\": \"2025-12-31\"}, {\"start\": \"2025-09-21\", \"end\": \"2025-09-27\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-210-209-6564",
-        "manager_name": "Harper Allen"
+        "manager_name": "Harper Allen",
+        "price_per_day": 7743
     },
     {
         "venue_id": "3de6c7c1-078e-4002-934a-4beac0f0c912",
@@ -4617,7 +4770,8 @@
         "need_dates": "[{\"start\": \"2025-10-01\", \"end\": \"2026-05-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-982-953-4623",
-        "manager_name": "Zoe Campbell"
+        "manager_name": "Zoe Campbell",
+        "price_per_day": 5565
     },
     {
         "venue_id": "fbfcdc71-9d87-4032-a4ba-b1aef641bcc3",
@@ -4647,7 +4801,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-272-640-5852",
-        "manager_name": "Henry Miller"
+        "manager_name": "Henry Miller",
+        "price_per_day": 4561
     },
     {
         "venue_id": "64939200-9168-4014-b337-e7cdd2f1e4a8",
@@ -4677,7 +4832,8 @@
         "need_dates": "[{\"start\": \"2025-11-01\", \"end\": \"2025-12-31\"}, {\"start\": \"2025-09-20\", \"end\": \"2025-09-30\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-509-637-7415",
-        "manager_name": "Grace Evans"
+        "manager_name": "Grace Evans",
+        "price_per_day": 3222
     },
     {
         "venue_id": "68022e30-abec-4c1b-857b-ccb2744cddf2",
@@ -4707,7 +4863,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-459-618-5061",
-        "manager_name": "James Carter"
+        "manager_name": "James Carter",
+        "price_per_day": 14317
     },
     {
         "venue_id": "09f0d417-c21f-46f6-b5cf-e64f85abe6d8",
@@ -4737,7 +4894,8 @@
         "need_dates": "[{\"start\": \"2025-12-14\", \"end\": \"2025-12-30\"}, {\"start\": \"2025-11-09\", \"end\": \"2025-11-21\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-978-294-3330",
-        "manager_name": "Jack Adams"
+        "manager_name": "Jack Adams",
+        "price_per_day": 9258
     },
     {
         "venue_id": "6b9548f8-e05b-4e7d-abe2-382518bfe127",
@@ -4767,7 +4925,8 @@
         "need_dates": "[{\"start\": \"2025-11-05\", \"end\": \"2025-11-08\"}, {\"start\": \"2025-09-20\", \"end\": \"2025-10-04\"}, {\"start\": \"2025-10-26\", \"end\": \"2025-10-31\"}, {\"start\": \"2025-11-16\", \"end\": \"2025-12-31\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-216-590-1398",
-        "manager_name": "Madison Allen"
+        "manager_name": "Madison Allen",
+        "price_per_day": 20008
     },
     {
         "venue_id": "6c8d31f0-988a-45bd-be8b-f0d708778a99",
@@ -4797,7 +4956,8 @@
         "need_dates": "[{\"start\": \"2025-10-27\", \"end\": \"2025-10-30\"}, {\"start\": \"2025-11-10\", \"end\": \"2025-11-14\"}, {\"start\": \"2025-10-05\", \"end\": \"2025-10-09\"}]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-547-484-7970",
-        "manager_name": "Michael Brooks"
+        "manager_name": "Michael Brooks",
+        "price_per_day": 3531
     },
     {
         "venue_id": "d4e81142-91a9-40a2-b972-fc0737c6d873",
@@ -4827,7 +4987,8 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-592-767-2363",
-        "manager_name": "Natalie Anderson"
+        "manager_name": "Natalie Anderson",
+        "price_per_day": 39985
     },
     {
         "venue_id": "9676dae9-b878-46c8-98bb-a187f1d26a23",
@@ -4857,6 +5018,7 @@
         "need_dates": "[]",
         "contact_email": "Mohan-silverend@outlook.com",
         "contact_phone": "+1-951-614-5952",
-        "manager_name": "Alexander Turner"
+        "manager_name": "Alexander Turner",
+        "price_per_day": 101174
     }
 ]

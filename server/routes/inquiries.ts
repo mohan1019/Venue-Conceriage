@@ -427,7 +427,7 @@ Venue Contact Information:
     console.log('Processing enquiry with SmythOS agent:', enquiry.id, enquiryData);
 
     // Call SmythOS Reply_Agent API
-    const response = await fetch('https://cmfurpcfzsyt4jxgtu6q8fmu6.agent.pa.smyth.ai/api/Reply_Agent', {
+    const response = await fetch('https://cmfvy00gpxdpqo3wtm3zjmdtq.agent.pa.smyth.ai/api/Reply_Agent', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
