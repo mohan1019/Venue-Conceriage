@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { MapPin, Users, Star, Search, Send, MessageCircle, Sparkles, Bot, ChevronRight, Filter, Clock, TrendingUp } from 'lucide-react';
+import { MapPin, Users, Star, Search, Send, Sparkles, Bot, ChevronRight, Filter, Clock, TrendingUp } from 'lucide-react';
 import EnquiryForm from '../components/EnquiryForm';
 import API_ENDPOINTS, { API_BASE_URL } from '../config/api';
 
@@ -23,6 +23,7 @@ interface Venue {
   city: string;
   capacity?: number;
   pricePerHour?: number;
+  price_per_day?: number;
   rating?: number;
   images?: string[];
   main_image?: string;
@@ -318,7 +319,7 @@ const Results: React.FC = () => {
         <div className="absolute top-0 left-0 w-full h-full opacity-30" style={{backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/svg%3E\")"}}></div>
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Enhanced AI Response Header */}
         <div className="mb-12">
           <div className="relative bg-gradient-to-r from-purple-800/20 to-pink-800/20 backdrop-blur-xl rounded-3xl p-8 border border-purple-500/20 shadow-2xl overflow-hidden">
@@ -365,9 +366,9 @@ const Results: React.FC = () => {
           </div>
         </div>
 
-        <div className="flex gap-8">
+        <div className="flex gap-4">
           {/* Enhanced Left Sidebar */}
-          <div className="w-80 flex-shrink-0">
+          <div className="w-64 flex-shrink-0">
             <div className="bg-gray-800/50 backdrop-blur-xl rounded-2xl shadow-2xl p-6 border border-gray-700/50 sticky top-24">
               {/* Refine Search Section */}
               <div className="mb-8">
@@ -476,7 +477,7 @@ const Results: React.FC = () => {
           </div>
 
           {/* Enhanced Results Section */}
-          <div className="flex-1">
+          <div className="flex-1 max-w-none">
             {loading ? (
               <div className="grid grid-cols-1 gap-6">
                 {Array.from({ length: 5 }).map((_, i) => (
@@ -521,79 +522,92 @@ const Results: React.FC = () => {
                   return (
                     <div
                       key={venueId}
-                      className="bg-gray-800/50 backdrop-blur-xl rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 overflow-hidden border border-gray-700/50 hover:border-purple-500/30 group hover:scale-105 transform"
+                      className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl rounded-2xl shadow-xl hover:shadow-purple-500/20 transition-all duration-300 overflow-hidden border border-gray-700/30 hover:border-purple-400/40 group hover:scale-[1.01] transform"
                     >
                       <div className="flex">
-                        <div className="w-48 h-48 flex-shrink-0 relative overflow-hidden">
+                        <div className="w-72 h-48 flex-shrink-0 relative overflow-hidden rounded-l-2xl">
                           <img
                             src={venueImage}
                             alt={venue.name}
-                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300"></div>
+                          {venue.rating && (
+                            <div className="absolute top-4 left-4 flex items-center space-x-1 bg-black/60 backdrop-blur-sm px-3 py-2 rounded-full border border-yellow-500/30">
+                              <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                              <span className="text-sm font-bold text-white">{venue.rating}</span>
+                            </div>
+                          )}
                         </div>
                         <div className="flex-1 p-6">
                           <div className="flex items-start justify-between mb-4">
-                            <div>
+                            <div className="flex-1">
                               <Link
                                 to={`/venue/${venueId}`}
-                                className="text-xl font-bold text-white mb-2 hover:text-purple-400 transition-colors duration-200 flex items-center space-x-2"
+                                className="text-xl font-bold bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent mb-2 hover:from-purple-300 hover:to-pink-300 transition-all duration-200 block"
                               >
-                                <span>{venue.name}</span>
-                                <ChevronRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                {venue.name}
                               </Link>
-                              <div className="flex items-center text-gray-400 mb-2">
-                                <MapPin className="w-4 h-4 mr-2" />
+                              <div className="flex items-center text-gray-400 text-sm">
+                                <MapPin className="w-4 h-4 mr-1 text-purple-400" />
                                 <span>{venue.city}</span>
                               </div>
                             </div>
-                            {venue.rating && (
-                              <div className="flex items-center space-x-1 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 backdrop-blur-sm px-3 py-2 rounded-full border border-yellow-500/30">
-                                <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                                <span className="text-sm font-semibold text-white">{venue.rating}</span>
-                              </div>
-                            )}
                           </div>
 
-                          <div className="flex items-center justify-between mb-4">
+                          <div className="flex items-center justify-between mb-5">
                             {venue.capacity && (
-                              <div className="flex items-center text-gray-400">
-                                <Users className="w-4 h-4 mr-2" />
-                                <span>Capacity: {venue.capacity} guests</span>
+                              <div className="flex items-center text-gray-300 text-sm">
+                                <Users className="w-4 h-4 mr-2 text-blue-400" />
+                                <span>{venue.capacity.toLocaleString()} guests</span>
                               </div>
                             )}
-                            {venue.pricePerHour && (
+                            {(venue.price_per_day || venue.pricePerHour) && (
                               <div className="text-right">
-                                <span className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                                  ${venue.pricePerHour}
-                                </span>
-                                <span className="text-gray-400">/hour</span>
+                                <div className="text-sm text-gray-400 mb-1">Starting from</div>
+                                <div>
+                                  <span className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                                    ${venue.price_per_day ? venue.price_per_day.toLocaleString() : (venue.pricePerHour ? Math.round(venue.pricePerHour * 8).toLocaleString() : 0)}
+                                  </span>
+                                  <span className="text-gray-300 text-sm font-medium ml-1">/day</span>
+                                </div>
                               </div>
                             )}
                           </div>
 
-                          <div className="flex flex-wrap gap-2 mb-6">
-                            {venueAmenities.slice(0, 4).map((amenity, index) => (
-                              <span
-                                key={index}
-                                className="text-xs bg-gray-700/50 text-gray-300 px-3 py-1 rounded-full border border-gray-600/30 backdrop-blur-sm"
-                              >
-                                {amenity}
-                              </span>
-                            ))}
-                            {venueAmenities.length > 4 && (
-                              <span className="text-xs text-gray-400 bg-gray-700/30 px-3 py-1 rounded-full border border-gray-600/30">
-                                +{venueAmenities.length - 4} more
-                              </span>
-                            )}
+                          <div className="mb-6">
+                            <h4 className="text-xs font-medium text-gray-400 mb-2 flex items-center">
+                              <Sparkles className="w-3 h-3 mr-1 text-yellow-400" />
+                              Amenities
+                            </h4>
+                            <div className="flex flex-wrap gap-2">
+                              {venueAmenities.slice(0, 5).map((amenity, index) => {
+                                // Clean up amenity names
+                                const cleanAmenity = amenity.replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, l => l.toUpperCase());
+                                return (
+                                  <span
+                                    key={index}
+                                    className="text-xs bg-gray-700/40 text-gray-300 px-2 py-1 rounded-md border border-gray-600/30 backdrop-blur-sm"
+                                  >
+                                    {cleanAmenity}
+                                  </span>
+                                );
+                              })}
+                              {venueAmenities.length > 5 && (
+                                <span className="text-xs text-purple-300 bg-purple-500/20 px-2 py-1 rounded-md border border-purple-400/30">
+                                  +{venueAmenities.length - 5} more
+                                </span>
+                              )}
+                            </div>
                           </div>
 
-                          <div className="flex space-x-3">
+                          <div>
                             <Link
                               to={`/venue/${venueId}`}
-                              className="flex-1 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white text-center py-3 px-6 rounded-xl transition-all duration-200 font-medium shadow-lg hover:shadow-xl hover:scale-105 transform"
+                              className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white text-center py-3 px-6 rounded-xl transition-all duration-300 font-medium shadow-lg hover:shadow-purple-500/25 hover:scale-[1.02] transform flex items-center justify-center space-x-2"
                             >
-                              View Details
+                              <span>View Details</span>
+                              <ChevronRight className="w-4 h-4" />
                             </Link>
                           </div>
                         </div>
@@ -625,8 +639,8 @@ const Results: React.FC = () => {
             )}
           </div>
 
-          {/* Enhanced Right Sidebar */}
-          <div className="w-80 flex-shrink-0">
+          {/* Enhanced Right Sidebar - Ads */}
+          <div className="w-64 flex-shrink-0 ml-4">
             <div className="bg-gray-800/50 backdrop-blur-xl rounded-2xl shadow-2xl p-6 border border-gray-700/50 sticky top-24">
               <h3 className="text-lg font-semibold text-white mb-6 flex items-center space-x-2">
                 <TrendingUp className="w-5 h-5 text-green-400" />
