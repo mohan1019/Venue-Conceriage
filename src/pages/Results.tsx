@@ -174,7 +174,8 @@ const Results: React.FC = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          venue_request: requestQuery
+          venue_request: requestQuery,
+          offset : offset
         })
       });
       const data = await response.json();
@@ -351,7 +352,7 @@ const Results: React.FC = () => {
                 {query && (
                   <div className="flex items-center space-x-2">
                     <Clock className="w-5 h-5 text-blue-400" />
-                    <span className="text-sm">Search completed in 0.8s</span>
+                    <span className="text-sm"></span>
                   </div>
                 )}
 

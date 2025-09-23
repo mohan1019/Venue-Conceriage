@@ -578,7 +578,7 @@ router.post('/reply', async (req, res) => {
 // AI-powered venue search endpoint
 router.post('/ai-search', async (req, res) => {
   try {
-    const { venue_request } = req.body;
+    const { venue_request , offset } = req.body;
 
     if (!venue_request) {
       return res.status(400).json({ error: 'venue_request is required' });
@@ -589,10 +589,10 @@ router.post('/ai-search', async (req, res) => {
     const response = await fetch('https://cmfvy00gpxdpqo3wtm3zjmdtq.agent.pa.smyth.ai/api/search_venues', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'User-Agent': 'VenueConcierge/1.0'
+        'Accept': 'text/plain',
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ venue_request })
+      body: JSON.stringify({ venue_request , offset })
     });
 
     console.log('SmythOS API response status:', response.status);
@@ -605,8 +605,8 @@ router.post('/ai-search', async (req, res) => {
         const retryResponse = await fetch('https://cmfvy00gpxdpqo3wtm3zjmdtq.agent.pa.smyth.ai/api/search_venues', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
-            'User-Agent': 'VenueConcierge/1.0'
+            'Accept': 'text/plain',
+            'Content-Type': 'application/json'
           },
           body: JSON.stringify({ venue_request })
         });
@@ -615,7 +615,7 @@ router.post('/ai-search', async (req, res) => {
           throw new Error(`SmythOS API error after retry: ${retryResponse.status}`);
         }
 
-        const apiData = await retryResponse.json();
+        const apiData = await retryResponse.text();
         console.log('SmythOS API retry successful');
         return handleSmythOSResponse(apiData, venue_request, res);
       }
@@ -623,8 +623,8 @@ router.post('/ai-search', async (req, res) => {
       throw new Error(`SmythOS API error: ${response.status}`);
     }
 
-    const apiData = await response.json();
-    console.log('SmythOS API response received');
+    const apiData = await response.text();
+    console.log('SmythOS API response received (text):', apiData);
     return handleSmythOSResponse(apiData, venue_request, res);
 
   } catch (error) {
@@ -636,21 +636,24 @@ router.post('/ai-search', async (req, res) => {
   }
 });
 
-function handleSmythOSResponse(apiData: any, venue_request: string, res: any) {
+function handleSmythOSResponse(apiData: string, venue_request: string, res: any) {
   try {
-    let searchResults;
-    const resultsData = (apiData as any).results;
-    if (!resultsData || typeof resultsData !== 'string') {
-      console.error('API results is undefined or not a string:', resultsData);
-      return res.status(500).json({ error: 'No results data from search API' });
-    }
-    searchResults = JSON.parse(resultsData);
+    console.log('Raw SmythOS response:', apiData);
 
-    const venues = searchResults.venues || [];
+    // The response is text/plain, so we need to parse it as JSON
+    let searchResults;
+    if (typeof apiData === 'string') {
+      searchResults = JSON.parse(apiData);
+    } else {
+      console.error('API response is not a string:', typeof apiData);
+      return res.status(500).json({ error: 'Invalid response format from search API' });
+    }
+
+    const venues = JSON.parse(searchResults.results).venues || [];
     const seenIds = new Set();
     const uniqueVenues = venues.filter((venue: any) => {
-      if (seenIds.has(venue.id)) return false;
-      seenIds.add(venue.id);
+      if (seenIds.has(venue.venue_id)) return false;
+      seenIds.add(venue.venue_id);
       return true;
     });
 
