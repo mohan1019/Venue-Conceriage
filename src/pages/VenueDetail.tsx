@@ -21,6 +21,7 @@ interface Venue {
   state: string;
   capacity: number;
   pricePerHour?: number;
+  price_per_day?: number; // For production API compatibility
   rating?: number;
   main_image?: string;
   hero_image?: string;
@@ -33,6 +34,7 @@ interface Venue {
   largest_space_sqft?: number;
   diamond_level?: string;
   preferred_rating?: string;
+  tags?: string;
 }
 
 interface Ad {
@@ -49,7 +51,6 @@ const VenueDetail: React.FC = () => {
   const [ads, setAds] = useState<Ad[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(0);
-  const [showAskAI, setShowAskAI] = useState(false);
   const [showEnquiryForm, setShowEnquiryForm] = useState(false);
 
   useEffect(() => {
@@ -64,7 +65,13 @@ const VenueDetail: React.FC = () => {
       const response = await fetch(API_ENDPOINTS.VENUE_DETAIL(id!));
       if (response.ok) {
         const data = await response.json();
+        // Add pricePerHour if missing (for production API compatibility)
+        if (!data.pricePerHour && data.price_per_day) {
+          data.pricePerHour = Math.round(data.price_per_day / 8);
+        }
         setVenue(data);
+      } else {
+        console.error('Venue not found:', response.status);
       }
     } catch (error) {
       console.error('Error fetching venue:', error);
@@ -318,25 +325,31 @@ const VenueDetail: React.FC = () => {
                 )}
               </div>
 
-              {/* Enhanced Amenities */}
-              {venue.amenities && (
-                <div className="bg-gray-800/50 backdrop-blur-xl rounded-3xl p-8 border border-gray-700/50 shadow-2xl">
-                  <div className="flex items-center space-x-3 mb-6">
-                    <div className="w-10 h-10 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-xl flex items-center justify-center">
-                      <CheckCircle className="w-6 h-6 text-green-400" />
-                    </div>
-                    <h2 className="text-2xl font-bold text-white">Amenities & Features</h2>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {(Array.isArray(venue.amenities) ? venue.amenities : venue.amenities?.split?.(',') || []).map((amenity, index) => (
-                      <div key={index} className="flex items-center space-x-3 p-3 bg-gray-700/30 rounded-xl border border-gray-600/30 hover:border-green-500/30 transition-colors">
-                        <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
-                        <span className="text-gray-300">{amenity.trim().replace(/_/g, ' ')}</span>
+              {/* Enhanced Amenities & Features */}
+              {(() => {
+                const amenities = Array.isArray(venue.amenities) ? venue.amenities : venue.amenities?.split?.(',').filter(Boolean) || [];
+                const tags = venue.tags ? venue.tags.split(',').map(tag => tag.trim().replace(/_/g, ' ')) : [];
+                const allFeatures = [...amenities, ...tags].filter(Boolean);
+
+                return allFeatures.length > 0 ? (
+                  <div className="bg-gray-800/50 backdrop-blur-xl rounded-3xl p-8 border border-gray-700/50 shadow-2xl">
+                    <div className="flex items-center space-x-3 mb-6">
+                      <div className="w-10 h-10 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-xl flex items-center justify-center">
+                        <CheckCircle className="w-6 h-6 text-green-400" />
                       </div>
-                    ))}
+                      <h2 className="text-2xl font-bold text-white">Amenities & Features</h2>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {allFeatures.map((feature, index) => (
+                        <div key={index} className="flex items-center space-x-3 p-3 bg-gray-700/30 rounded-xl border border-gray-600/30 hover:border-green-500/30 transition-colors">
+                          <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
+                          <span className="text-gray-300">{feature.trim().replace(/_/g, ' ')}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              )}
+                ) : null;
+              })()}
 
               {/* Enhanced Available Dates */}
               {venue.availableDates && venue.availableDates.length > 0 && (

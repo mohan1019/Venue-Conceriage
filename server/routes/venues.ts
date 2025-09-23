@@ -78,10 +78,14 @@ router.get('/', async (req, res) => {
     filteredVenues.sort((a, b) => (b.capacity || 0) - (a.capacity || 0));
     filteredVenues = filteredVenues.slice(0, 5);
 
-    // Add venue_id field for frontend compatibility
+    // Add venue_id field and map API fields to frontend expectations
     const venuesWithVenueId = filteredVenues.map(venue => ({
       ...venue,
-      venue_id: venue.venue_id || venue.id
+      venue_id: venue.venue_id || venue.id,
+      // Map price fields for frontend compatibility
+      pricePerHour: venue.price_per_hour || venue.hourly_rate || Math.round((venue.price_per_day || 0) / 8), // Convert daily to hourly estimate
+      // Ensure amenities is an array
+      amenities: venue.amenities || ''
     }));
 
     const responseData = {
@@ -392,10 +396,14 @@ router.get('/:id', async (req, res) => {
       return res.status(404).json({ error: 'Venue not found' });
     }
 
-    // Add venue_id field for frontend compatibility
+    // Add venue_id field and map API fields to frontend expectations
     const venueWithVenueId = {
       ...venue,
-      venue_id: venue.venue_id || venue.id
+      venue_id: venue.venue_id || venue.id,
+      // Map price fields for frontend compatibility
+      pricePerHour: venue.price_per_hour || venue.hourly_rate || Math.round((venue.price_per_day || 0) / 8), // Convert daily to hourly estimate
+      // Ensure amenities is an array
+      amenities: venue.amenities || ''
     };
 
     res.json(venueWithVenueId);

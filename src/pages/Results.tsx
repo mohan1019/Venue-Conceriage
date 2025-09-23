@@ -512,7 +512,8 @@ const Results: React.FC = () => {
             ) : (
               <div className="space-y-6">
                 {venues.map((venue) => {
-                  const venueId = venue.venue_id || venue.id;
+                  const venueId = venue.venue_id
+                  console.log("VENUE ID CHECK ", venueId);
                   const venueImage = venue.main_image || venue.hero_image || '/placeholder-venue.jpg';
                   const venueAmenities = typeof venue.amenities === 'string'
                     ? venue.amenities.split(',').map(a => a.trim())
