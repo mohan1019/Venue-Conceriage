@@ -7,7 +7,10 @@ dotenv.config();
 const connectionString = process.env.DATABASE_URL;
 
 if (!connectionString) {
-  throw new Error('DATABASE_URL is not defined in environment variables');
+  console.error('❌ DATABASE_URL is not defined in environment variables');
+  console.error('💡 Please add DATABASE_URL to your .env file');
+  console.error('   Example: DATABASE_URL=postgresql://postgres:password@db.project.supabase.co:5432/postgres');
+  process.exit(1);
 }
 
 // Create postgres connection using Supabase recommended method

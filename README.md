@@ -47,6 +47,7 @@ The application will be available at:
 ```bash
 BACKEND_PORT=3000
 FRONTEND_PORT=5173
+DATABASE_URL=postgresql://postgres:[PASSWORD]@db.[PROJECT-REF].supabase.co:5432/postgres
 SMYTHOS_AGENT_URL=your_smythos_endpoint
 SMYTHOS_API_KEY=your_smythos_api_key
 AI_MAX_TOKENS_PER_CALL=1200
