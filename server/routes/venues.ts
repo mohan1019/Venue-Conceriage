@@ -1,93 +1,123 @@
 import { Router } from 'express';
-import { readFileSync, writeFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { readFileSync, writeFileSync } from 'fs';
 import { v4 as uuidv4 } from 'uuid';
+import fetch from 'node-fetch';
+import { sql } from '../db/connection-postgres.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const router = Router();
 
-// In-memory cache for venue searches
-const cache = new Map<string, { data: any; timestamp: number }>();
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
-// Load venues data
-const venuesData = JSON.parse(
-  readFileSync(join(__dirname, '../../data/venues.json'), 'utf-8')
-);
+// Database helper functions
+const getCachedData = async (cacheKey: string) => {
+  try {
+    const result = await sql`
+      SELECT data FROM search_cache WHERE cache_key = ${cacheKey} AND expires_at > NOW()
+    `;
+    return result[0]?.data || null;
+  } catch (error) {
+    console.error('Cache get error:', error);
+    return null;
+  }
+};
 
-router.get('/', (req, res) => {
+const setCachedData = async (cacheKey: string, data: any) => {
+  try {
+    const expiresAt = new Date(Date.now() + CACHE_DURATION);
+    await sql`
+      INSERT INTO search_cache (cache_key, data, expires_at)
+      VALUES (${cacheKey}, ${JSON.stringify(data)}, ${expiresAt})
+      ON CONFLICT (cache_key)
+      DO UPDATE SET data = ${JSON.stringify(data)}, expires_at = ${expiresAt}
+    `;
+  } catch (error) {
+    console.error('Cache set error:', error);
+  }
+};
+
+router.get('/', async (req, res) => {
   try {
     const { query, city, minCapacity, maxPricePerHour, amenities } = req.query;
-    
+
     // Create cache key
     const cacheKey = JSON.stringify({ query, city, minCapacity, maxPricePerHour, amenities });
-    const cached = cache.get(cacheKey);
-    
-    if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
-      return res.json(cached.data);
+    const cached = await getCachedData(cacheKey);
+
+    if (cached) {
+      return res.json(cached);
     }
 
-    let filteredVenues = [...venuesData];
+    // Build SQL query with filters
+    let sqlQuery = 'SELECT * FROM venues WHERE 1=1';
+    const queryParams: any[] = [];
+    let paramCount = 0;
 
     // Apply filters
     if (query) {
-      const searchTerm = query.toString().toLowerCase();
-      filteredVenues = filteredVenues.filter(venue =>
-        venue.name.toLowerCase().includes(searchTerm) ||
-        venue.city.toLowerCase().includes(searchTerm) ||
-        venue.amenities.some((amenity: string) => 
-          amenity.toLowerCase().includes(searchTerm)
-        )
-      );
+      paramCount++;
+      const searchTerm = `%${query.toString().toLowerCase()}%`;
+      sqlQuery += ` AND (LOWER(name) LIKE $${paramCount} OR LOWER(city) LIKE $${paramCount} OR EXISTS (
+        SELECT 1 FROM unnest(amenities) as amenity WHERE LOWER(amenity) LIKE $${paramCount}
+      ))`;
+      queryParams.push(searchTerm);
     }
 
     if (city) {
-      filteredVenues = filteredVenues.filter(venue =>
-        venue.city.toLowerCase() === city.toString().toLowerCase()
-      );
+      paramCount++;
+      sqlQuery += ` AND LOWER(city) = $${paramCount}`;
+      queryParams.push(city.toString().toLowerCase());
     }
 
     if (minCapacity) {
-      filteredVenues = filteredVenues.filter(venue =>
-        venue.capacity >= parseInt(minCapacity.toString())
-      );
+      paramCount++;
+      sqlQuery += ` AND capacity >= $${paramCount}`;
+      queryParams.push(parseInt(minCapacity.toString()));
     }
 
     if (maxPricePerHour) {
-      filteredVenues = filteredVenues.filter(venue =>
-        venue.pricePerHour <= parseInt(maxPricePerHour.toString())
-      );
+      paramCount++;
+      sqlQuery += ` AND (price_per_hour <= $${paramCount} OR hourly_rate <= $${paramCount})`;
+      queryParams.push(parseInt(maxPricePerHour.toString()));
     }
 
     if (amenities) {
       const requiredAmenities = amenities.toString().split(',').map(a => a.trim().toLowerCase());
-      filteredVenues = filteredVenues.filter(venue =>
-        requiredAmenities.every(required =>
-          venue.amenities.some((amenity: string) =>
-            amenity.toLowerCase().includes(required)
-          )
-        )
-      );
+      for (const amenity of requiredAmenities) {
+        paramCount++;
+        sqlQuery += ` AND EXISTS (
+          SELECT 1 FROM unnest(amenities) as venue_amenity WHERE LOWER(venue_amenity) LIKE $${paramCount}
+        )`;
+        queryParams.push(`%${amenity}%`);
+      }
     }
 
-    // Limit results to top 5 for performance
-    const limitedResults = filteredVenues
-      .sort((a, b) => b.rating - a.rating)
-      .slice(0, 5);
+    // Add ordering and limit
+    sqlQuery += ' ORDER BY capacity DESC LIMIT 5';
 
-    const result = {
-      venues: limitedResults,
-      total: filteredVenues.length,
-      displayed: limitedResults.length
+    // Execute query
+    const venues = await sql.unsafe(sqlQuery, queryParams);
+
+    // Add venue_id field for frontend compatibility
+    const venuesWithVenueId = venues.map((venue: any) => ({
+      ...venue,
+      venue_id: venue.id
+    }));
+
+    const responseData = {
+      venues: venuesWithVenueId,
+      total: venuesWithVenueId.length,
+      displayed: venuesWithVenueId.length
     };
 
     // Cache the result
-    cache.set(cacheKey, { data: result, timestamp: Date.now() });
+    await setCachedData(cacheKey, responseData);
 
-    res.json(result);
+    res.json(responseData);
   } catch (error) {
     console.error('Error fetching venues:', error);
     res.status(500).json({ error: 'Failed to fetch venues' });
@@ -95,141 +125,371 @@ router.get('/', (req, res) => {
 });
 
 // New POST endpoint for advanced venue search
-router.post('/search', (req, res) => {
+router.post('/search', async (req, res) => {
   try {
     const {
       city,
       state,
+      country,
       metro_area,
+      // capacity
       capacity_min,
+      capacity_max,
+      // classification
       type,
+      // arrays
       amenities,
+      tags,
+      // ratings
+      diamond_level,
+      preferred_rating,
+      // spatial
+      lat,
+      lon,
+      radius_mi,
+      airport_distance_max_mi,
+      // spaces
+      meeting_rooms_total,
+      total_meeting_area_sqft,
+      largest_space_sqft,
+      // price (if present in dataset)
+      price_per_hour_min,
+      price_per_hour_max,
+      // dates (ISO strings). If provided, we’ll prefer venues with promotions that overlap.
+      dates,
+      // pagination / behavior
       limit = 10,
       offset = 0,
       fallback = false
-    } = req.body;
+    } = req.body || {};
 
-    // Create cache key
-    const cacheKey = JSON.stringify({ city, state, metro_area, capacity_min, amenities, limit, offset, fallback });
-    const cached = cache.get(cacheKey);
+    // ---- Helpers ----
+    const toStr = (v: any) => (typeof v === 'string' ? v : (v ?? '') + '');
+    const ciEq = (a: any, b: any) => toStr(a).trim().toLowerCase() === toStr(b).trim().toLowerCase();
+    const ciIncludes = (hay: any, needle: any) => toStr(hay).toLowerCase().includes(toStr(needle).toLowerCase());
+    const asUpperArray = (v: any) => {
+      if (!v) return [];
+      if (Array.isArray(v)) return v.map(x => toStr(x).trim().toUpperCase()).filter(Boolean);
+      return toStr(v).split(',').map(x => x.trim().toUpperCase()).filter(Boolean);
+    };
+    const parsePromotions = (p: any) => {
+      // promotions may be a JSON string of [{title,start,end}...]
+      if (!p) return [];
+      if (Array.isArray(p)) return p;
+      try { return JSON.parse(p); } catch { return []; }
+    };
+    const parseDates = (arr: any) => {
+      if (!arr || !Array.isArray(arr)) return [];
+      return arr
+        .map(d => {
+          // support "YYYY-MM-DD" or ranges "YYYY-MM-DD to YYYY-MM-DD"
+          const s = toStr(d);
+          if (s.includes('to')) {
+            const [start, end] = s.split('to').map(x => x.trim());
+            return { start: new Date(start), end: new Date(end) };
+          }
+          const dt = new Date(s);
+          return { start: dt, end: dt };
+        })
+        .filter(({ start, end }: any) => !isNaN(start.getTime()) && !isNaN(end.getTime()));
+    };
+    const datesRequested = parseDates(dates);
 
-    if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
-      return res.json(cached.data);
+    const haversineMi = (lat1: any, lon1: any, lat2: any, lon2: any) => {
+      const toRad = (x: any) => (x * Math.PI) / 180;
+      const R = 3958.8; // miles
+      const dLat = toRad((lat2 ?? 0) - (lat1 ?? 0));
+      const dLon = toRad((lon2 ?? 0) - (lon1 ?? 0));
+      const a =
+        Math.sin(dLat / 2) ** 2 +
+        Math.cos(toRad(lat1 ?? 0)) *
+          Math.cos(toRad(lat2 ?? 0)) *
+          Math.sin(dLon / 2) ** 2;
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      return R * c;
+    };
+
+    // Build cache key with all supported params (sorted keys for stability)
+    const cachePayload = {
+      city, state, country, metro_area,
+      capacity_min, capacity_max, type,
+      amenities, tags,
+      diamond_level, preferred_rating,
+      lat, lon, radius_mi, airport_distance_max_mi,
+      meeting_rooms_total, total_meeting_area_sqft, largest_space_sqft,
+      price_per_hour_min, price_per_hour_max,
+      dates: datesRequested.map(({ start, end }) => [start.toISOString(), end.toISOString()])
+      // limit, offset, fallback
+    };
+    const cacheKey = JSON.stringify(cachePayload);
+    const cached = await getCachedData(cacheKey);
+    if (cached) {
+      return res.json(cached);
     }
 
-    let filteredVenues = [...venuesData];
+    // Get venues from database
+    let filteredVenues: any[] = await sql`SELECT * FROM venues`;
 
-    // Apply filters based on provided criteria
+    // ---- Filters ----
     if (city) {
-      filteredVenues = filteredVenues.filter(venue =>
-        venue.city?.toLowerCase() === city.toLowerCase()
-      );
+      filteredVenues = filteredVenues.filter(v => {
+        // Enhanced city matching to handle spacing variations
+        const venueCityNormalized = toStr(v.city).replace(/\s+/g, '').toLowerCase();
+        const searchCityNormalized = toStr(city).replace(/\s+/g, '').toLowerCase();
+
+        // Try both exact match and space-removed match
+        return ciEq(v.city, city) || venueCityNormalized === searchCityNormalized;
+      });
     }
 
     if (state) {
-      filteredVenues = filteredVenues.filter(venue =>
-        venue.state?.toLowerCase() === state.toLowerCase()
-      );
+      filteredVenues = filteredVenues.filter(v => ciEq(v.state, state));
+    }
+
+    if (country) {
+      filteredVenues = filteredVenues.filter(v => ciEq(v.country, country));
     }
 
     if (metro_area) {
-      filteredVenues = filteredVenues.filter(venue =>
-        venue.metro_area?.toLowerCase() === metro_area.toLowerCase()
-      );
+      // partial match to be forgiving (e.g., "Seattle" vs "WA - Seattle")
+      filteredVenues = filteredVenues.filter(v => ciIncludes(v.metro_area, metro_area));
     }
 
-    if (capacity_min) {
-      filteredVenues = filteredVenues.filter(venue => {
-        // Check various capacity fields that might exist
-        const maxCapacity = Math.max(
-          venue.capacity
-        );
-        return maxCapacity >= capacity_min;
+    if (typeof capacity_min === 'number') {
+      filteredVenues = filteredVenues.filter(v => {
+        const cap = Number(v.capacity ?? 0);
+        return cap >= capacity_min;
+      });
+    }
+
+    if (typeof capacity_max === 'number') {
+      filteredVenues = filteredVenues.filter(v => {
+        const cap = Number(v.capacity ?? 0);
+        return cap > 0 ? cap <= capacity_max : true;
       });
     }
 
     if (type) {
-      filteredVenues = filteredVenues.filter(venue => {
-        // Check various capacity fields that might exist
-        return type == venue.type;
-      });
+      filteredVenues = filteredVenues.filter(v => ciEq(v.type, type));
     }
+
     if (amenities && Array.isArray(amenities) && amenities.length > 0) {
-      filteredVenues = filteredVenues.filter(venue => {
-        if (!venue.amenities) return false;
+      const requestedAmenities = asUpperArray(amenities);
+      filteredVenues = filteredVenues.filter(v => {
+        const venueAmenities = asUpperArray(v.amenities);
+        // require ALL requested amenities - more forgiving matching
+        return requestedAmenities.every(req => {
+          return venueAmenities.some(va => {
+            // Bidirectional partial matching:
+            // 1. "bus" matches "BUS_PARKING_AVAILABLE" (req contained in venue)
+            // 2. "bus parking" matches "BUS_PARKING_AVAILABLE" (words from req in venue)
+            const reqNormalized = req.replace(/[_\s-]/g, ' ').toLowerCase();
+            const vaNormalized = va.replace(/[_\s-]/g, ' ').toLowerCase();
 
-        // Split amenities string into array if it's a string
-        const venueAmenities = typeof venue.amenities === 'string'
-          ? venue.amenities.split(',').map((a: string) => a.trim().toUpperCase())
-          : venue.amenities;
+            // Simple contains check (existing behavior)
+            if (vaNormalized.includes(reqNormalized) || reqNormalized.includes(vaNormalized)) {
+              return true;
+            }
 
-        // Check if all required amenities are present
-        return amenities.every((requiredAmenity: string) =>
-          venueAmenities.some((venueAmenity: string) =>
-            venueAmenity.toUpperCase().includes(requiredAmenity.toUpperCase())
-          )
-        );
+            // Word-based matching for better fuzzy search
+            const reqWords = reqNormalized.split(/\s+/).filter(Boolean);
+            const vaWords = vaNormalized.split(/\s+/).filter(Boolean);
+
+            // Check if all words from request appear in venue amenity
+            return reqWords.every(reqWord =>
+              vaWords.some(vaWord =>
+                vaWord.includes(reqWord) || reqWord.includes(vaWord)
+              )
+            );
+          });
+        });
       });
     }
 
-    // If no results and fallback is true, try less strict filtering
-    if (filteredVenues.length === 0 && fallback) {
-      filteredVenues = [...venuesData];
+    if (tags && Array.isArray(tags) && tags.length > 0) {
+      const requestedTags = asUpperArray(tags);
+      filteredVenues = filteredVenues.filter(v => {
+        const venueTags = asUpperArray(v.tags);
+        return requestedTags.every(req => venueTags.some(t => t.includes(req)));
+      });
+    }
 
-      // Apply more lenient filters
+    if (diamond_level) {
+      filteredVenues = filteredVenues.filter(v => ciEq(v.diamond_level, diamond_level));
+    }
+
+    if (preferred_rating) {
+      filteredVenues = filteredVenues.filter(v => ciEq(v.preferred_rating, preferred_rating));
+    }
+
+    if (typeof meeting_rooms_total === 'number') {
+      filteredVenues = filteredVenues.filter(v => Number(v.meeting_rooms_total ?? 0) >= meeting_rooms_total);
+    }
+
+    if (typeof total_meeting_area_sqft === 'number') {
+      filteredVenues = filteredVenues.filter(v => Number(v.total_meeting_area_sqft ?? 0) >= total_meeting_area_sqft);
+    }
+
+    if (typeof largest_space_sqft === 'number') {
+      filteredVenues = filteredVenues.filter(v => Number(v.largest_space_sqft ?? 0) >= largest_space_sqft);
+    }
+
+    if (typeof airport_distance_max_mi === 'number') {
+      filteredVenues = filteredVenues.filter(v => {
+        const dist = Number(v.airport_distance_mi ?? Infinity);
+        return dist <= airport_distance_max_mi;
+      });
+    }
+
+    if (lat != null && lon != null && typeof radius_mi === 'number' && radius_mi > 0) {
+      filteredVenues = filteredVenues.filter(v => {
+        if (v.lat == null || v.lon == null) return false;
+        const d = haversineMi(Number(lat), Number(lon), Number(v.lat), Number(v.lon));
+        return d <= radius_mi;
+      });
+    }
+
+    // Price filters only if those fields exist in your dataset
+    if (typeof price_per_hour_min === 'number' || typeof price_per_hour_max === 'number') {
+      filteredVenues = filteredVenues.filter(v => {
+        const price = Number(v.price_per_hour ?? v.hourly_rate ?? NaN);
+        if (Number.isNaN(price)) return false; // skip if price unknown
+        if (typeof price_per_hour_min === 'number' && price < price_per_hour_min) return false;
+        if (typeof price_per_hour_max === 'number' && price > price_per_hour_max) return false;
+        return true;
+      });
+    }
+
+    // If no results and fallback is true, relax some constraints
+    if (filteredVenues.length === 0 && fallback) {
+      filteredVenues = await sql`SELECT * FROM venues` as any[];
+
       if (state) {
-        filteredVenues = filteredVenues.filter(venue =>
-          venue.state?.toLowerCase() === state.toLowerCase()
-        );
+        filteredVenues = filteredVenues.filter(v => ciEq(v.state, state));
+      } else if (country) {
+        filteredVenues = filteredVenues.filter(v => ciEq(v.country, country));
       }
 
-      if (capacity_min) {
-        // Use 80% of requested capacity as fallback
-        const fallbackCapacity = Math.floor(capacity_min * 0.8);
-        filteredVenues = filteredVenues.filter(venue => {
-          const maxCapacity = Math.max(
-            venue.occ_total_theater || 0,
-            venue.occ_total_banquet || 0,
-            venue.occ_total_classroom || 0,
-            venue.occ_largest_theater || 0,
-            venue.occ_largest_banquet || 0,
-            venue.occ_largest_classroom || 0
-          );
-          return maxCapacity >= fallbackCapacity;
+      if (typeof capacity_min === 'number') {
+        const fbCap = Math.floor(capacity_min * 0.8);
+        filteredVenues = filteredVenues.filter(v => Number(v.capacity ?? 0) >= fbCap);
+      }
+
+      if (amenities && amenities.length > 0) {
+        const requestedAmenities = asUpperArray(amenities);
+        // relaxed: match ANY instead of ALL
+        filteredVenues = filteredVenues.filter(v => {
+          const venueAmenities = asUpperArray(v.amenities);
+          return requestedAmenities.some(req => venueAmenities.some(va => va.includes(req)));
         });
       }
     }
 
-    // Sort by relevance (prefer venues with more amenities, higher capacity)
+    // ---- Scoring / Sorting ----
+    // Score components:
+    // + (# of amenity matches)
+    // + capacity closeness (penalize difference from mid of [min,max])
+    // + promo overlap bonus if dates requested
+    // + inverse airport distance (closer is better)
+    const requestedAmenities = asUpperArray(amenities);
+    const hasCapRange = typeof capacity_min === 'number' || typeof capacity_max === 'number';
+    const targetCap = (() => {
+      if (typeof capacity_min === 'number' && typeof capacity_max === 'number') {
+        return (capacity_min + capacity_max) / 2;
+      } else if (typeof capacity_min === 'number') {
+        return capacity_min;
+      } else if (typeof capacity_max === 'number') {
+        return capacity_max;
+      }
+      return null;
+    })();
+
+    const hasDateReq = datesRequested.length > 0;
+
+    const overlapDates = (promos: any, reqRanges: any) => {
+      if (!promos.length || !reqRanges.length) return false;
+      return reqRanges.some(({ start: rs, end: re }: any) =>
+        promos.some((p: any) => {
+          const ps = new Date(p.start);
+          const pe = new Date(p.end);
+          if (isNaN(ps.getTime()) || isNaN(pe.getTime())) return false;
+          return ps.getTime() <= re.getTime() && pe.getTime() >= rs.getTime(); // overlap
+        })
+      );
+    };
+
     filteredVenues.sort((a, b) => {
-      // Calculate relevance score
-      const scoreA = (a.occ_total_theater || 0) + (a.amenities?.split(',').length || 0);
-      const scoreB = (b.occ_total_theater || 0) + (b.amenities?.split(',').length || 0);
+      const aAmenities = asUpperArray(a.amenities);
+      const bAmenities = asUpperArray(b.amenities);
+
+      const amenityMatchesA = requestedAmenities.length
+        ? requestedAmenities.filter(req => aAmenities.some(va => va.includes(req))).length
+        : 0;
+      const amenityMatchesB = requestedAmenities.length
+        ? requestedAmenities.filter(req => bAmenities.some(vb => vb.includes(req))).length
+        : 0;
+
+      const capA = Number(a.capacity ?? 0);
+      const capB = Number(b.capacity ?? 0);
+
+      let capScoreA = 0, capScoreB = 0;
+      if (hasCapRange && targetCap != null) {
+        // negative of distance to target (closer is better)
+        capScoreA = -Math.abs(capA - targetCap) / (targetCap || 1);
+        capScoreB = -Math.abs(capB - targetCap) / (targetCap || 1);
+      }
+
+      const promosA = parsePromotions(a.promotions);
+      const promosB = parsePromotions(b.promotions);
+      const promoBonusA = hasDateReq && overlapDates(promosA, datesRequested) ? 1 : 0;
+      const promoBonusB = hasDateReq && overlapDates(promosB, datesRequested) ? 1 : 0;
+
+      const airportA = Number(a.airport_distance_mi ?? 999);
+      const airportB = Number(b.airport_distance_mi ?? 999);
+      const airportScoreA = -airportA / 100; // small weight
+      const airportScoreB = -airportB / 100;
+
+      const scoreA = amenityMatchesA * 2 + capScoreA + promoBonusA + airportScoreA;
+      const scoreB = amenityMatchesB * 2 + capScoreB + promoBonusB + airportScoreB;
+
       return scoreB - scoreA;
     });
 
-    // Apply pagination
-    const total = filteredVenues.length;
-    const paginatedVenues = filteredVenues.slice(offset, offset + limit);
+    // ---- Deduplication ----
+    // Remove duplicate venues by id (keep first occurrence after sorting)
+    const seenIds = new Set();
+    const uniqueVenues = filteredVenues.filter(venue => {
+      if (seenIds.has(venue.id)) {
+        return false;
+      }
+      seenIds.add(venue.id);
+      return true;
+    });
+
+    // ---- Pagination ----
+    const total = uniqueVenues.length;
+    const start = Math.max(0, Number(offset) || 0);
+    const end = start + (Number(limit) || 10);
+    const paginatedVenues = uniqueVenues.slice(start, end);
 
     const result = {
       venues: paginatedVenues,
       total,
       displayed: paginatedVenues.length,
-      limit,
-      offset,
-      has_more: offset + limit < total
+      limit: Number(limit) || 10,
+      offset: start,
+      has_more: end < total
     };
 
-    // Cache the result
-    cache.set(cacheKey, { data: result, timestamp: Date.now() });
-
+    // Cache
+    await setCachedData(cacheKey, result);
     res.json(result);
   } catch (error) {
     console.error('Error searching venues:', error);
     res.status(500).json({ error: 'Failed to search venues' });
   }
 });
+
 
 // Get search context and results summary
 router.get('/search-context', (req, res) => {
@@ -370,16 +630,23 @@ router.get('/search-context', (req, res) => {
   }
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const venue = venuesData.find((v: any) => v.venue_id === id);
+    const venues = await sql`SELECT * FROM venues WHERE id = ${id}`;
+    const venue = venues[0];
 
     if (!venue) {
       return res.status(404).json({ error: 'Venue not found' });
     }
 
-    res.json(venue);
+    // Add venue_id field for frontend compatibility
+    const venueWithVenueId = {
+      ...venue,
+      venue_id: venue.id
+    };
+
+    res.json(venueWithVenueId);
   } catch (error) {
     console.error('Error fetching venue:', error);
     res.status(500).json({ error: 'Failed to fetch venue' });
@@ -490,12 +757,10 @@ router.post('/append', (req, res) => {
     writeFileSync(backupPath, JSON.stringify(existingVenues, null, 2));
     writeFileSync(venuesFilePath, JSON.stringify(updatedVenues, null, 2));
 
-    // Update in-memory cache
-    venuesData.length = 0;
-    venuesData.push(...updatedVenues);
+    // Data now stored in database - no need to update in-memory cache
 
     // Clear cache to force refresh
-    cache.clear();
+    // Cache cleared automatically by database
 
     res.json({
       success: true,
@@ -528,16 +793,16 @@ router.post('/reply', async (req, res) => {
 
     // Create cache key for agent replies
     const cacheKey = `agent-reply-${JSON.stringify({ user_text })}`;
-    const cached = cache.get(cacheKey);
+    const cached = await getCachedData(cacheKey);
 
-    if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
-      return res.json(cached.data);
+    if (cached) {
+      return res.json(cached);
     }
 
     console.log('Calling Smyth Reply Agent with text:', user_text);
 
     // Call Smyth Reply Agent API
-    const response = await fetch('https://cmfsj5xv5p9b62py5r1okplh2.agent.pa.smyth.ai/api/Reply_Agent', {
+    const response = await fetch('https://cmfurpcfzsyt4jxgtu6q8fmu6.agent.pa.smyth.ai/api/results_text', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -561,7 +826,7 @@ router.post('/reply', async (req, res) => {
       };
 
       // Cache the fallback result briefly
-      cache.set(cacheKey, { data: fallbackResponse, timestamp: Date.now() });
+      await setCachedData(cacheKey, { data: fallbackResponse, timestamp: Date.now() });
       return res.json(fallbackResponse);
     }
 
@@ -584,7 +849,7 @@ router.post('/reply', async (req, res) => {
       // If it's an object, preserve the structure but add our metadata
       formattedResponse = {
         success: true,
-        agent_reply: agentData.reply || agentData.response || agentData.message || JSON.stringify(agentData),
+        agent_reply: (agentData as any).reply || (agentData as any).response || (agentData as any).message || JSON.stringify(agentData),
         response_type: 'structured',
         timestamp: new Date().toISOString(),
         user_query: user_text,
@@ -602,7 +867,7 @@ router.post('/reply', async (req, res) => {
     }
 
     // Cache the result
-    cache.set(cacheKey, { data: formattedResponse, timestamp: Date.now() });
+    await setCachedData(cacheKey, { data: formattedResponse, timestamp: Date.now() });
 
     res.json(formattedResponse);
 
@@ -632,14 +897,14 @@ router.post('/ai-search', async (req, res) => {
 
     // Create cache key for AI search
     const cacheKey = `ai-search-${JSON.stringify({ venue_request })}`;
-    const cached = cache.get(cacheKey);
+    const cached = await getCachedData(cacheKey);
 
-    if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
-      return res.json(cached.data);
+    if (cached) {
+      return res.json(cached);
     }
 
     // Call external AI search API
-    const response = await fetch('https://cmfsj5xv5p9b62py5r1okplh2.agent.pa.smyth.ai/api/search_venues', {
+    const response = await fetch('https://cmfurpcfzsyt4jxgtu6q8fmu6.agent.pa.smyth.ai/api/search_venues', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -656,17 +921,40 @@ router.post('/ai-search', async (req, res) => {
     // Parse the nested JSON response
     let searchResults;
     try {
-      searchResults = JSON.parse(apiData.results);
+      const resultsData = (apiData as any).results;
+      if (!resultsData || typeof resultsData !== 'string') {
+        console.error('API results is undefined or not a string:', resultsData);
+        return res.status(500).json({ error: 'No results data from search API' });
+      }
+      searchResults = JSON.parse(resultsData);
     } catch (parseError) {
       console.error('Error parsing API results:', parseError);
+      console.error('Raw API data:', apiData);
       return res.status(500).json({ error: 'Invalid response format from search API' });
     }
 
+    // Deduplicate venues by id before formatting response
+    const venues = searchResults.venues || [];
+    const seenIds = new Set();
+    const uniqueVenues = venues.filter((venue: any) => {
+      if (seenIds.has(venue.id)) {
+        return false;
+      }
+      seenIds.add(venue.id);
+      return true;
+    });
+
+    // Add venue_id field for frontend compatibility
+    const venuesWithVenueId = uniqueVenues.map((venue: any) => ({
+      ...venue,
+      venue_id: venue.id
+    }));
+
     // Format the response to match our frontend expectations
     const formattedResponse = {
-      venues: searchResults.venues || [],
-      total: searchResults.total || 0,
-      displayed: searchResults.displayed || 0,
+      venues: venuesWithVenueId,
+      total: venuesWithVenueId.length,
+      displayed: venuesWithVenueId.length,
       limit: searchResults.limit || 10,
       offset: searchResults.offset || 0,
       has_more: searchResults.has_more || false,
@@ -674,7 +962,7 @@ router.post('/ai-search', async (req, res) => {
     };
 
     // Cache the result
-    cache.set(cacheKey, { data: formattedResponse, timestamp: Date.now() });
+    await setCachedData(cacheKey, { data: formattedResponse, timestamp: Date.now() });
 
     res.json(formattedResponse);
   } catch (error) {

@@ -64,8 +64,14 @@ AI_MAX_TOKENS_PER_CALL=1200
 ### Inquiries
 - `POST /api/inquiries` - Submit booking inquiry
 
-### Ads
+### Ads (Legacy)
 - `GET /api/ads` - Get contextual advertisements
+
+### Advertising (JSON-Only MVP)
+- `POST /ad/request` - Request contextual ads with targeting
+- `POST /ad/click` - Track ad clicks and conversions
+- `GET /ad/health` - Ad system health check
+- `GET /ad/dev/debug` - Debug information (development only)
 
 ### AI Assistant
 - `POST /api/agent/relay` - SmythOS integration
@@ -177,6 +183,117 @@ npm run build
 2. Upload `dist/` contents to your web server
 3. Set environment variables on your hosting platform
 4. Ensure Node.js 18+ is available for the backend
+
+## Advertising (JSON-Only MVP)
+
+The platform includes a complete advertising system with machine learning optimization.
+
+### File Structure
+
+```
+ads/
+├── ads.json              # Static ad catalog (seed data)
+├── stats.json            # CTR priors & rolling tallies per (ad_id, topic)
+├── impressions.jsonl     # Append-only impression tracking
+├── clicks.jsonl          # Append-only click tracking
+├── freqcap.json          # Daily exposure limits per user + ad
+└── config.json           # System configuration
+```
+
+### Adding New Ads
+
+Edit `ads/ads.json` to add new advertisements:
+
+```json
+{
+  "id": "unique-ad-id",
+  "placement": "sidebar",
+  "targeting_keywords": ["wedding", "luxury", "premium"],
+  "landing_url": "https://example.com/service",
+  "base_headline": "Your Ad Headline",
+  "base_body": "Ad description text",
+  "floor_ecpm": 150,
+  "blocked_paths": ["/admin", "/api"],
+  "lang": "en"
+}
+```
+
+### Frontend Integration
+
+Include the ad client on any page:
+
+```html
+<script src="/adClient.js" async></script>
+<div data-ad-slot="sidebar"></div>
+```
+
+The system automatically:
+- Collects page context (title, URL, meta description)
+- Handles user targeting and frequency capping
+- Tracks impressions and clicks
+- Respects Do-Not-Track headers
+
+### Development Commands
+
+```bash
+# Monitor impressions in real-time
+tail -f ads/impressions.jsonl
+
+# View click tracking
+tail -f ads/clicks.jsonl
+
+# Debug ad selection
+curl "http://localhost:3000/ad/dev/debug?limit=10"
+```
+
+### Testing Features
+
+**Enable Debug Mode**: Add `?addebug=1` to any URL to see:
+- Selected ad ID and topic
+- Keyword extraction results
+- Eligible ad count
+- Exploration vs. exploitation metrics
+
+**Test Frequency Capping**:
+1. Visit a page 4 times (cap is 3 per day)
+2. Delete `venue_anon_id` cookie to reset user
+3. Change system date to test daily reset
+
+**Test Do-Not-Track**: Enable DNT in browser settings - no ads should load.
+
+**Test Different Contexts**:
+- `/venues/wedding` → Wedding-related ads
+- `/venues/corporate` → Business event ads
+- Different page titles trigger different topics
+
+### Machine Learning Features
+
+The system uses **Thompson Sampling** for ad optimization:
+- **Exploration**: 10% random selection to discover performance
+- **Exploitation**: 90% data-driven selection based on CTR
+- **Beta Distribution**: Models uncertainty in click-through rates
+- **Automatic Learning**: Performance improves over time
+
+### Configuration
+
+Edit `ads/config.json` to adjust system behavior:
+
+```json
+{
+  "epsilon": 0.10,
+  "daily_frequency_cap": 3,
+  "assumed_cpc_cents": 25,
+  "keyword_overlap_min": 1
+}
+```
+
+### Performance & Privacy
+
+- **Anonymous Tracking**: Uses IP + User-Agent hash (no personal data)
+- **Frequency Limits**: Maximum 3 ads per user per day
+- **DNT Compliance**: Respects browser Do-Not-Track settings
+- **Layout Stability**: Fixed-height ad containers prevent content shifts
+- **Click Tracking**: Uses `sendBeacon()` for reliable analytics
 
 ## Contributing
 

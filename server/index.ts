@@ -7,12 +7,16 @@ import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import { readFileSync } from 'fs';
 
+// Import database initialization
+import { initializeDatabase, importVenuesData, cleanupCache } from './db/init.js';
+
 // Import routes
 import healthRoute from './routes/health.js';
 import venuesRoute from './routes/venues.js';
 import inquiriesRoute from './routes/inquiries.js';
 import quoteRoute from './routes/quote.js';
 import adsRoute from './routes/ads.js';
+import adRoute from './routes/ad.js';
 import agentRoute from './routes/agent.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -52,7 +56,7 @@ app.use(cors({
           callback(new Error('Not allowed by CORS'));
         }
       }
-    : true, // Allow all origins in development
+    : ['http://localhost:5173', 'http://localhost:3000'], // Allow specific development origins
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],
@@ -63,12 +67,16 @@ app.use(compression());
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
+// Serve public static files (like adClient.js)
+app.use(express.static(join(__dirname, '../public')));
+
 // API routes
 app.use('/api/health', healthRoute);
 app.use('/api/venues', venuesRoute);
 app.use('/api/inquiries', inquiriesRoute);
 app.use('/api/ai/quote', quoteRoute);
 app.use('/api/ads', adsRoute);
+app.use('/ad', adRoute);
 app.use('/api/agent', agentRoute);
 
 // Serve static files in production
@@ -96,9 +104,38 @@ app.use((req, res) => {
   res.status(404).json({ error: 'Route not found' });
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
-  console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
-});
+// Initialize database and start server
+const startServer = async () => {
+  try {
+    console.log('🔄 Starting server initialization...');
+
+    // Initialize database
+    const dbInitialized = await initializeDatabase();
+    if (!dbInitialized) {
+      throw new Error('Failed to initialize database');
+    }
+
+    // Import venues data
+    const dataImported = await importVenuesData();
+    if (!dataImported) {
+      console.warn('⚠️  Failed to import venues data, but continuing...');
+    }
+
+    // Start cleanup interval for cache
+    setInterval(cleanupCache, 5 * 60 * 1000); // Every 5 minutes
+
+    // Start server
+    app.listen(PORT, () => {
+      console.log(`🚀 Server running on port ${PORT}`);
+      console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
+      console.log(`💾 Database: Connected and initialized`);
+    });
+  } catch (error) {
+    console.error('❌ Failed to start server:', error);
+    process.exit(1);
+  }
+};
+
+startServer();
 
 export default app;

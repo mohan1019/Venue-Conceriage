@@ -1,0 +1,6 @@
+{
+  "epsilon": 0.10,
+  "daily_frequency_cap": 3,
+  "assumed_cpc_cents": 25,
+  "keyword_overlap_min": 1
+}

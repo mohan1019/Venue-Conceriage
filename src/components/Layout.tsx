@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { MapPin, Calendar } from 'lucide-react';
+import { MapPin, Calendar, User, LogOut } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -8,51 +9,73 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation();
+  const { isAuthenticated, user, logout } = useAuth();
 
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-40">
+      <header className="bg-gray-900/80 backdrop-blur-xl shadow-lg border-b border-gray-700/50 sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link to="/" className="flex items-center space-x-2 group">
-              <div className="w-10 h-10 bg-primary-500 rounded-lg flex items-center justify-center group-hover:bg-primary-600 transition-colors duration-200">
+              <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center group-hover:scale-105 transition-all duration-200 shadow-lg">
                 <MapPin className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-gray-900">Venue Concierge</h1>
-                <p className="text-xs text-gray-500">Find Your Perfect Event Space</p>
+                <h1 className="text-xl font-bold text-white">Venue Concierge</h1>
+                <p className="text-xs text-gray-400">Find Your Perfect Event Space</p>
               </div>
             </Link>
 
             <nav className="hidden md:flex space-x-8">
-              <Link 
-                to="/" 
-                className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
-                  location.pathname === '/' 
-                    ? 'text-primary-600 bg-primary-50' 
-                    : 'text-gray-600 hover:text-primary-600 hover:bg-gray-50'
+              <Link
+                to="/"
+                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  location.pathname === '/'
+                    ? 'text-purple-400 bg-purple-500/10 border border-purple-500/20'
+                    : 'text-gray-300 hover:text-purple-400 hover:bg-gray-800/50'
                 }`}
               >
-                <MapPin className="w-4 h-4" />
-                <span>Browse Venues</span>
+                <span>Home</span>
               </Link>
-              
-              <a 
-                href="#"
-                className="flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-primary-600 hover:bg-gray-50 transition-colors duration-200"
-              >
-                <Calendar className="w-4 h-4" />
-                <span>My Events</span>
-              </a>
+
+              {isAuthenticated && (
+                <Link
+                  to="/my-enquiries"
+                  className={`flex items-center space-x-1 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                    location.pathname === '/my-enquiries'
+                      ? 'text-purple-400 bg-purple-500/10 border border-purple-500/20'
+                      : 'text-gray-300 hover:text-purple-400 hover:bg-gray-800/50'
+                  }`}
+                >
+                  <Calendar className="w-4 h-4" />
+                  <span>My Enquiries</span>
+                </Link>
+              )}
             </nav>
 
             <div className="flex items-center space-x-4">
-              <button className="text-gray-600 hover:text-primary-600 transition-colors duration-200">
-                Sign In
-              </button>
-              <button className="bg-primary-500 text-white px-4 py-2 rounded-lg hover:bg-primary-600 transition-colors duration-200">
-                List Your Venue
-              </button>
+              {isAuthenticated ? (
+                <div className="flex items-center space-x-4">
+                  <div className="flex items-center space-x-2 text-gray-300">
+                    <User className="w-4 h-4" />
+                    <span className="text-sm font-medium">{user?.name}</span>
+                  </div>
+                  <button
+                    onClick={logout}
+                    className="flex items-center space-x-1 text-gray-300 hover:text-red-400 transition-colors duration-200"
+                  >
+                    <LogOut className="w-4 h-4" />
+                    <span>Logout</span>
+                  </button>
+                </div>
+              ) : (
+                <Link
+                  to="/auth"
+                  className="text-gray-300 hover:text-purple-400 transition-colors duration-200"
+                >
+                  Sign In
+                </Link>
+              )}
             </div>
           </div>
         </div>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ad System Test</title>
+    <meta charset="utf-8">
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ccc; }
+        .ad-container { border: 2px dashed #999; min-height: 150px; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Ad System Test Page</h1>
+
+    <div class="test-section">
+        <h2>Test 1: Wedding Context</h2>
+        <div data-ad-slot="sidebar" class="ad-container">
+            <p>Ad should load here...</p>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 2: Corporate Context</h2>
+        <div data-ad-slot="sidebar" class="ad-container">
+            <p>Ad should load here...</p>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Debug Info</h2>
+        <button onclick="showDebugInfo()">Show Debug Info</button>
+        <div id="debug-output"></div>
+    </div>
+
+    <script src="https://venue-backend-1.onrender.com/adClient.js?debug=1"></script>
+    <script>
+        // Override page context for testing
+        window.document.title = "Wedding Photography Services";
+
+        // Add debug button functionality
+        function showDebugInfo() {
+            const output = document.getElementById('debug-output');
+            output.innerHTML = `
+                <h3>Debug Information:</h3>
+                <p><strong>AdClient loaded:</strong> ${typeof window.AdClient}</p>
+                <p><strong>Page Title:</strong> ${document.title}</p>
+                <p><strong>Ad Containers:</strong> ${document.querySelectorAll('[data-ad-slot]').length}</p>
+                <p><strong>Telemetry:</strong> ${JSON.stringify(window.AdClient?.getTelemetry?.() || 'N/A')}</p>
+            `;
+        }
+
+        // Auto-show debug after 3 seconds
+        setTimeout(showDebugInfo, 3000);
+    </script>
+</body>
+</html>
