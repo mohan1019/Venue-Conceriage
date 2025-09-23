@@ -6,7 +6,9 @@
   'use strict';
 
   // Configuration
-  const AD_API_BASE = 'https://venue-backend-1.onrender.com';
+  const AD_API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:3000'
+    : 'https://venue-backend-1.onrender.com';
   const ANON_ID_COOKIE = 'venue_anon_id';
   const COOKIE_EXPIRY_DAYS = 30;
   const DEBUG_PARAM = 'addebug';

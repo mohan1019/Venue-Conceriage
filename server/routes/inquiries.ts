@@ -2,6 +2,9 @@ import { Router } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import fetch from 'node-fetch';
 import { sql } from '../db/connection-postgres.js';
+import { readFileSync } from 'fs';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
 
 const router = Router();
 
@@ -64,7 +67,8 @@ router.post('/', async (req, res) => {
     const enquiry = result[0];
 
     // Process the enquiry with SmythOS agent in the background
-    processEnquiryWithAgent(enquiry);
+    // Pass venue_id directly since it's not stored in database
+    processEnquiryWithAgent({...enquiry, venue_id});
 
     res.status(201).json({
       success: true,
@@ -382,10 +386,19 @@ async function processEnquiryWithAgent(enquiry: any) {
     let venueContactInfo = '';
     try {
       // Load venue data to get contact information
-      const venuesData = JSON.parse(
-        require('fs').readFileSync(require('path').join(__dirname, '../../data/venues.json'), 'utf-8')
-      );
+      // Get correct directory path for ES modules
+      const __filename = fileURLToPath(import.meta.url);
+      const __dirname = dirname(__filename);
+      const venuePath = join(__dirname, '../../data/venues.json');
+
+      console.log('Attempting to load venues from path:', venuePath);
+      console.log('__dirname is:', __dirname);
+
+      const venuesData = JSON.parse(readFileSync(venuePath, 'utf-8'));
+      console.log('Venues data loaded, total venues:', venuesData.length);
+
       const venue = venuesData.find((v: any) => v.venue_id === enquiry.venue_id);
+      console.log("VENUE DETAILS for venue_id", enquiry.venue_id, ":", venue)
 
       if (venue) {
         venueContactInfo = `
@@ -396,7 +409,8 @@ Venue Contact Information:
         `;
       }
     } catch (error) {
-      console.warn('Could not load venue contact info:', (error as Error).message);
+      console.error('Could not load venue contact info. Error:', (error as Error).message);
+      console.error('Error stack:', (error as Error).stack);
     }
 
     // Prepare the enquiry data as JSON for the agent
@@ -415,12 +429,12 @@ Venue Contact Information:
       requirements: enquiry.requirements,
       venue: {
         name: enquiry.venue_name,
-        contact_email: venueContactInfo.includes('Email:') ?
-          venueContactInfo.split('Email:')[1]?.split('\n')[0]?.trim() || 'Not available' : 'Not available',
-        contact_phone: venueContactInfo.includes('Phone:') ?
-          venueContactInfo.split('Phone:')[1]?.split('\n')[0]?.trim() || 'Not available' : 'Not available',
-        manager_name: venueContactInfo.includes('Manager:') ?
-          venueContactInfo.split('Manager:')[1]?.split('\n')[0]?.trim() || 'Not available' : 'Not available'
+        contact_email: venueContactInfo.includes('- Email:') ?
+          venueContactInfo.split('- Email:')[1]?.split('\n')[0]?.trim() || 'Not available' : 'Not available',
+        contact_phone: venueContactInfo.includes('- Phone:') ?
+          venueContactInfo.split('- Phone:')[1]?.split('\n')[0]?.trim() || 'Not available' : 'Not available',
+        manager_name: venueContactInfo.includes('- Manager:') ?
+          venueContactInfo.split('- Manager:')[1]?.split('\n')[0]?.trim() || 'Not available' : 'Not available'
       }
     };
 

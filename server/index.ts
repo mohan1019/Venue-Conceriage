@@ -50,9 +50,10 @@ app.use(cors({
           'https://venue-concierge-full-zlxe.bolt.host',
           'localhost:5173'
         ];
-
+        console.log("ORIGIN CHECK",origin)
         if (!origin ||
             allowedOrigins.includes(origin) ||
+            (origin && origin.endsWith('.bolt.host')) ||
             (origin && origin.includes('bolt.host')) ||
             (origin && origin.includes('onrender.com'))) {
           console.log('CORS: Allowing origin', origin);

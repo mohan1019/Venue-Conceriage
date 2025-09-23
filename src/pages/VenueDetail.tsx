@@ -4,12 +4,12 @@ import { MapPin, Users, Star, Calendar, CheckCircle, MessageCircle, ChevronRight
 import EnquireWidget from '../components/EnquireWidget';
 import AskAI from '../components/AskAI';
 import EnquiryForm from '../components/EnquiryForm';
-import API_ENDPOINTS from '../config/api';
+import API_ENDPOINTS, { API_BASE_URL } from '../config/api';
 
 // Load ad client script from backend server
 if (typeof window !== 'undefined' && !window.AdClient) {
   const script = document.createElement('script');
-  script.src = 'https://venue-backend-1.onrender.com/adClient.js';
+  script.src = `${API_BASE_URL}/adClient.js`;
   script.async = true;
   document.head.appendChild(script);
 }
@@ -313,12 +313,6 @@ const VenueDetail: React.FC = () => {
                           <MessageCircle className="w-5 h-5" />
                           <span>Make Enquiry</span>
                         </button>
-                        <Link
-                          to={`/inquiry/${venue.venue_id}`}
-                          className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-6 py-3 rounded-xl font-medium transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 transform"
-                        >
-                          Book Now
-                        </Link>
                       </div>
                     </div>
                   </div>
@@ -407,12 +401,7 @@ const VenueDetail: React.FC = () => {
             {/* Enhanced Ad Space */}
             <div className="bg-gray-800/50 backdrop-blur-xl rounded-2xl shadow-2xl p-6 border border-gray-700/50">
               <div data-ad-slot="sidebar" className="min-h-[140px]">
-                <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-sm rounded-xl border border-purple-500/20 p-8 text-center">
-                  <div className="w-12 h-12 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <Sparkles className="w-6 h-6 text-purple-400" />
-                  </div>
-                  <p className="text-gray-400 text-sm">Premium recommendations loading...</p>
-                </div>
+                {/* AdClient will populate this container */}
               </div>
             </div>
 

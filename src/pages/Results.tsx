@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { MapPin, Users, Star, Search, Send, MessageCircle, Sparkles, Bot, ChevronRight, Filter, Clock, TrendingUp } from 'lucide-react';
 import EnquiryForm from '../components/EnquiryForm';
-import API_ENDPOINTS from '../config/api';
+import API_ENDPOINTS, { API_BASE_URL } from '../config/api';
 
 // Global type declaration for AdClient
 declare global {
@@ -60,7 +60,7 @@ const Results: React.FC = () => {
     if (!window.AdClient && !adScriptLoaded) {
       console.log('Loading AdClient script...');
       const script = document.createElement('script');
-      script.src = 'https://venue-backend-1.onrender.com/adClient.js';
+      script.src = `${API_BASE_URL}/adClient.js`;
       script.async = true;
       script.crossOrigin = 'anonymous';
       script.onload = () => {
@@ -636,12 +636,7 @@ const Results: React.FC = () => {
 
               {/* Enhanced Ad Slot */}
               <div data-ad-slot="sidebar" className="mb-6">
-                <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-sm rounded-xl border border-purple-500/20 p-8 text-center">
-                  <div className="w-12 h-12 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <MessageCircle className="w-6 h-6 text-purple-400" />
-                  </div>
-                  <p className="text-gray-400 text-sm">Loading premium recommendations...</p>
-                </div>
+                {/* AdClient will populate this container */}
               </div>
             </div>
           </div>

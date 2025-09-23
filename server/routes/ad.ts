@@ -504,15 +504,19 @@ router.post('/request', async (req: any, res: any) => {
         if (aiChosen && aiChosen.ad_id) {
           const selectedAd = randomAds.find((ad: any) => ad.id === aiChosen.ad_id);
           if (selectedAd) {
-            // Use AI-generated headline and body if provided
-            const aiSelectedHeadline = aiChosen.headline || selectedAd.base_headline;
-            const aiSelectedBody = aiChosen.body || selectedAd.base_body;
+            // Use AI-generated headline and body if provided and not empty/placeholder
+            const aiSelectedHeadline = (aiChosen.headline && aiChosen.headline !== "No headline")
+              ? aiChosen.headline
+              : selectedAd.base_headline;
+            const aiSelectedBody = (aiChosen.body && aiChosen.body !== "No body")
+              ? aiChosen.body
+              : selectedAd.base_body;
             selectedAds.push({
               ad: selectedAd,
               headline: aiSelectedHeadline,
               body: aiSelectedBody
             });
-            console.log('[AI Agent] Using optimized ad:', selectedAd.id, 'with AI-generated content');
+            console.log('[AI Agent] Using optimized ad:', selectedAd.id, 'with AI content:', aiChosen.headline || 'fallback to original');
           }
         }
       }

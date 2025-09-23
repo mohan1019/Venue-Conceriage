@@ -390,16 +390,32 @@ router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const venues = getVenuesFromJson();
-    const venue = venues.find((v: any) => v.venue_id === id || v.id === id);
+
+    // Find venue by venue_id, id, or generated ID
+    let venue = venues.find((v: any) => v.venue_id === id || v.id === id);
+
+    // If not found, try to find by generated ID pattern
+    if (!venue) {
+      venue = venues.find((v: any) => {
+        const generatedId = `${v.name?.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${v.city?.toLowerCase()}-${v.state?.toLowerCase()}`.substring(0, 50);
+        return generatedId === id;
+      });
+    }
 
     if (!venue) {
       return res.status(404).json({ error: 'Venue not found' });
     }
 
     // Add venue_id field and map API fields to frontend expectations
+    let venueId = venue.venue_id || venue.id;
+    if (!venueId) {
+      // Generate the same ID as used in the search results
+      venueId = `${venue.name?.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${venue.city?.toLowerCase()}-${venue.state?.toLowerCase()}`.substring(0, 50);
+    }
+
     const venueWithVenueId = {
       ...venue,
-      venue_id: venue.venue_id || venue.id,
+      venue_id: venueId,
       // Map price fields for frontend compatibility
       pricePerHour: venue.price_per_hour || venue.hourly_rate || Math.round((venue.price_per_day || 0) / 8), // Convert daily to hourly estimate
       // Ensure amenities is an array
@@ -632,7 +648,7 @@ router.post('/ai-search', async (req, res) => {
     }
 
     const apiData = await response.text();
-    console.log('SmythOS API response received (text):', apiData);
+    //console.log('SmythOS API response received (text):', apiData);
     return handleSmythOSResponse(apiData, venue_request, res);
 
   } catch (error) {
@@ -667,8 +683,64 @@ function handleSmythOSResponse(apiData: string, venue_request: string, res: any)
 
     const venuesWithVenueId = uniqueVenues.map((venue: any) => ({
       ...venue,
-      venue_id: venue.id
+      venue_id: venue.venue_id || venue.id,
+      // Map price fields for frontend compatibility
+      pricePerHour: venue.price_per_hour || venue.hourly_rate || Math.round((venue.price_per_day || 0) / 8),
+      // Ensure amenities is properly formatted
+      amenities: venue.amenities || ''
     }));
+
+    // If AI search returns no results, fall back to basic venue search
+    if (venuesWithVenueId.length === 0) {
+      console.log('AI search returned no results, falling back to basic venue search');
+      const basicVenues = getVenuesFromJson();
+
+      // Apply basic filtering based on search keywords
+      const searchTerms = venue_request.toLowerCase();
+      let filteredVenues = basicVenues.filter((venue: any) => {
+        return venue.name?.toLowerCase().includes(searchTerms) ||
+               venue.city?.toLowerCase().includes(searchTerms) ||
+               venue.type?.toLowerCase().includes(searchTerms) ||
+               searchTerms.includes('wedding') ||
+               searchTerms.includes('venue');
+      });
+
+      // If no keyword matches, just return all venues
+      if (filteredVenues.length === 0) {
+        filteredVenues = basicVenues;
+      }
+
+      // Apply venue_id mapping for frontend compatibility
+      const fallbackVenues = filteredVenues.slice(0, 6).map((venue: any) => {
+        // Generate venue_id if missing (use existing logic from other endpoints)
+        let venueId = venue.venue_id || venue.id;
+        if (!venueId) {
+          // Generate a simple ID based on venue name and location
+          venueId = `${venue.name?.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${venue.city?.toLowerCase()}-${venue.state?.toLowerCase()}`.substring(0, 50);
+        }
+
+        return {
+          ...venue,
+          venue_id: venueId,
+          pricePerHour: venue.price_per_hour || venue.hourly_rate || Math.round((venue.price_per_day || 0) / 8),
+          amenities: venue.amenities || ''
+        };
+      });
+
+      const fallbackResponse = {
+        venues: fallbackVenues,
+        total: fallbackVenues.length,
+        displayed: fallbackVenues.length,
+        limit: 6,
+        offset: 0,
+        has_more: false,
+        search_query: venue_request,
+        fallback_used: true
+      };
+
+      console.log(`Fallback search found ${fallbackVenues.length} venues`);
+      return res.json(fallbackResponse);
+    }
 
     const formattedResponse = {
       venues: venuesWithVenueId,

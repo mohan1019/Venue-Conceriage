@@ -150,12 +150,6 @@ const EnquiryForm: React.FC<EnquiryFormProps> = ({
 
             <div className="space-y-3">
               <button
-                onClick={handleViewEnquiries}
-                className="w-full bg-primary-500 hover:bg-primary-600 text-white py-3 px-4 rounded-lg transition-colors"
-              >
-                {isAuthenticated ? 'View My Enquiries' : 'Sign In to Track Enquiries'}
-              </button>
-              <button
                 onClick={onClose}
                 className="w-full border border-gray-300 text-gray-700 py-3 px-4 rounded-lg hover:bg-gray-50 transition-colors"
               >
@@ -184,19 +178,6 @@ const EnquiryForm: React.FC<EnquiryFormProps> = ({
           </button>
         </div>
 
-        {!isAuthenticated && (
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-            <div className="flex items-start space-x-3">
-              <Mail className="w-5 h-5 text-blue-600 mt-0.5" />
-              <div>
-                <p className="text-sm text-blue-800 font-medium">Not signed in?</p>
-                <p className="text-xs text-blue-600">
-                  Provide your email below and you can create an account later to track your enquiries.
-                </p>
-              </div>
-            </div>
-          </div>
-        )}
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

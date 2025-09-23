@@ -3,6 +3,7 @@ import { readFileSync, writeFileSync, appendFileSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { v4 as uuidv4 } from 'uuid';
+import fetch from 'node-fetch';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -105,6 +106,138 @@ function calculateCTR(alpha: number, beta: number): number {
   return alpha / (alpha + beta);
 }
 
+// AI Agent for Ad Selection using SmythOS
+async function selectAdWithAI(
+  pageContext: any,
+  userContext: any,
+  eligibleAds: any[],
+  priorStats: any[]
+): Promise<any> {
+  // Validate inputs - don't call AI agent if we have empty critical arrays
+  if (!eligibleAds || eligibleAds.length === 0) {
+    console.log('[AI Agent] Skipping AI agent - no eligible ads');
+    return null;
+  }
+
+  if (!priorStats || priorStats.length === 0) {
+    console.log('[AI Agent] Skipping AI agent - no prior stats available');
+    return null;
+  }
+
+  // Clean page_context to remove any empty arrays
+  const cleanPageContext = {
+    ...pageContext,
+    // Remove keywords if it's empty array, since we're using results_text primarily now
+    ...(pageContext?.keywords && pageContext.keywords.length > 0 ? { keywords: pageContext.keywords } : {})
+  };
+
+  // Clean eligible_ads to remove all empty arrays
+  const cleanEligibleAds = eligibleAds.map(ad => {
+    const cleanAd: any = {};
+    for (const [key, value] of Object.entries(ad)) {
+      // Include all non-array values
+      if (!Array.isArray(value)) {
+        cleanAd[key] = value;
+      }
+      // Only include arrays that have items
+      else if (Array.isArray(value) && value.length > 0) {
+        cleanAd[key] = value;
+      }
+      // Skip empty arrays entirely
+    }
+    return cleanAd;
+  });
+
+  // Wrap request in ad_request object as expected by SmythOS agent
+  const aiRequest = {
+    ad_request: {
+      page_context: cleanPageContext,
+      user_context: userContext,
+      eligible_ads: cleanEligibleAds,
+      prior_stats: priorStats,
+      config: {
+        keyword_overlap_min: 1,
+        assumed_cpc_cents: 25,
+        num_ads_requested: 1
+      }
+    }
+  };
+
+  // Retry logic: try up to 3 times
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      console.log(`[AI Agent] Attempt ${attempt}/3 - Sending request to AI agent`);
+      if (attempt === 1) {
+        console.log('[AI Agent] Request payload:', JSON.stringify(aiRequest, null, 2));
+      }
+
+      // Call SmythOS AI agent endpoint
+      const aiResponse = await fetch('https://cmfvy00gpxdpqo3wtm3zjmdtq.agent.pa.smyth.ai/api/optimize_ads', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(aiRequest),
+        signal: AbortSignal.timeout(10000) // 10 second timeout
+      });
+
+      if (!aiResponse.ok) {
+        console.log(`[AI Agent] Attempt ${attempt}/3 - HTTP error:`, aiResponse.status, aiResponse.statusText);
+        if (attempt === 3) return null; // Last attempt failed
+        await new Promise(resolve => setTimeout(resolve, 500 * attempt)); // Brief delay before retry
+        continue; // Try again
+      }
+
+      const aiResult: any = await aiResponse.json();
+      console.log(`[AI Agent] Attempt ${attempt}/3 - Received response:`, JSON.stringify(aiResult));
+
+      // Check if we got valid data
+      const hasValidResponse = (
+        aiResult &&
+        aiResult.result &&
+        aiResult.result.Output &&
+        aiResult.result.Output.response &&
+        aiResult.result.Output.response.chosen &&
+        aiResult.result.Output.response.chosen.ad_id
+      ) || (
+        aiResult &&
+        aiResult.chosen &&
+        aiResult.chosen.ad_id
+      );
+
+      // Check for error responses
+      const hasError = (
+        aiResult &&
+        aiResult.result &&
+        aiResult.result._error
+      );
+
+      if (hasValidResponse) {
+        console.log(`[AI Agent] Success on attempt ${attempt}/3 - Valid response received`);
+        return aiResult; // Success - return immediately
+      } else if (hasError) {
+        console.log(`[AI Agent] Attempt ${attempt}/3 - AI agent returned error:`, aiResult.result._error);
+        if (attempt === 3) return null; // Last attempt failed
+        await new Promise(resolve => setTimeout(resolve, 500 * attempt)); // Brief delay before retry
+        continue; // Try again
+      } else {
+        console.log(`[AI Agent] Attempt ${attempt}/3 - Invalid response format received`);
+        if (attempt === 3) return null; // Last attempt failed
+        await new Promise(resolve => setTimeout(resolve, 500 * attempt)); // Brief delay before retry
+        continue; // Try again
+      }
+
+    } catch (error) {
+      console.error(`[AI Agent] Attempt ${attempt}/3 - Error calling AI agent:`, error);
+      if (attempt === 3) return null; // Last attempt failed
+      await new Promise(resolve => setTimeout(resolve, 500 * attempt)); // Brief delay before retry
+      continue; // Try again
+    }
+  }
+
+  return null; // All attempts failed
+}
+
 function selectAd(eligibleAds: any[], topic: string, epsilon: number): any {
   if (eligibleAds.length === 0) return null;
 
@@ -130,10 +263,10 @@ function selectAd(eligibleAds: any[], topic: string, epsilon: number): any {
   }
 }
 
-// GET /api/ads - Serve ads based on context
-router.get('/', (req, res) => {
+// GET /api/ads - Serve ads based on context with SmythOS optimization
+router.get('/', async (req, res) => {
   try {
-    const { placement = 'sidebar', topic = 'general', path = '', keywords = '' } = req.query;
+    const { placement = 'sidebar', topic = 'general', path = '', keywords = '', context = '', tags = '' } = req.query;
 
     // Load configuration
     const config = loadJSON(configFilePath, {
@@ -146,6 +279,11 @@ router.get('/', (req, res) => {
     // Load ads
     const ads = loadJSON(adsFilePath, []);
     const anonId = generateAnonId(req);
+
+    // Extract keywords from tags parameter if provided (from URL like ?tags=venues%20in%20newyork)
+    const extractedKeywords = tags ?
+      tags.toString().toLowerCase().split(/[%20\+\s,]+/).filter(k => k.trim().length > 0) :
+      (keywords ? keywords.toString().toLowerCase().split(',').map((k: string) => k.trim()) : []);
 
     // Filter eligible ads
     let eligibleAds = ads.filter((ad: any) => {
@@ -160,10 +298,9 @@ router.get('/', (req, res) => {
       if (!checkFrequencyCap(anonId, ad.id)) return false;
 
       // Check keyword targeting
-      if (ad.targeting_keywords.length > 0 && keywords) {
-        const searchKeywords = keywords.toString().toLowerCase().split(',').map((k: string) => k.trim());
+      if (ad.targeting_keywords.length > 0 && extractedKeywords.length > 0) {
         const overlap = ad.targeting_keywords.filter((targetKeyword: string) =>
-          searchKeywords.some(sk => sk.includes(targetKeyword.toLowerCase()) ||
+          extractedKeywords.some(sk => sk.includes(targetKeyword.toLowerCase()) ||
                                    targetKeyword.toLowerCase().includes(sk))
         ).length;
 
@@ -178,8 +315,67 @@ router.get('/', (req, res) => {
       eligibleAds = ads.filter((ad: any) => ad.floor_ecpm === 0);
     }
 
-    // Select ad using epsilon-greedy + Thompson sampling
-    const selectedAd = selectAd(eligibleAds, topic.toString(), config.epsilon);
+    if (eligibleAds.length === 0) {
+      return res.json({ ad: null, message: 'No ads available' });
+    }
+
+    // Prepare data for SmythOS AI agent
+    const pageContext = {
+      url: req.get('referer') || '',
+      title: context.toString() || '',
+      path: path.toString(),
+      keywords: extractedKeywords,
+      topic: topic.toString(),
+      results_text: `${context} ${tags}`.trim()
+    };
+
+    const userContext = {
+      anon_id: anonId,
+      lang: req.get('Accept-Language')?.split(',')[0] || 'en',
+      device: req.get('User-Agent')?.includes('Mobile') ? 'mobile' : 'desktop'
+    };
+
+    const priorStats = eligibleAds.map((ad: any) => {
+      const adStats = getOrCreateStats(topic.toString(), ad.id);
+      const stats = adStats.byTopic[topic.toString()][ad.id];
+      return {
+        ad_id: ad.id,
+        topic: topic.toString(),
+        impressions: stats.impressions || 0,
+        clicks: stats.clicks || 0,
+        alpha: stats.alpha,
+        beta: stats.beta,
+        ctr_mean: stats.alpha / (stats.alpha + stats.beta)
+      };
+    });
+
+    // Try SmythOS AI optimization first
+    console.log('[AI] Attempting SmythOS optimization for', eligibleAds.length, 'ads');
+    const aiResult = await selectAdWithAI(pageContext, userContext, eligibleAds, priorStats);
+
+    let selectedAd = null;
+    let aiOptimizedHeadline = null;
+    let aiOptimizedBody = null;
+
+    // Parse AI agent response
+    if (aiResult && aiResult.result && aiResult.result.Output && aiResult.result.Output.response && aiResult.result.Output.response.chosen) {
+      const chosen = aiResult.result.Output.response.chosen;
+      selectedAd = eligibleAds.find((ad: any) => ad.id === chosen.ad_id);
+      aiOptimizedHeadline = chosen.headline;
+      aiOptimizedBody = chosen.body;
+      console.log('[AI] SmythOS optimization successful, selected ad:', chosen.ad_id);
+    } else if (aiResult && aiResult.chosen) {
+      selectedAd = eligibleAds.find((ad: any) => ad.id === aiResult.chosen.ad_id);
+      aiOptimizedHeadline = aiResult.chosen.headline;
+      aiOptimizedBody = aiResult.chosen.body;
+      console.log('[AI] SmythOS optimization successful, selected ad:', aiResult.chosen.ad_id);
+    }
+
+    // Fallback to local Thompson sampling if AI optimization fails
+    if (!selectedAd) {
+      console.log('[AI] SmythOS optimization failed, falling back to Thompson sampling');
+      selectedAd = selectAd(eligibleAds, topic.toString(), config.epsilon);
+    }
 
     if (!selectedAd) {
       return res.json({ ad: null, message: 'No ads available' });
@@ -209,12 +405,16 @@ router.get('/', (req, res) => {
     res.json({
       ad: {
         ...selectedAd,
+        // Use AI-optimized content if available, otherwise use original
+        base_headline: aiOptimizedHeadline || selectedAd.base_headline,
+        base_body: aiOptimizedBody || selectedAd.base_body,
         impression_id: impressionId
       },
       context: {
         placement,
         topic,
-        eligible_count: eligibleAds.length
+        eligible_count: eligibleAds.length,
+        ai_optimized: !!(aiOptimizedHeadline || aiOptimizedBody)
       }
     });
 
