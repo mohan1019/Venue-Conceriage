@@ -68,11 +68,11 @@ AI_MAX_TOKENS_PER_CALL=1200
 ### Ads (Legacy)
 - `GET /api/ads` - Get contextual advertisements
 
-### Advertising (JSON-Only MVP)
-- `POST /ad/request` - Request contextual ads with targeting
-- `POST /ad/click` - Track ad clicks and conversions
-- `GET /ad/health` - Ad system health check
-- `GET /ad/dev/debug` - Debug information (development only)
+### Content Recommendations (JSON-Only MVP)
+- `POST /api/content/request` - Request contextual content recommendations with targeting
+- `POST /api/content/click` - Track content clicks and conversions
+- `GET /api/content/health` - Content system health check
+- `GET /api/content/dev/debug` - Debug information (development only)
 
 ### AI Assistant
 - `POST /api/agent/relay` - SmythOS integration
@@ -243,8 +243,8 @@ tail -f ads/impressions.jsonl
 # View click tracking
 tail -f ads/clicks.jsonl
 
-# Debug ad selection
-curl "http://localhost:3000/ad/dev/debug?limit=10"
+# Debug content selection
+curl "http://localhost:3000/api/content/dev/debug?limit=10"
 ```
 
 ### Testing Features

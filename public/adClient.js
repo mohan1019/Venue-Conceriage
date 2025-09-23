@@ -217,7 +217,7 @@
     };
 
     try {
-      const response = await fetch(`${AD_API_BASE}/ad/request`, {
+      const response = await fetch(`${AD_API_BASE}/api/content/request`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -309,9 +309,9 @@
 
       // Use sendBeacon if available, fallback to fetch with keepalive
       if (navigator.sendBeacon) {
-        navigator.sendBeacon(`${AD_API_BASE}/ad/click`, JSON.stringify(payload));
+        navigator.sendBeacon(`${AD_API_BASE}/api/content/click`, JSON.stringify(payload));
       } else {
-        fetch(`${AD_API_BASE}/ad/click`, {
+        fetch(`${AD_API_BASE}/api/content/click`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),

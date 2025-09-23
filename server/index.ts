@@ -83,7 +83,7 @@ app.use('/api/venues', venuesRoute);
 app.use('/api/inquiries', inquiriesRoute);
 app.use('/api/ai/quote', quoteRoute);
 app.use('/api/ads', adsRoute);
-app.use('/ad', adRoute);
+app.use('/api/content', adRoute);
 app.use('/api/agent', agentRoute);
 
 // Serve static files in production
