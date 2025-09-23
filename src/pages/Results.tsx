@@ -257,7 +257,7 @@ const Results: React.FC = () => {
       const searchQuery = query || 'Show me venues';
       let requestQuery = searchQuery;
       if (!isInitialLoad && !userSpecifiedLimit) {
-        requestQuery = `${searchQuery}. Load more results starting from offset ${offset} with limit 6.`;
+        requestQuery = `${searchQuery}`;
       }
 
       const response = await fetch(`${API_ENDPOINTS.VENUES}`, {
