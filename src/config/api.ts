@@ -1,6 +1,5 @@
 // API configuration
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 
-  (import.meta.env.DEV ? 'http://localhost:3000' : window.location.origin);
+const API_BASE_URL = "https://venue-backend-1.onrender.com";
 
 export const API_ENDPOINTS = {
   VENUES: `${API_BASE_URL}/api/venues/ai-search`,
