@@ -91,7 +91,7 @@ if (process.env.NODE_ENV === 'production') {
   const clientPath = join(__dirname, '../../dist/client');
   app.use(express.static(clientPath));
   
-  app.get('*', (req, res) => {
+  app.get('*', (req: express.Request, res: express.Response) => {
     res.sendFile(join(clientPath, 'index.html'));
   });
 }
@@ -107,7 +107,7 @@ app.use((err: Error, req: express.Request, res: express.Response, next: express.
 });
 
 // 404 handler
-app.use((req, res) => {
+app.use((req: express.Request, res: express.Response) => {
   res.status(404).json({ error: 'Route not found' });
 });
 

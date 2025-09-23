@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { readFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -13,7 +13,7 @@ const venuesData = JSON.parse(
   readFileSync(join(__dirname, '../../data/venues.json'), 'utf-8')
 );
 
-router.get('/', (req, res) => {
+router.get('/', (req: Request, res: Response) => {
   try {
     const { venueId, hours, guests, eventDate } = req.query;
 

@@ -1,8 +1,8 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 
 const router = Router();
 
-router.post('/relay', async (req, res) => {
+router.post('/relay', async (req: Request, res: Response) => {
   try {
     const { sessionId, message } = req.body;
     const maxTokens = parseInt(process.env.AI_MAX_TOKENS_PER_CALL || '1200');

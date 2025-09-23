@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { readFileSync, writeFileSync } from 'fs';
@@ -32,7 +32,7 @@ const asArray = (v: any) => {
   return toStr(v).split(',').map(x => x.trim()).filter(Boolean);
 };
 
-router.get('/', async (req, res) => {
+router.get('/', async (req: Request, res: Response) => {
   try {
     const { query, city, minCapacity, maxPricePerHour, amenities } = req.query;
     const venues = getVenuesFromJson();
@@ -102,7 +102,7 @@ router.get('/', async (req, res) => {
 });
 
 // Advanced venue search endpoint
-router.post('/search', async (req, res) => {
+router.post('/search', async (req: Request, res: Response) => {
   try {
     const {
       city, state, country, metro_area,
@@ -278,7 +278,7 @@ const haversineMi = (lat1: number, lon1: number, lat2: number, lon2: number) => 
 };
 
 // Get search context and results summary
-router.get('/search-context', (req, res) => {
+router.get('/search-context', (req: Request, res: Response) => {
   try {
     const { query, total_results, displayed_results } = req.query;
 
@@ -386,7 +386,7 @@ router.get('/search-context', (req, res) => {
 });
 
 // Get venue by ID
-router.get('/:id', async (req, res) => {
+router.get('/:id', async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const venues = getVenuesFromJson();
@@ -430,7 +430,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Endpoint to append new venue data to venues.json
-router.post('/append', (req, res) => {
+router.post('/append', (req: Request, res: Response) => {
   try {
     const { venues: newVenues } = req.body;
 
@@ -521,7 +521,7 @@ router.post('/append', (req, res) => {
 });
 
 // Smyth Reply Agent endpoint
-router.post('/reply', async (req, res) => {
+router.post('/reply', async (req: Request, res: Response) => {
   try {
     const { user_text } = req.body;
 
@@ -600,7 +600,7 @@ router.post('/reply', async (req, res) => {
 });
 
 // AI-powered venue search endpoint
-router.post('/ai-search', async (req, res) => {
+router.post('/ai-search', async (req: Request, res: Response) => {
   try {
     const { venue_request , offset } = req.body;
 
@@ -660,7 +660,7 @@ router.post('/ai-search', async (req, res) => {
   }
 });
 
-function handleSmythOSResponse(apiData: string, venue_request: string, res: any) {
+function handleSmythOSResponse(apiData: string, venue_request: string, res: Response) {
   try {
     console.log('Raw SmythOS response:', apiData);
 

@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { readFileSync, writeFileSync, appendFileSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -53,7 +53,7 @@ function getTodayKey() {
   return new Date().toISOString().split('T')[0]; // YYYY-MM-DD
 }
 
-function generateAnonId(req: any): string {
+function generateAnonId(req: Request): string {
   // Simple anonymous ID based on IP + User-Agent
   const ip = req.ip || req.connection.remoteAddress || 'unknown';
   const userAgent = req.get('User-Agent') || 'unknown';
@@ -264,7 +264,7 @@ function selectAd(eligibleAds: any[], topic: string, epsilon: number): any {
 }
 
 // GET /api/ads - Serve ads based on context with SmythOS optimization
-router.get('/', async (req, res) => {
+router.get('/', async (req: Request, res: Response) => {
   try {
     const { placement = 'sidebar', topic = 'general', path = '', keywords = '', context = '', tags = '' } = req.query;
 
@@ -425,7 +425,7 @@ router.get('/', async (req, res) => {
 });
 
 // POST /api/ads/click - Record ad click
-router.post('/click', (req, res) => {
+router.post('/click', (req: Request, res: Response) => {
   try {
     const { impression_id, ad_id } = req.body;
 
@@ -465,7 +465,7 @@ router.post('/click', (req, res) => {
 });
 
 // GET /api/ads/stats - Get ad performance stats
-router.get('/stats', (req, res) => {
+router.get('/stats', (req: Request, res: Response) => {
   try {
     const { ad_id, topic } = req.query;
     const stats = loadJSON(statsFilePath, { byTopic: {} });
@@ -506,7 +506,7 @@ router.get('/stats', (req, res) => {
 });
 
 // GET /api/ads/config - Get current configuration
-router.get('/config', (req, res) => {
+router.get('/config', (req: Request, res: Response) => {
   try {
     const config = loadJSON(configFilePath, {});
     res.json(config);

@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { readFileSync, writeFileSync, appendFileSync, existsSync, watchFile, unwatchFile, renameSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -402,7 +402,7 @@ function calculateMatchScore(adKeywords: string[], pageKeywords: string[]): numb
 }
 
 // POST /ad/request - Returns multiple ads (up to 3)
-router.post('/request', async (req: any, res: any) => {
+router.post('/request', async (req: Request, res: Response) => {
   try {
     // Check DNT header
     if (req.get('DNT') === '1') {
@@ -596,7 +596,7 @@ router.post('/request', async (req: any, res: any) => {
 });
 
 // POST /ad/click
-router.post('/click', async (req, res) => {
+router.post('/click', async (req: Request, res: Response) => {
   try {
     const { impression_id } = req.body;
 
@@ -652,12 +652,12 @@ router.post('/click', async (req, res) => {
 });
 
 // GET /ad/health
-router.get('/health', (req, res) => {
+router.get('/health', (req: Request, res: Response) => {
   res.json({ ok: true });
 });
 
 // GET /ad/dev/debug (development only)
-router.get('/dev/debug', async (req, res) => {
+router.get('/dev/debug', async (req: Request, res: Response) => {
   if (process.env.NODE_ENV === 'production') {
     return res.status(404).json({ error: 'Not found' });
   }

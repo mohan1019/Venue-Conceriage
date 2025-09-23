@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import fetch from 'node-fetch';
 import { sql } from '../db/connection-postgres.js';
@@ -9,7 +9,7 @@ import { fileURLToPath } from 'url';
 const router = Router();
 
 // Create new enquiry
-router.post('/', async (req, res) => {
+router.post('/', async (req: Request, res: Response) => {
   try {
 
     const {
@@ -87,7 +87,7 @@ router.post('/', async (req, res) => {
 });
 
 // Get enquiries for a user (by email if not authenticated, by user_id if authenticated)
-router.get('/', async (req, res) => {
+router.get('/', async (req: Request, res: Response) => {
   try {
     const { user_id, email } = req.query;
 
@@ -118,7 +118,7 @@ router.get('/', async (req, res) => {
 });
 
 // Get specific enquiry by ID
-router.get('/:id', async (req, res) => {
+router.get('/:id', async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const results = await sql`SELECT * FROM inquiries WHERE id = ${id}`;
@@ -139,7 +139,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Update enquiry status (for venue owners or admins)
-router.patch('/:id', async (req, res) => {
+router.patch('/:id', async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const { status, venue_owner_response, agent_response } = req.body;
@@ -211,7 +211,7 @@ router.patch('/:id', async (req, res) => {
 });
 
 // API endpoint for SmythOS agent to store/update enquiry responses
-router.post('/agent-response', async (req, res) => {
+router.post('/agent-response', async (req: Request, res: Response) => {
   try {
     const {
       enquiry_id,
@@ -308,7 +308,7 @@ router.post('/agent-response', async (req, res) => {
 });
 
 // API endpoint to get enquiry details for SmythOS agent
-router.get('/agent-data/:id', async (req, res) => {
+router.get('/agent-data/:id', async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const result = await sql`SELECT * FROM inquiries WHERE id = ${id}`;
@@ -488,7 +488,7 @@ Venue Contact Information:
 }
 
 // Endpoint to receive venue responses from Smyth agent
-router.post('/enquiry-responses', async (req, res) => {
+router.post('/enquiry-responses', async (req: Request, res: Response) => {
   try {
     const { enquiry_id, venue_response, status } = req.body;
 
