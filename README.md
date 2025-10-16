@@ -12,7 +12,7 @@ A full-stack event venue discovery platform with AI assistant integration via Sm
 ## Features
 
 ### Core Functionality
-- **Venue Discovery**: Search and filter venues across multiple cities
+- **Venue Discovery**: Search and filter venues across multiple cities across United States.
 - **AI Assistant**: SmythOS-powered chat assistant for venue recommendations
 - **Quote Calculator**: Dynamic pricing with weekend surcharge and cleaning fees
 - **Inquiry System**: Complete booking inquiry workflow
