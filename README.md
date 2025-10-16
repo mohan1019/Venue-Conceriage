@@ -2,7 +2,7 @@
 
 A full-stack event venue discovery platform with AI assistant integration via SmythOS.
 
-##DEPLOYED
+## DEPLOYMENT
 
 - HOSTED_URL : https://aghori1019-venue-bac-kv2k.bolt.host/
 - BACKEND_URL : https://venue-backend-1.onrender.com
