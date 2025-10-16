@@ -2,6 +2,13 @@
 
 A full-stack event venue discovery platform with AI assistant integration via SmythOS.
 
+##DEPLOYED
+
+- HOSTED_URL : https://aghori1019-venue-bac-kv2k.bolt.host/
+- BACKEND_URL : https://venue-backend-1.onrender.com
+- SMYTHOS_URL : https://cmfvy00gpxdpqo3wtm3zjmdtq.agent.pa.smyth.ai/swagger/
+
+
 ## Features
 
 ### Core Functionality
